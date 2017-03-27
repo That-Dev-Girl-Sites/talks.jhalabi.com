@@ -55,12 +55,7 @@ http://getbootstrap.com/
 
 ---
 
-![GeneralAssemb.ly](../../img/icons/exercise_icon_md.png)
-
 ## Wireframe with Bootstrap
-
-Note:
-Use your final project wireframe as a template.
 
 ---
 
@@ -137,8 +132,6 @@ Source: http://www.stockphotorights.com/faq/
 
 ---
 
-![GeneralAssemb.ly](../../img/icons/exercise_icon_md.png)
-
 ## Fill in your wireframes with (fake) content
 
 ---
@@ -181,8 +174,6 @@ Don't forget about Google Fonts!
 https://www.google.com/fonts
 
 ---
-
-![GeneralAssemb.ly](../../img/icons/exercise_icon_md.png)
 
 ## Let's start designing
 
