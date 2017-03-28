@@ -239,5 +239,5 @@ Correct and useful error notifications
 
 * [Accessibility and phone number formatting](http://www.jhalabi.com/blog/accessibility-phone-number-formatting/)
 * [I thought title text improved accessibility](https://silktide.com/i-thought-title-text-improved-accessibility-i-was-wrong/)
-* [Semantic differences between &lt;b&gt;, &lt;strong&gt;, &;lt;i&gt;, and &lt;em&gt;](http://html5doctor.com/i-b-em-strong-element/)
+* [Semantic differences between &lt;b&gt;, &lt;strong&gt;, &lt;i&gt;, and &lt;em&gt;](http://html5doctor.com/i-b-em-strong-element/)
 * [Testing with a screen reader](http://www.jhalabi.com/blog/accessibility-screen-reader/)
