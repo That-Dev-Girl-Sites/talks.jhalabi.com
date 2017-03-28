@@ -1,10 +1,11 @@
-# Accessible Development For All!
+# Accessible Development
+# For All!
 
 ---
 
 ## Hello! My name is Joni.
 
-* Sr. Javascript Front-End Dev @ Georgetown
+* Sr. Javascript front-end dev @ Georgetown
 * Pseudo-avid Tweeter: [@jonihalabi](https://twitter.com/jonihalabi)
 * More-than-occasional runner
 * Baker of a mean oatmeal chocolate chip cookie
@@ -32,12 +33,17 @@ Our responsibility (and goal) as developers is to make sites that everyone can u
 
 ## K.I.S.S.
 
-[For example...](http://thatdevgirl.com/talks/accessibility/example/kiss)
+[For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
 
 --
 
-## What do we want? *Accessible websites!*
-## When do we want it? *From the beginning!*
+## What do we want?
+## *Accessible websites!*
+## When do we want it?
+## *Right from the start!*
+
+Note:
+Story time! Talk about the accessibility retro-fit at GU.
 
 ---
 
@@ -51,6 +57,20 @@ Our responsibility (and goal) as developers is to make sites that everyone can u
 
 Note:
 ARIA and role attributes are there to help, not to use exclusively.
+
+--
+
+## Landmarks are your (and your users') friends.
+
+Landmarks allow users to navigate through the major sections of a site.
+
+--
+
+![GU McCourt site](images/mccourt-plain.jpg)
+
+--
+
+![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
 
 ---
 
