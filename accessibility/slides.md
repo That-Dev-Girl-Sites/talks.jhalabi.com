@@ -40,9 +40,7 @@ Accessible development practices should be baked into our regular development pr
 
 ---
 
-`<img src="sadness.jpg">`
-
-![Frowning face](images/frown.png)
+`<img src="kitten.jpg">`
 
 ---
 
@@ -52,9 +50,9 @@ Accessible development practices should be baked into our regular development pr
 
 ---
 
-## What do we want?
+### What do we want?
 ## *Accessible websites!*
-## When do we want it?
+### When do we want it?
 ## *Right from the start!*
 
 Note:
@@ -143,20 +141,84 @@ Landmarks allow users to navigate through the major sections of a site.
 
 ## Landmarks and Labels
 
-A landmark isn't very useful if you can't tell one from another
+A landmark isn't very useful if you can't tell one from another.
+
+Note:
 All duplicate landmark roles need labels!
 
 ---
 
+## Don't forget about the little details
+
+Note:
+There are lots of large-scale development practices that you need to keep in mind, but don't forget about the little "gotchas" too.
+
+---
+
+## Phone numbers are a huge pain.
+
+---
+
+## First and foremost, use a `tel:` link
+
+`<a href="tel:7035551212">(703) 555-1212</a>`
+
+---
+
+## (703) 555-1212
+
+Note:
+Read as "seven hundred three (pause) five hundred fifty-five minus one thousand two hundred twelve"
+
+---
+
+## 703.555.1212
+
+Note:
+Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousand two hundred twelve"
+
+---
+
+## A workaround
+
+`<span>7</span> <span>0</span> <span>3</span> <span>5</span> <span>5</span> <span>5</span> - <span>1</span> <span>2</span> <span>1</span> <span>2</span>`
+
+Note:
+OMG no.
+
+---
+
+## A better solution
+
+`<a href="tel:7035551212" aria-label="7 0 3. 5 5 5. 1 2 1 2.">(703) 555-1212</a>`
+
+---
+
+## Link `title` attribute does nothing!
+
+* Screen readers do not read them.
+* ...kinda. Screen readers only read `title` text if there is **no** link text.
+
+Note:
+Even if there is an image, screen readers will read the image's alt text, still not the link's title text.
+
+---
+
+## Semantic differences between `<b>`, `<strong>`, `<i>`, and `<em>`
+
+http://html5doctor.com/i-b-em-strong-element/
+---
+
 ## Accessible forms
 
+Note:
+Correct and useful error notifications
+
 ---
 
-## Accessible phone numbers
+## Test your site!
 
----
-
-## Accessibility weirdness: `title` attribute does nothing!
+* Screen readers - i.e. VoiceOver, JAWS.
 
 ---
 
@@ -164,3 +226,19 @@ All duplicate landmark roles need labels!
 
 * Slides: http://thatdevgirl.com/talks/accessibility/
 * Twitter: [@jonihalabi](https://twitter.com/jonihalabi)
+
+---
+
+## Accessibility guideline documentation
+
+* [W3C](www.w3c.com)
+* [Section 508](www.section508.gov)
+* [Siteimprove](www.siteimprove.com)
+
+---
+
+## References
+
+* [Accessibility and phone number formatting](http://www.jhalabi.com/blog/accessibility-phone-number-formatting/)
+* [I thought title text improved accessibility](https://silktide.com/i-thought-title-text-improved-accessibility-i-was-wrong/)
+* [Semantic differences between <b>, <strong>, <i>, and <em>](http://html5doctor.com/i-b-em-strong-element/)
