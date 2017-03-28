@@ -10,7 +10,7 @@
 * More-than-occasional runner
 * Baker of a mean oatmeal chocolate chip cookie
 
---
+---
 
 ## P.S. All of these slides are online
 
@@ -27,15 +27,37 @@ Our responsibility (and goal) as developers is to make sites that everyone can u
 
 ---
 
+## This talk is really about
+### ~~Accessible development~~
+### Development!
+
+Note:
+We have been developing the wrong way if our code is not accessible.
+Accessible development practices should be baked into our regular development practices.
+
+---
+
+`<img src="kitten.jpg">`
+
+![Frowning face](images/frown.png)
+
+---
+
+`<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
+
+![Smiling face](images/smile.png)
+
+---
+
 ## How do we start?
 
---
+---
 
 ## K.I.S.S.
 
 [For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
 
---
+---
 
 ## What do we want?
 ## *Accessible websites!*
@@ -43,36 +65,38 @@ Our responsibility (and goal) as developers is to make sites that everyone can u
 ## *Right from the start!*
 
 Note:
+Process = Requirements -> UX -> design -> development -> testing -> release
 Story time! Talk about the accessibility retro-fit at GU.
 
 ---
 
 ## Good code = accessible code
 
---
+---
 
 * Clean markup
 * Use HTML5 tags
+* Be **SEMANTIC**
 * Use as few ARIA and role attributes as possible.
 
 Note:
 ARIA and role attributes are there to help, not to use exclusively.
 
---
+---
 
 ## Landmarks are your (and your users') friends.
 
 Landmarks allow users to navigate through the major sections of a site.
 
---
+---
 
 ![GU McCourt site](images/mccourt-plain.jpg)
 
---
+---
 
 ![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
 
---
+---
 
 | HTML 5 Tag | Role |
 | ------ | ------ |
