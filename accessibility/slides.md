@@ -155,7 +155,7 @@ There are lots of large-scale development practices that you need to keep in min
 
 ---
 
-## Phone numbers are a huge pain.
+## Phone numbers are a huge pain
 
 ---
 
@@ -196,8 +196,11 @@ OMG no.
 
 ## Link `title` attribute does nothing!
 
-* Screen readers do not read them.
-* ...kinda. Screen readers only read `title` text if there is **no** link text.
+Screen readers do not read them...
+
+...kinda.
+
+Screen readers only read `title` text if there is **no** link text.
 
 Note:
 Even if there is an image, screen readers will read the image's alt text, still not the link's title text.
@@ -207,18 +210,13 @@ Even if there is an image, screen readers will read the image's alt text, still 
 ## Semantic differences between `<b>`, `<strong>`, `<i>`, and `<em>`
 
 http://html5doctor.com/i-b-em-strong-element/
+
 ---
 
 ## Accessible forms
 
 Note:
 Correct and useful error notifications
-
----
-
-## Test your site!
-
-* Screen readers - i.e. VoiceOver, JAWS.
 
 ---
 
@@ -241,4 +239,5 @@ Correct and useful error notifications
 
 * [Accessibility and phone number formatting](http://www.jhalabi.com/blog/accessibility-phone-number-formatting/)
 * [I thought title text improved accessibility](https://silktide.com/i-thought-title-text-improved-accessibility-i-was-wrong/)
-* [Semantic differences between <b>, <strong>, <i>, and <em>](http://html5doctor.com/i-b-em-strong-element/)
+* [Semantic differences between &gt;b&lt;, &gt;strong&lt;, &gt;i&lt;, and &gt;em&lt;](http://html5doctor.com/i-b-em-strong-element/)
+* [Testing with a screen reader](http://www.jhalabi.com/blog/accessibility-screen-reader/)
