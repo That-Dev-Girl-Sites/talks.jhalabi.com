@@ -72,6 +72,38 @@ Landmarks allow users to navigate through the major sections of a site.
 
 ![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
 
+--
+
+| HTML 5 Tag | Role |
+| ------ | ------ |
+| `<header>` | banner |
+| `<nav>` | navigation |
+| `<main>` | main |
+| `<aside>` | complementary |
+| `<section>` | region |
+| `<article>` | article |
+| `<footer>` | contentinfo |
+| `<form>` | form |
+
+---
+
+## Landmarks and Labels
+
+A landmark isn't very useful if you can't tell one from another
+All duplicate landmark roles need labels!
+
+---
+
+## Accessible forms
+
+---
+
+## Accessible phone numbers
+
+---
+
+## Accessibility weirdness: `title` attribute does nothing!
+
 ---
 
 ## Thank you!
