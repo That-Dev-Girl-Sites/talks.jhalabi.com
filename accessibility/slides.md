@@ -29,7 +29,7 @@ Our responsibility (and goal) as developers is to make sites that everyone can u
 
 ---
 
-## This talk is really about
+### This talk is really about
 ## ~~Accessible development~~
 ## Development!
 
@@ -88,7 +88,7 @@ Keep your HTML code to the basics.
 <html>
 
 <head>
-  <title>This is an acccessible website</title>
+  <title>This is an accessible website</title>
 </head>
 
 <body>
@@ -102,16 +102,14 @@ Keep your HTML code to the basics.
 
 ---
 
-## Good code = accessible code
-
----
-
 * Clean markup
 * Use HTML5 tags
 * Be **SEMANTIC**
 * Use as few ARIA and role attributes as possible.
 
 Note:
+Good code = accessible code
+
 ARIA and role attributes are there to help, not to use exclusively.
 
 ---
