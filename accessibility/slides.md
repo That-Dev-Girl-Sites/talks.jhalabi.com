@@ -22,22 +22,25 @@ http://thatdevgirl.com/talks/accessibility/
 
 Note:
 Responsive dev caters to users of different screen sizes.
+
 Accessible dev caters to users of different browsing tools.
+
 Our responsibility (and goal) as developers is to make sites that everyone can use.
 
 ---
 
 ## This talk is really about
-### ~~Accessible development~~
-### Development!
+## ~~Accessible development~~
+## Development!
 
 Note:
 We have been developing the wrong way if our code is not accessible.
+
 Accessible development practices should be baked into our regular development practices.
 
 ---
 
-`<img src="kitten.jpg">`
+`<img src="sadness.jpg">`
 
 ![Frowning face](images/frown.png)
 
@@ -45,17 +48,7 @@ Accessible development practices should be baked into our regular development pr
 
 `<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
 
-![Smiling face](images/smile.png)
-
----
-
-## How do we start?
-
----
-
-## K.I.S.S.
-
-[For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
+![A kitten wearing a fez because fezzes are cool](images/kitten.jpg)
 
 ---
 
@@ -66,7 +59,46 @@ Accessible development practices should be baked into our regular development pr
 
 Note:
 Process = Requirements -> UX -> design -> development -> testing -> release
+
+We have our design and UX direction from the team. We know what experience we want all users to have. How do we start coding?
+
 Story time! Talk about the accessibility retro-fit at GU.
+
+---
+
+We have our design and UX direction from the team. 
+
+We know what experience we want all users to have. 
+
+How do we start coding?
+
+---
+
+## K.I.S.S.
+
+[For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
+
+Note:
+Keep your HTML code to the basics.
+
+---
+
+```
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>This is an acccessible website</title>
+</head>
+
+<body>
+  <main>
+    <h1>This is an accessible website!</h1>
+  </main>
+</body>
+
+</html>
+```
 
 ---
 
