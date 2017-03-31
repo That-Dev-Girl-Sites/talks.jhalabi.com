@@ -231,6 +231,10 @@ Correct and useful error notifications
 
 ---
 
+# Questions?
+
+---
+
 ## Accessibility guideline documentation
 
 * [W3C](www.w3c.com)
