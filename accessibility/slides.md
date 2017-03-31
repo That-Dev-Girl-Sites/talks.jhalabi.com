@@ -27,7 +27,7 @@ Accessible dev caters to users of different browsing tools.
 
 Our responsibility (and goal) as developers is to make sites that everyone can use.
 
----
+--
 
 ### This talk is really about
 ## ~~Accessible development~~
@@ -38,17 +38,17 @@ We have been developing the wrong way if our code is not accessible.
 
 Accessible development practices should be baked into our regular development practices.
 
----
+--
 
 `<img src="kitten.jpg">`
 
----
+--
 
 `<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
 
 ![A kitten wearing a fez because fezzes are cool](images/kitten.jpg)
 
----
+--
 
 ### What do we want?
 ## *Accessible websites!*
@@ -56,21 +56,21 @@ Accessible development practices should be baked into our regular development pr
 ## *Right from the start!*
 
 Note:
-Process = Requirements -> UX -> design -> development -> testing -> release
+Accessibility is a process, not a project.
 
-We have our design and UX direction from the team. We know what experience we want all users to have. How do we start coding?
+Requirements -> UX -> design -> development -> testing -> release
 
 Story time! Talk about the accessibility retro-fit at GU.
 
----
+--
 
-We have our design and UX direction from the team. 
+We have our design and UX direction from the team.
 
-We know what experience we want all users to have. 
+We know what experience we want all users to have.
 
 How do we start coding?
 
----
+--
 
 ## K.I.S.S.
 
@@ -79,7 +79,7 @@ How do we start coding?
 Note:
 Keep your HTML code to the basics.
 
----
+--
 
 ```
 <!DOCTYPE html>
@@ -98,7 +98,7 @@ Keep your HTML code to the basics.
 </html>
 ```
 
----
+--
 
 * Clean markup
 * Use HTML5 tags
@@ -116,15 +116,15 @@ ARIA and role attributes are there to help, not to use exclusively.
 
 Landmarks allow users to navigate through the major sections of a site.
 
----
+--
 
 ![GU McCourt site](images/mccourt-plain.jpg)
 
----
+--
 
 ![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
 
----
+--
 
 | HTML 5 Tag | Role |
 | ------ | ------ |
@@ -137,7 +137,7 @@ Landmarks allow users to navigate through the major sections of a site.
 | `<footer>` | contentinfo |
 | `<form>` | form |
 
----
+--
 
 ## Landmarks and Labels
 
@@ -145,6 +145,51 @@ A landmark isn't very useful if you can't tell one from another.
 
 Note:
 All duplicate landmark roles need labels!
+
+--
+
+## This is OK:
+
+```
+<header>
+  <h1>My site header!</h1>
+</header>
+
+<section>
+  <p>All the things about my site</p>
+</section>
+```
+
+--
+
+## This is *not* OK:
+
+```
+<section>
+  <p>All the things about my site</p>
+</section>
+
+<section>
+  <p>More things about my site</p>
+</section>
+```
+
+--
+
+## The fix!
+
+```
+<section aria-label="All the things">
+  <p>All the things about my site</p>
+</section>
+
+<section aria-label="Even more things!">
+  <p>More things about my site</p>
+</section>
+```
+
+Note:
+aria-labelledby: Works in JAWS, but for some reason not in VoiceOver.
 
 ---
 
@@ -157,27 +202,31 @@ There are lots of large-scale development practices that you need to keep in min
 
 ## Phone numbers are a huge pain
 
----
+--
 
 ## First and foremost, use a `tel:` link
 
 `<a href="tel:7035551212">(703) 555-1212</a>`
 
----
+--
 
 ## (703) 555-1212
 
 Note:
-Read as "seven hundred three (pause) five hundred fifty-five minus one thousand two hundred twelve"
+Read as "seven hundred three (pause) five hundred fifty-five minus one thousand two hundred twelve" in JAWS
 
----
+Read as digits in VoiceOver
+
+--
 
 ## 703.555.1212
 
 Note:
-Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousand two hundred twelve"
+Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousand two hundred twelve" in JAWS
 
----
+Read as "seven zero three dot five five five dot one two one two" in VoiceOver
+
+--
 
 ## A workaround
 
@@ -186,7 +235,7 @@ Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousan
 Note:
 OMG no.
 
----
+--
 
 ## A better solution
 
@@ -194,29 +243,64 @@ OMG no.
 
 ---
 
-## Link `title` attribute does nothing!
+## Link `title` attribute does not do what you think it does
 
-Screen readers do not read them...
-
-...kinda.
-
-Screen readers only read `title` text if there is **no** link text.
+Screen readers are inconsistent with the `title`.
 
 Note:
 Even if there is an image, screen readers will read the image's alt text, still not the link's title text.
 
+Screen readers only read `title` text if there is **no** link text.
+
 ---
 
-## Semantic differences between `<b>`, `<strong>`, `<i>`, and `<em>`
+## Semantic differences between `<b>` and `<strong>`
 
-http://html5doctor.com/i-b-em-strong-element/
+`<b>` is for stylistically offset text; i.e. keywords or anything typographically bold.
+
+`<strong>` is for text with strong importance
+
+---
+
+## Semantic differences between `<i>` and `<em>`
+
+`<i>` is for text in an alternative voice; i.e. foreign words or technical terms.
+
+`<em>` is for text that has stress emphasis; i.e. something you would pronounce differently.
 
 ---
 
 ## Accessible forms
 
-Note:
-Correct and useful error notifications
+* Logical structure
+* Navigable with the keyboard
+* Correct and useful error notifications
+
+--
+
+## Labels
+
+```
+<label>
+  <input placeholder="Your Name">
+  Your Name
+</label>
+```
+
+or
+
+```
+<label for="yourname">Your Name</label>
+<input id="yourname" placeholder="Your Name">
+```
+
+--
+
+![Inaccessible form error example](images/form-inaccessible.jpg)
+
+--
+
+![Accessible form error example](images/form-accessible.gif)
 
 ---
 
