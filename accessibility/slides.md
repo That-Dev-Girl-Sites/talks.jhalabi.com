@@ -191,6 +191,8 @@ All duplicate landmark roles need labels!
 Note:
 aria-labelledby: Works in JAWS, but for some reason not in VoiceOver.
 
+GO TO VOICE OVER DEMO NOW!
+
 ---
 
 ## Don't forget about the little details
@@ -200,7 +202,7 @@ There are lots of large-scale development practices that you need to keep in min
 
 ---
 
-## Phone numbers are a huge pain
+## Phone numbers are a giant pain
 
 --
 
@@ -304,10 +306,7 @@ or
 
 ---
 
-## Thank you!
-
-* Slides: http://thatdevgirl.com/talks/accessibility/
-* Twitter: [@jonihalabi](https://twitter.com/jonihalabi)
+# Questions?
 
 ---
 
@@ -315,7 +314,10 @@ or
 
 ---
 
-# Questions?
+## Thank you!
+
+* Slides: http://thatdevgirl.com/talks/accessibility/
+* Twitter: [@jonihalabi](https://twitter.com/jonihalabi)
 
 ---
 
