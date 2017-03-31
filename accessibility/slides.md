@@ -227,6 +227,10 @@ Correct and useful error notifications
 
 ---
 
+![Thank you NoVA Code Camp sponsors](images/novacc-sponsors.jpg)
+
+---
+
 ## Accessibility guideline documentation
 
 * [W3C](www.w3c.com)
