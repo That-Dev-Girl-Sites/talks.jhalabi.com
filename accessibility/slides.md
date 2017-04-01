@@ -27,7 +27,34 @@ Accessible dev caters to users of different browsing tools.
 
 Our responsibility (and goal) as developers is to make sites that everyone can use.
 
---
+---
+
+## Users browse with more than just their eyes
+
+* Screen readers
+* Keyboard-only
+* Braille readers
+
+Note:
+Screen readers: JAWS, VoiceOver, NVIDIA, WindowsEyes
+
+Readers all read sites slightly differently from each other
+
+---
+
+## Accessibility Standards
+
+* _WCAG_: Web Content Accessibility Guidelines
+* _Section 508_
+
+Note:
+Section 508 was updated to more closely mirror WCAG 2.0 in 2016.
+
+Standards include both design and development elements.
+
+Sites that get federal funding need to be WCAG AA compliant by Jan 18, 2018.
+
+---
 
 ### This talk is really about
 ## ~~Accessible development~~
@@ -38,17 +65,17 @@ We have been developing the wrong way if our code is not accessible.
 
 Accessible development practices should be baked into our regular development practices.
 
---
+---
 
 `<img src="kitten.jpg">`
 
---
+---
 
 `<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
 
 ![A kitten wearing a fez because fezzes are cool](images/kitten.jpg)
 
---
+---
 
 ### What do we want?
 ## *Accessible websites!*
@@ -62,7 +89,7 @@ Requirements -> UX -> design -> development -> testing -> release
 
 Story time! Talk about the accessibility retro-fit at GU.
 
---
+---
 
 We have our design and UX direction from the team.
 
@@ -70,16 +97,9 @@ We know what experience we want all users to have.
 
 How do we start coding?
 
---
+---
 
 ## K.I.S.S.
-
-[For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
-
-Note:
-Keep your HTML code to the basics.
-
---
 
 ```
 <!DOCTYPE html>
@@ -98,17 +118,31 @@ Keep your HTML code to the basics.
 </html>
 ```
 
---
+[For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
+
+Note:
+Keep your HTML code to the basics.
+
+---
 
 * Clean markup
 * Use HTML5 tags
 * Be **SEMANTIC**
-* Use as few ARIA and role attributes as possible.
+* ARIA and role attributes are mostly used for support
 
 Note:
 Good code = accessible code
 
-ARIA and role attributes are there to help, not to use exclusively.
+ARIA = Accessible Rich Internet Applications
+
+---
+
+## Navigating your website
+
+Note:
+Users navigate a website like tourists navigate a city.
+
+Places you want to go need to be labeled and specific.
 
 ---
 
@@ -116,15 +150,7 @@ ARIA and role attributes are there to help, not to use exclusively.
 
 Landmarks allow users to navigate through the major sections of a site.
 
---
-
-![GU McCourt site](images/mccourt-plain.jpg)
-
---
-
-![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
-
---
+---
 
 | HTML 5 Tag | Role |
 | ------ | ------ |
@@ -137,18 +163,17 @@ Landmarks allow users to navigate through the major sections of a site.
 | `<footer>` | contentinfo |
 | `<form>` | form |
 
---
+---
 
-## Landmarks and Labels
+![GU McCourt site](images/mccourt-plain.jpg)
 
-A landmark isn't very useful if you can't tell one from another.
+---
 
-Note:
-All duplicate landmark roles need labels!
+![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
 
---
+---
 
-## This is OK:
+## Basic landmark example
 
 ```
 <header>
@@ -160,7 +185,16 @@ All duplicate landmark roles need labels!
 </section>
 ```
 
---
+---
+
+## Landmarks and Labels
+
+A landmark isn't very useful if you can't tell one from another.
+
+Note:
+All duplicate landmark roles need labels!
+
+---
 
 ## This is *not* OK:
 
@@ -174,7 +208,7 @@ All duplicate landmark roles need labels!
 </section>
 ```
 
---
+---
 
 ## The fix!
 
@@ -204,13 +238,13 @@ There are lots of large-scale development practices that you need to keep in min
 
 ## Phone numbers are a giant pain
 
---
+---
 
 ## First and foremost, use a `tel:` link
 
 `<a href="tel:7035551212">(703) 555-1212</a>`
 
---
+---
 
 ## (703) 555-1212
 
@@ -219,7 +253,7 @@ Read as "seven hundred three (pause) five hundred fifty-five minus one thousand 
 
 Read as digits in VoiceOver
 
---
+---
 
 ## 703.555.1212
 
@@ -228,7 +262,7 @@ Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousan
 
 Read as "seven zero three dot five five five dot one two one two" in VoiceOver
 
---
+---
 
 ## A workaround
 
@@ -237,7 +271,7 @@ Read as "seven zero three dot five five five dot one two one two" in VoiceOver
 Note:
 OMG no.
 
---
+---
 
 ## A better solution
 
@@ -276,9 +310,12 @@ Screen readers only read `title` text if there is **no** link text.
 
 * Logical structure
 * Navigable with the keyboard
-* Correct and useful error notifications
+* Translates to correct HTML code
 
---
+Note:
+Forms by default are navigable by keyboard if you code them correctly and don't do weird things.
+
+---
 
 ## Labels
 
@@ -296,11 +333,15 @@ or
 <input id="yourname" placeholder="Your Name">
 ```
 
---
+---
+
+## Make sure your error notifications are correct and useful
+
+---
 
 ![Inaccessible form error example](images/form-inaccessible.jpg)
 
---
+---
 
 ![Accessible form error example](images/form-accessible.gif)
 
@@ -325,6 +366,8 @@ or
 
 * [W3C](www.w3c.com)
 * [Section 508](www.section508.gov)
+* [WCAG](https://www.w3.org/WAI/intro/wcag)
+* [WAI-ARIA](https://www.w3.org/WAI/intro/aria)
 * [Siteimprove](www.siteimprove.com)
 
 ---
