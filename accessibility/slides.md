@@ -309,7 +309,7 @@ Screen readers only read `title` text if there is **no** link text.
 ## But it doesn't really matter
 
 * Screen readers could read text in these tags differently, but they don't.  These tags are ignored unless the user specifies otherwise.
-* No accessibility guidelines require the elimination of `<b>` or `<i>`.
+* No accessibility specifications require the elimination of `<b>` or `<i>`, but they need to be used correctly.
 
 Note:
 Mainstream screen readers currently treat B/I tags identically to STRONG/EM tags. That is, they are ignored unless a user specifies that they be indicated. Some users report that announcing changes can be distracting.
