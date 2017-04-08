@@ -306,6 +306,16 @@ Screen readers only read `title` text if there is **no** link text.
 
 ---
 
+## But it doesn't really matter
+
+* Screen readers could read text in these tags differently, but they don't.  These tags are ignored unless the user specifies otherwise.
+* No accessibility guidelines require the elimination of `<b>` or `<i>`.
+
+Note:
+Mainstream screen readers currently treat B/I tags identically to STRONG/EM tags. That is, they are ignored unless a user specifies that they be indicated. Some users report that announcing changes can be distracting.
+
+---
+
 ## Accessible forms
 
 * Logical structure
@@ -378,3 +388,4 @@ or
 * [I thought title text improved accessibility](https://silktide.com/i-thought-title-text-improved-accessibility-i-was-wrong/)
 * [Semantic differences between &lt;b&gt;, &lt;strong&gt;, &lt;i&gt;, and &lt;em&gt;](http://html5doctor.com/i-b-em-strong-element/)
 * [Testing with a screen reader](http://www.jhalabi.com/blog/accessibility-screen-reader/)
+* [Accessibility: Bold and italic formatting in HTML](http://accessibility.psu.edu/boldfacehtml/)
