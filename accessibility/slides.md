@@ -171,6 +171,9 @@ Landmarks allow users to navigate through the major sections of a site.
 
 ![GU McCourt site, annotated version](images/mccourt-annotated.jpg)
 
+Note:
+Live VoiceOver demo of McCourt
+
 ---
 
 ## Basic landmark example
@@ -225,11 +228,11 @@ All duplicate landmark roles need labels!
 Note:
 aria-labelledby: Works in JAWS, but for some reason not in VoiceOver.
 
-GO TO VOICE OVER DEMO NOW!
-
 ---
 
 ## Don't forget about the little details
+
+Random pieces of accessibility information we learned along the way.
 
 Note:
 There are lots of large-scale development practices that you need to keep in mind, but don't forget about the little "gotchas" too.
@@ -306,7 +309,7 @@ Screen readers only read `title` text if there is **no** link text.
 
 ---
 
-## But it doesn't really matter
+## Sadly, it doesn't really matter
 
 * Screen readers could read text in these tags differently, but they don't.  These tags are ignored unless the user specifies otherwise.
 * No accessibility specifications require the elimination of `<b>` or `<i>`, but they need to be used correctly.
@@ -358,10 +361,6 @@ or
 ---
 
 # Questions?
-
----
-
-![Thank you NoVA Code Camp sponsors](images/novacc-sponsors.jpg)
 
 ---
 
