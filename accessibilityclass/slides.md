@@ -22,6 +22,7 @@
 ## On top of that
 
 * Color-blind users
+* Users with different motor abilities
 * Users with different cognitive abilities
 
 ---
@@ -78,9 +79,8 @@ Landmarks are great... but they're kind of useless without names.
 
 ---
 
-The `aria-label` attribute gives your landmark a name!
-
-You can also use `aria-labelledby` to specify an ID of another element that can be used as a label.
+* The `aria-label` attribute gives your landmark a name!
+* You can also use `aria-labelledby` to specify an ID of another element that can be used as a label.
 
 ---
 
@@ -91,13 +91,19 @@ You can also use `aria-labelledby` to specify an ID of another element that can 
 </header>
 
 <main>
-  <section aria-label="Important content"> <!-- ... --> </section>
-  <section aria-label="More important content"> <!-- ... --> </section>
-  <aside> <!-- ... --> </aside>
+  <section aria-label="Important content">
+    <!-- ... -->
+  </section>
+  <section aria-label="More important content">
+    <!-- ... -->
+  </section>
+  <aside>
+    <!-- ... -->
+  </aside>
 </main>
 
 <footer aria-label="My site footer">
-  <!-- Footer info goes here -->
+  <!-- ... -->
 </footer>
 ```
 
@@ -125,7 +131,7 @@ Headings help users figure out the major themes of a page and the sub-topics for
 
 * Make sure your headings are in a logical order.
 * It is OK to have more than 1 `<h1>` tag on the page!
-* **DO NOT** use a `<h*>` tag just because it looks pretty. Create a class.
+* **DO NOT** use a `<h*>` tag just because it looks pretty.
 
 ---
 
@@ -171,7 +177,9 @@ Lets keyboard users skip all of your navigation so they can go straight to the c
 ```
 <body>
   <nav aria-label="Skip links">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">
+      Skip to main content
+    </a>
   </nav>
 
   ...
@@ -210,15 +218,13 @@ Lets keyboard users skip all of your navigation so they can go straight to the c
 
 ---
 
-## While we are on the subject of keyboard users an links...
+## While we are on the subject of keyboard users and links...
 
 **DO NOT** turn off the outline around your links.
 
-This is **bad**:
-
 ```
 a {
-  outline: 0;
+  outline: 0; /* This is really bad */
 }
 ```
 
@@ -226,15 +232,15 @@ a {
 
 ## General keyboard navigation
 
-Keyboard users expect to be able to tab through the page from left to right, top to bottom.
-
-This order is determined by your DOM.
+* Keyboard users expect to be able to tab through the page from left to right, top to bottom.
+* This order is determined by your DOM.
 
 ---
 
 ## Main site navigation
 
-**DO NOT** put your navigation drawer/panel code at the bottom of the DOM.  Instead, put it where it logically makes sense.
+* **DO NOT** put your navigation drawer/panel code at the bottom of the DOM.
+* Instead, put it where it logically makes sense.
 
 Note:
 In our case, this was the site header, just after the hamburger menu icon.
@@ -243,9 +249,8 @@ In our case, this was the site header, just after the hamburger menu icon.
 
 ## Actually hide things.
 
-Hiding content by moving it off the screen or giving it no height or width only hides that content from sighted users.
-
-Screen readers still read that "hidden" content.
+* Hiding content by moving it off the screen or giving it no height or width only hides that content from sighted users.
+* Screen readers still read that "hidden" content.
 
 ---
 
@@ -296,9 +301,10 @@ There are 47 links on the page that all say the same thing.
 
 ---
 
-Screen reader users can pull up a list of links and use that for navigation.
+## Links
 
-The reader reads the link text, not the URL.  This is ineffective if all of those links go to different places.
+* Screen reader users can pull up a list of links and use that for navigation.
+* The reader reads the link text, not the URL.  This is ineffective if all of those links go to different places.
 
 ---
 
@@ -316,11 +322,11 @@ The reader reads the link text, not the URL.  This is ineffective if all of thos
 ## Alternatively, our friend `aria-label` can help!
 
 ```
-<a href="/kittenfez" aria-label="All about kittens wearing fezzes">
+<a href="/kittenfez" aria-label="Kittens wearing fezzes">
   Read more
 </a>
 
-<a href="/bowties" aria-label="All about why bowties are cool">
+<a href="/bowties" aria-label="Why bowties are cool">
   Read more
 </a>
 ```
@@ -339,12 +345,10 @@ Color blind users can't read red text on a blue background.
 
 ---
 
-For AA compliance, your color contrast must be:
-
-* 4.5:1 for normal text
-* 3:1 for large text
-
-WebAIM has a good online tool to check: http://webaim.org/resources/contrastchecker/
+* For AA compliance, your color contrast must be:
+    * 4.5:1 for normal text
+    * 3:1 for large text
+* WebAIM has a good online tool to check: http://webaim.org/resources/contrastchecker/
 
 ---
 
@@ -364,7 +368,7 @@ WebAIM has a good online tool to check: http://webaim.org/resources/contrastchec
 
 ---
 
-## Phone numbers are terrible
+## Phone numbers
 
 ---
 
@@ -382,7 +386,7 @@ Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousan
 
 ---
 
-## A workaround
+## This works, but...
 
 `<span>7</span> <span>0</span> <span>3</span> <span>5</span> <span>5</span> <span>5</span> - <span>1</span> <span>2</span> <span>1</span> <span>2</span>`
 
