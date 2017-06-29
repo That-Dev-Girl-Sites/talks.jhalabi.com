@@ -278,7 +278,7 @@ This actually hides things:
 
 ---
 
-If you still want your fancy transitions:
+If you still want transitions:
 
 ```
 .my-hidden-thing {
