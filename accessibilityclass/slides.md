@@ -109,6 +109,12 @@ Landmarks are great... but they're kind of useless without names.
 
 ---
 
+## One more thing about landmarks
+
+All content on the page must be inside some sort of landmark container.
+
+---
+
 ## Headings
 
 Headings help users figure out the major themes of a page and the sub-topics for each theme.
