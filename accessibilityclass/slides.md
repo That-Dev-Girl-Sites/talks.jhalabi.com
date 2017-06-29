@@ -368,6 +368,16 @@ Color blind users can't read red text on a blue background.
 
 ---
 
+If your image is a decorative image with no meaning, you can have blank alt text:
+
+```
+<img src="decorative-thing.jpg" alt=" ">
+```
+
+Note the blank space in the `alt` value.
+
+---
+
 ## Phone numbers
 
 ---
