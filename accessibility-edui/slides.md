@@ -19,24 +19,24 @@ Making an accessible website takes the entire team.  It is our collective job to
 
 ---
 
-## Your users can have very different needs
+## Users have different needs.
 
-* Different visual needs
+* Visual needs
   * Screen readers
   * Braille readers
   * Color-blind users
 
-* Different motor needs
+* Motor needs
   * Keyboard-only navigation
 
-* Different cognitive abilities
+* Cognitive abilities
 
 ---
 
-## This is where standards come in
+## This is where standards come in:
 
-* _WCAG_: Web Content Accessibility Guidelines
-* _Section 508_
+* __WCAG__: Web Content Accessibility Guidelines
+* __Section 508__
 
 Note:
 Section 508 was updated to more closely mirror WCAG 2.0 in 2016.
@@ -47,7 +47,7 @@ Sites that get federal funding need to be WCAG AA compliant by Jan 18, 2018.
 
 ---
 
-## Accessibility is not a separate project that you tackle every once in a while.
+### Accessibility is not a separate project that you tackle every once in a while.
 
 Note:
 We don't develop websites and then think about the mobile experience. Responsiveness is now a part of the typical web development process.  Accessibility needs to be just as typical.
@@ -60,8 +60,7 @@ We don't develop websites and then think about the mobile experience. Responsive
 * Use ARIA and role attributes when necessary
 
 Note:
-Good code = accessible code
-ARIA = Accessible Rich Internet Applications
+All HTML tags have specific semantic meaning - i.e. b vs. strong; i vs em
 
 ---
 
@@ -79,7 +78,8 @@ ARIA = Accessible Rich Internet Applications
 
 ---
 
-## Making Your Sites More Accessible: A 5-Part Primer
+## Making Your Sites More Accessible
+A 5-Part Primer
 
 ---
 
@@ -137,24 +137,16 @@ Landmarks are great... but they're kind of useless without names.
 ```
 <header aria-labelledby="site-name">
   <h1 id="site-name">Georgetown University</h1>
-  <nav aria-label="Full site navigation"> <!-- ... --> </nav>
+  <nav aria-label="Full site navigation"> ... </nav>
 </header>
 
 <main>
-  <section aria-label="Important content">
-    <!-- ... -->
-  </section>
-  <section aria-label="More important content">
-    <!-- ... -->
-  </section>
-  <aside>
-    <!-- ... -->
-  </aside>
+  <section aria-label="Important content"> ... </section>
+  <section aria-label="More important content"> ... </section>
+  <aside> ... </aside>
 </main>
 
-<footer aria-label="My site footer">
-  <!-- ... -->
-</footer>
+<footer> ... </footer>
 ```
 
 ---
@@ -263,8 +255,14 @@ a {
 
 ## Actually hide things.
 
-* Hiding content by moving it off the screen or giving it no height or width only hides that content from sighted users.
-* Screen readers still read that "hidden" content.
+* It really is OK to hide things _(like your off-canvas navigation)_.
+* However, you need to provide a clear action to display that information.
+
+---
+
+Hiding content by moving it off the screen or giving it no height or width only hides that content from sighted users.
+
+Screen readers still read that "hidden" (not really hidden) content.
 
 ---
 
@@ -319,7 +317,9 @@ You already test different browsers and screen sizes. Testing with your keyboard
 
 ---
 
-Testing for keyboard ability? _Ignore your mouse/trackpad!_
+Testing for keyboard ability?
+
+_Ignore your mouse/trackpad!_
 
 ---
 
@@ -336,15 +336,18 @@ Testing for keyboard ability? _Ignore your mouse/trackpad!_
 
 ---
 
-* Testing for screen reader usabilty? _Close your eyes!_
+Testing for screen reader usability?
+
+_Close your eyes!_
 
 ---
 
 ## Screen reader testing
 
-* Learn how to use a screen reader.
-  * Mac users: VoiceOver
-  * PC users: JAWS or NVDA
+Learn how to use a screen reader!
+
+* Mac users: VoiceOver
+* PC users: JAWS or NVDA
 
 ---
 
@@ -354,9 +357,17 @@ Testing for keyboard ability? _Ignore your mouse/trackpad!_
 
 ---
 
+## To sum up:
+
+* Know the semantic meaning behind the code you write.
+* Ask yourself: Does what I'm creating really make sense?
+* Remember about all of the different kinds of users who can visit your site.
+
+---
+
 # Thank you!
 
-* Slides: http://thatdevgirl.com/talks/accessibility-edu/
+http://thatdevgirl.com/talks/accessibility-edu/
 
 ---
 
