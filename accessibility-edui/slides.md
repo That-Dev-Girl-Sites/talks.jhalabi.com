@@ -317,13 +317,13 @@ You already test different browsers and screen sizes. Testing with your keyboard
 
 ---
 
-## Testing for keyboard ability?
+### Testing for keyboard ability?
 
-## _Ignore your mouse/trackpad!_
+### _Ignore your mouse/trackpad!_
 
 ---
 
-## General keyboard navigation
+## Keyboard navigation
 
 * Keyboard users expect to be able to tab through the page from left to right, top to bottom.
 * This order is determined by your DOM.
@@ -331,9 +331,9 @@ You already test different browsers and screen sizes. Testing with your keyboard
 
 ---
 
-## Testing for screen reader usability?
+### Testing for screen reader usability?
 
-## _Close your eyes!_
+### _Close your eyes!_
 
 ---
 
