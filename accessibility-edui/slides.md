@@ -3,6 +3,13 @@
 
 ---
 
+## Hello! My name is Joni.
+
+* Sr. Javascript front-end dev @ Georgetown
+* Pseudo-avid Tweeter: [@jonihalabi](https://twitter.com/jonihalabi)
+
+---
+
 ## Accessibility === User Experience
 
 Note:
@@ -345,20 +352,9 @@ Testing for keyboard ability? _Ignore your mouse/trackpad!_
 
 ---
 
-# Questions?
+# Thank you!
 
----
-
-## P.S. My name is Joni.
-
-* Sr. Javascript front-end dev @ Georgetown
-* Pseudo-avid Tweeter: [@jonihalabi](https://twitter.com/jonihalabi)
-
----
-
-## Thank you!
-
-* Slides: http://thatdevgirl.com/talks/accessibility/
+* Slides: http://thatdevgirl.com/talks/accessibility-edu/
 
 ---
 
