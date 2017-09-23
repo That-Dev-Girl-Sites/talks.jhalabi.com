@@ -3,35 +3,10 @@
 
 ---
 
-57 million Americans have a disability.
-
-Many of these users browse the web with help.
-
----
-
-Some users have motor impairments and are unable to use a mouse.
-
-Some users have visual impairments.
-
----
-
-I am a screen reader called VoiceOver.  
-
----
-
-Let's say you were unable to read this slide.
-
-If I couldn't read this slide either, this presentation would be pretty sad, right?
+## Accessibility === User Experience
 
 Note:
-End screen reader "demo" here.
-
----
-
-## Accessibility is not a separate project that you tackle every once in a while.
-
-Note:
-Accessible development is development. We as developers need to realize that making a website accessible is just as critical as making a site responsive or making a site user-friendly. Users with different needs are still users.
+Making an accessible website takes the entire team.  It is our collective job to ensure that our sites are usable by the most number of people.  Users with different needs are still users.
 
 ---
 
@@ -63,6 +38,13 @@ Sites that get federal funding need to be WCAG AA compliant by Jan 18, 2018.
 
 ---
 
+## Accessibility is not a separate project that you tackle every once in a while.
+
+Note:
+We don't develop websites and then think about the mobile experience. Responsiveness is now a part of the typical web development process.  Accessibility needs to be just as typical.
+
+---
+
 * Clean markup
 * Know your HTML5 tags
 * Be **SEMANTIC**
@@ -70,7 +52,6 @@ Sites that get federal funding need to be WCAG AA compliant by Jan 18, 2018.
 
 Note:
 Good code = accessible code
-
 ARIA = Accessible Rich Internet Applications
 
 ---
@@ -86,6 +67,10 @@ ARIA = Accessible Rich Internet Applications
 `<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
 
 ![A kitten wearing a fez because fezzes are cool](images/kitten.jpg)
+
+---
+
+## Making Your Sites More Accessible: A 5-Part Primer
 
 ---
 
