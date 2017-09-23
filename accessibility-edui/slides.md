@@ -317,9 +317,9 @@ You already test different browsers and screen sizes. Testing with your keyboard
 
 ---
 
-Testing for keyboard ability?
+## Testing for keyboard ability?
 
-_Ignore your mouse/trackpad!_
+## _Ignore your mouse/trackpad!_
 
 ---
 
@@ -327,32 +327,21 @@ _Ignore your mouse/trackpad!_
 
 * Keyboard users expect to be able to tab through the page from left to right, top to bottom.
 * This order is determined by your DOM.
-
----
-
-## General keyboard navigation
-
 * Make sure that any item that has focus is _visibly focused_.
 
 ---
 
-Testing for screen reader usability?
+## Testing for screen reader usability?
 
-_Close your eyes!_
-
----
-
-## Screen reader testing
-
-Learn how to use a screen reader!
-
-* Mac users: VoiceOver
-* PC users: JAWS or NVDA
+## _Close your eyes!_
 
 ---
 
 ## Screen reader testing
 
+* Actually test with a screen reader
+  * Mac users: VoiceOver
+  * PC users: JAWS or NVDA
 * Make sure everything is read correctly.
 
 ---
