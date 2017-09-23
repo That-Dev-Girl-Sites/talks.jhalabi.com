@@ -10,7 +10,9 @@
 
 ---
 
-## Accessibility === User Experience
+## Accessibility
+## Is
+## User Experience
 
 Note:
 Making an accessible website takes the entire team.  It is our collective job to ensure that our sites are usable by the most number of people.  Users with different needs are still users.
