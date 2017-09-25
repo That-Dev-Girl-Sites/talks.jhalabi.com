@@ -351,7 +351,7 @@ You already test different browsers and screen sizes. Testing with your keyboard
 
 # Thank you!
 
-http://thatdevgirl.com/talks/accessibility-edu/
+http://thatdevgirl.com/talks/accessibility-edui/
 
 ---
 
