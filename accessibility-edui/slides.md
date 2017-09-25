@@ -21,15 +21,10 @@ Making an accessible website takes the entire team.  It is our collective job to
 
 ## Users have different needs.
 
+* Device needs
 * Visual needs
-  * Screen readers
-  * Braille readers
-  * Color-blind users
-
 * Motor needs
-  * Keyboard-only navigation
-
-* Cognitive abilities
+* Cognitive needs
 
 ---
 
