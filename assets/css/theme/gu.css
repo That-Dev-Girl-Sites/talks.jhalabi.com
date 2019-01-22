@@ -10,8 +10,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #010812;
-  background-color: #010812; }
+  background: #03132a;
+  background-color: #03132a; }
 
 .reveal {
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -21,12 +21,12 @@ body {
 
 ::selection {
   color: #fff;
-  background: white;
+  background: #fbfbfb;
   text-shadow: none; }
 
 ::-moz-selection {
   color: #fff;
-  background: white;
+  background: #fbfbfb;
   text-shadow: none; }
 
 .reveal .slides > section,
@@ -54,13 +54,13 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.5em; }
+  font-size: 2.25em; }
 
 .reveal h2 {
-  font-size: 1.6em; }
+  font-size: 1.5em; }
 
 .reveal h3 {
-  font-size: 1.3em; }
+  font-size: 1.25em; }
 
 .reveal h4 {
   font-size: 1em; }
@@ -209,20 +209,20 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #d5d5d5;
+  color: #bbbcbc;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #fbfbfb;
+  color: #e2e2e2;
   text-shadow: none;
   border: none; }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #aeafaf; }
+  background: #949696; }
 
 /*********************************************
  * IMAGES
@@ -244,7 +244,7 @@ body {
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #d5d5d5;
+  border-color: #bbbcbc;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
@@ -252,31 +252,31 @@ body {
  *********************************************/
 .reveal .controls .navigate-left,
 .reveal .controls .navigate-left.enabled {
-  border-right-color: #d5d5d5; }
+  border-right-color: #bbbcbc; }
 
 .reveal .controls .navigate-right,
 .reveal .controls .navigate-right.enabled {
-  border-left-color: #d5d5d5; }
+  border-left-color: #bbbcbc; }
 
 .reveal .controls .navigate-up,
 .reveal .controls .navigate-up.enabled {
-  border-bottom-color: #d5d5d5; }
+  border-bottom-color: #bbbcbc; }
 
 .reveal .controls .navigate-down,
 .reveal .controls .navigate-down.enabled {
-  border-top-color: #d5d5d5; }
+  border-top-color: #bbbcbc; }
 
 .reveal .controls .navigate-left.enabled:hover {
-  border-right-color: #fbfbfb; }
+  border-right-color: #e2e2e2; }
 
 .reveal .controls .navigate-right.enabled:hover {
-  border-left-color: #fbfbfb; }
+  border-left-color: #e2e2e2; }
 
 .reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: #fbfbfb; }
+  border-bottom-color: #e2e2e2; }
 
 .reveal .controls .navigate-down.enabled:hover {
-  border-top-color: #fbfbfb; }
+  border-top-color: #e2e2e2; }
 
 /*********************************************
  * PROGRESS BAR
@@ -285,9 +285,21 @@ body {
   background: rgba(0, 0, 0, 0.2); }
 
 .reveal .progress span {
-  background: #d5d5d5;
+  background: #bbbcbc;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+.reveal {
+  font-weight: 300; }
+  .reveal p, .reveal li {
+    line-height: 1.5; }
+  .reveal ul, .reveal ol {
+    margin-left: 1rem; }
+  .reveal a:hover {
+    text-decoration: underline; }
+  .reveal.slide .full-screen-img {
+    background-color: #03132a;
+    padding: 0 !important; }
 
 /*# sourceMappingURL=gu.css.map */
