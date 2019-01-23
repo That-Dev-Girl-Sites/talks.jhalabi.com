@@ -295,6 +295,7 @@ body {
   .reveal p, .reveal li {
     line-height: 1.5; }
   .reveal ul, .reveal ol {
+    margin-bottom: 2rem;
     margin-left: 1rem; }
   .reveal a:hover {
     text-decoration: underline; }

@@ -5,9 +5,8 @@
 
 # Hello! My name is Joni.
 
-* DC-based developer (via NJ, NY, and MA)
-* __Historically:__ Developer @ lots of small businesses
-* __Currently:__ Javascript front-end dev @ Georgetown
+* Senior Javascript front-end dev @ Georgetown
+* Currently living in DC _(via NJ, NY, and MA)_
 * Find me [@jonihalabi](https://twitter.com/jonihalabi)
 
 ---
@@ -15,21 +14,26 @@
 # @GU Web Services
 
 * Small team of PMs, designers, & devs
-* Manage (almost) all department websites (300+!)
+* Manage (almost) all department websites (> 300!)
 
 ---
 
-# Our Set Up
+<!-- .slide: data-background="#1056b4" -->
+# Getting started
+
+---
+
+# Our sites
 
 * 300+ websites in a multisite Drupal 7 env.
 * Sites use 1 of 3 themes
   * Schools
   * Departments (units)
-  * Top tier (www.g.e) has a unique theme
+  * "Top tier" has a unique theme
 
 ---
 
-# Our Dilemma
+# Our dilemma
 
 * Site themes are getting stale
 * Just launched new D7 themes, but....
@@ -39,11 +43,12 @@
 
 # We need to upgrade!
 
-## Drupal 8? Or... what about WordPress?
+## Drupal 8?
+## Or... what about WordPress?
 
 ---
 
-<section class="full-screen-img" data-background-image="images/technical_analysis_2x.png" data-background-size="contain"></section>
+<section class="full-screen-img" data-background-image="images/technical_analysis_2x.png" data-background-size="contain" data-background-color="#fff"></section>
 
 ---
 
@@ -55,13 +60,20 @@
 
 ---
 
-# Content Goals
-
-* Make full use of Gutenberg
-* Make sure all blocks are accessible
+<!-- .slide: data-background="#1056b4" -->
+# Alright then. Now what?
 
 ---
 
+# Content goals
+
+* Make full use of Gutenberg
+* Make sure all blocks are accessible
+* Support the content needs and expectations of our editors.
+
+---
+
+<!-- .slide: data-background="#1056b4" -->
 # Step 1
 ## Get to know the editor
 
@@ -89,7 +101,7 @@ The panel that appears to the right of the editor when a block is active.
 
 ---
 
-# The editor comes with core blocks
+# Core editor blocks
 (Can be selected from the Block Selector)
 
 ---
@@ -98,8 +110,9 @@ The panel that appears to the right of the editor when a block is active.
 
 ---
 
+<!-- .slide: data-background="#1056b4" -->
 # Step 2
-## Do these core blocks cover all of our needs?
+## Do core blocks cover all of our needs?
 
 ---
 
@@ -115,24 +128,22 @@ The panel that appears to the right of the editor when a block is active.
 
 ---
 
+<!-- .slide: data-background="#1056b4" -->
 # Step 3
 ## Create custom blocks
 
+---
+
+# Development phase
+
 * Worked off of the (large!) list of "blocks we need but don't exist".
+* We started in early 2018.
+* Mostly done, but still adding and tweaking blocks.
+* We learned a ton over the past year!
 
 ---
 
-<section data-background-image="images/lets-get-started.jpg" data-background-size="contain" data-background-color="#fff"></section>
-
----
-
-# Development
-
-* We started in early 2018... and we're still going.
-* We were working with a moving target.
-
----
-
+<!-- .slide: data-background="#d50032" -->
 # Lesson 1
 ## Know React.js before you start
 
@@ -140,15 +151,15 @@ The panel that appears to the right of the editor when a block is active.
 
 # Gutenberg is:
 
-* ... based on React
-* ... but you're really dealing with its API
+* Based on React
+* But, you're really dealing with its API
 
 ---
 
 # Creating a new block is easy!
 
-* You still need a little bit of PHP.
-* But, most of the work is in the JS.
+* You only need a little bit of PHP
+* Most of the work is in the JS
 
 ---
 
@@ -180,6 +191,7 @@ registerBlockType( 'gu/hello-world', {
   description: 'Use this block to say hello.',
   category: 'common',
   icon: 'admin-home',
+  keywords: [ 'hi', 'greetings' ]
 
   attributes: { ... },
 
@@ -196,24 +208,29 @@ registerBlockType( 'gu/hello-world', {
 
 This is the title of the block, which appears in the block selector. It is best to keep this short.
 
+```
+title: 'Title of the block'
+```
+
 ---
 
 # Description
 
 This is a short description of the block, which appears in the inspector panel, just below the title, when the block is active in the edit screen.
 
+```
+description: 'Description of the block'
+```
+
 ---
 
 # Category
 
-Blocks in the block selector are organized by category. You can create your own categories, but there are OOTB ones:
+Blocks in the block selector are organized by category. There are OOTB categories or you can define your own.
 
-* Inline elements
-* Common blocks
-* Formatting
-* Layout elements
-* Widgets
-* Embeds
+```
+category: 'common'
+```
 
 ---
 
@@ -221,23 +238,27 @@ Blocks in the block selector are organized by category. You can create your own 
 
 The icon that appears in the block selector for the block. This can be a Dashicon or a custom SVG.
 
+```
+icon: 'admin-home'
+```
+
 ---
 
 # Keywords
 
-Like SEO keywords, these are search terms that an editor may use to find the block in the block selector.
-
-* The selector search box can already find blocks by words from the block title
-* Ideally the keywords should be different
+* Kind of like SEO keywords
+* The selector search box can already find blocks by words from the block title. These are extra terms.
 * Hard limit of 3
+
+```
+keywords: [ 'one', 'two', 'three' ]
+```
 
 ---
 
 # Attributes
 
 The data saved for the block.
-
----
 
 ```
 attributes: {
@@ -296,6 +317,7 @@ save: ( props ) => {
 
 ---
 
+<!-- .slide: data-background="#d50032" -->
 # Lesson 2
 ## The Gutenberg API is your new BFF
 
@@ -303,26 +325,26 @@ save: ( props ) => {
 
 # Gutenberg Github
 
-* Everything is divided into packages.
+* Everything is divided into packages
 * Some central documentation
-* But, most documentation is within each package.
-* You need to know where to look.
+* But, most documentation is within each package
+* You need to know where to look
 
 ---
 
-![Gutenberg Github home page with packages folder highlighted](images/gutenberg-github-home.jpg)
+<section class="full-screen-img" data-background-image="images/gutenberg-github-home.jpg" data-background-size="contain" data-background-color="#fff"></section>
 
 ---
 
-![Gutenberg Github packages page](images/gutenberg-github-packages.jpg)
+<section class="full-screen-img" data-background-image="images/gutenberg-github-packages.jpg" data-background-size="contain" data-background-color="#fff"></section>
 
 ---
 
 # Packages for new block dev:
 
-* `/packages/blocks`
-* `/packages/components`
-* `/packages/editor`
+* `/packages/blocks/`
+* `/packages/components/`
+* `/packages/editor/`
 
 ---
 
@@ -330,15 +352,19 @@ save: ( props ) => {
 
 * UI elements that can be added to a custom block.
 * There are two different lists of components:
-  * general UI components (`/packages/components`)
-  * editor components (`/packages/editor`)
+  * general UI components (`/packages/components/`)
+  * editor components (`/packages/editor/`)
 * I have no idea why they are separated out. We are using components from both buckets.
+
+---
+
+# TODO: Screenshot of a component with documentation
 
 ---
 
 # Core block code
 
-* `/packages/block-library`
+* `/packages/block-library/`
 * Very useful to see real world examples of how components are used.
 
 ---
@@ -347,11 +373,35 @@ save: ( props ) => {
 
 ---
 
-# TODO: Talk about fancy stuff like nested blocks
+<!-- .slide: data-background="#d50032" -->
+# Lesson 3
+## "Fancy stuff" isn't that hard either!
 
 ---
 
-# Lesson 3
+# Nested blocks
+## TODO: Flesh this out!
+
+---
+
+# Parent block
+
+---
+
+<section class="full-screen-img" data-background-image="images/image-overlay-parent-before.png" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+# Child block
+
+---
+
+<section class="full-screen-img" data-background-image="images/image-overlay-child-before.png" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+<!-- .slide: data-background="#d50032" -->
+# Lesson 4
 ## Know what you want
 
 (or be willing to play around)
@@ -365,50 +415,110 @@ save: ( props ) => {
 * What do we need from the admin UI?
 * So. Many. Options.
 * So, design and design and design _(#agile)_
-* Real users helped a lot! _(#uxtesting)_
 
 ---
 
-# Lesson 4
+# Block refactoring
+
+Over the summer, we let some real users migrate their sites into WordPress.
+
+We got _tons_ of great feedback _(#uxtesting)_ and refactored our more complex blocks.
+
+---
+
+## Components can go in either the block or inspector control.
+
+---
+
+# TODO: code examples
+
+---
+
+# Remember the image overlay cards?
+
+---
+
+# Before...
+
+---
+
+<section class="full-screen-img" data-background-image="images/image-overlay-child-before.png" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+# After!
+
+---
+
+<section class="full-screen-img" data-background-image="images/image-overlay-child-after.png" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+<!-- .slide: data-background="#d50032" -->
+# Lesson 5
 ## Code architecture is really important
 
 ---
 
 # Our custom blocks:
 
-* Were contained in their own custom plugin from the start
-* But we underestimated how many new blocks we needed
+* Contained in a custom plugin from the start
+* But, we underestimated how many new blocks we needed (and their complexity)
 
 ---
 
 # We started so early!
 
 * Everything was changing
-* Gutenberg was still in beta, so
-* Our code broke all. the. time.
+* Gutenberg was still in beta, so...
+* Our code broke. All. The. Time.
 
 ---
 
-# Our code === Frankenstein’s monster.
+# Our code:
+# Frankenstein’s monster
 
-We could have spent some more time:
+---
 
-* Architecting the plugin to compile a single JS file.
-* Finding a better way to organize files.
+## We could (should) have spent some more time:
+
+* Architecting the plugin to compile a single JS file
+* Finding a better way to organize files
 * This will be done in a phase 2 of the plugin _(#technicaldebt)_
 
 ---
 
-# Lessons Summary
-
-* Life will be much easier if you know React
-* Get to know the Gutenberg Github repo very well.
-* Architect. Architect. Architect.
-* Breathe.
+<!-- .slide: data-background="#1056b4" -->
+# Lessons summary
+</section>
 
 ---
 
-# Thank you!!
+## 1. Life will be much easier if you know React.
+
+---
+
+## 2. Get to know the Gutenberg Github API.
+
+---
+
+## 3. Know what you want.
+
+---
+
+## 4. Architect. Architect. Architect.
+
+---
+
+## 5. Breathe.
+
+---
+
+<section class="full-screen-img" data-background-image="images/thank-you.jpg" data-background-size="cover"></section>
+
+---
+
+### These slides are available at http://thatdevgirl.com/talks/gutenberg/
 
 ---
 
@@ -417,3 +527,11 @@ We could have spent some more time:
 * [Gutenberg project Github](https://github.com/WordPress/gutenberg)
 * [Documentation about creating new blocks](https://github.com/WordPress/gutenberg/tree/master/packages/blocks)
 * [Zac Gordon's Gutenberg Block Development Course](https://javascriptforwp.com/product/gutenberg-block-development-course/)
+* [SVG to JSX Heroku app](https://svg2jsx.herokuapp.com)
+
+---
+
+# Photo credits
+
+* [XKCD Technical Analysis](https://xkcd.com/)
+* [Thank you image](https://commons.wikimedia.org/wiki/File:Thank_you_001.jpg)
