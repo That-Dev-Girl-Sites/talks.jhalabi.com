@@ -54,7 +54,7 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.25em; }
+  font-size: 2.35em; }
 
 .reveal h2 {
   font-size: 1.5em; }
@@ -301,5 +301,15 @@ body {
   .reveal.slide .full-screen-img {
     background-color: #03132a;
     padding: 0 !important; }
+  .reveal pre {
+    padding: 0;
+    margin: 0 auto; }
+    .reveal pre code {
+      background-color: #3c3c3c;
+      border: 2px solid #fff;
+      border-radius: 0.5rem;
+      max-height: 600px;
+      padding: 2rem 2rem;
+      width: 100%; }
 
 /*# sourceMappingURL=gu.css.map */
