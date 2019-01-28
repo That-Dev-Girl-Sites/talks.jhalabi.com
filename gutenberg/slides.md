@@ -14,16 +14,15 @@
 # @GU Web Services
 
 * Small team of PMs, designers, & devs
-* Manage (almost) all department websites (> 300!)
 
 ---
 
 <!-- .slide: data-background="#1056b4" -->
-# Getting started
+# What do we do?
 
 ---
 
-# Our sites
+# We manage (almost) all the sites!
 
 * 300+ websites in a multisite Drupal 7 env.
 * Sites use 1 of 3 themes
@@ -33,10 +32,10 @@
 
 ---
 
-# Our dilemma
+# But...
 
-* Site themes are getting stale
-* Just launched new D7 themes, but....
+* Our theme code is pretty spaghetti.
+* We did just launch new D7 themes, but....
 * D7 end of life is coming!
 
 ---
@@ -60,8 +59,19 @@
 
 ---
 
+<!-- .slide: data-background="#004100" -->
+# Quick vocabulary note
+## Because old habits die hard
+
+* __Pre-5.0:__ "Gutenberg" was the editor & the project
+* __Now:__ "Gutenberg" is the project
+* __Now:__ "The Editor" is... the editor
+
+---
+
 <!-- .slide: data-background="#1056b4" -->
-# Alright then. Now what?
+# OK... decision made!
+## Now what?
 
 ---
 
@@ -69,7 +79,7 @@
 
 * Make full use of Gutenberg
 * Make sure all blocks are accessible
-* Support the content needs and expectations of our editors.
+* Support the content needs and expectations of our editors
 
 ---
 
@@ -124,21 +134,29 @@ The panel that appears to the right of the editor when a block is active.
 
 ---
 
-# TODO: Insert examples of custom blocks we need (i.e. card decks)
+<section data-background-image="images/mccourt-content.jpg" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+<section data-background-image="images/mccourt-cards-info.png" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+<section data-background-image="images/mccourt-cards-image-overlay.png" data-background-size="contain" data-background-color="#fff"></section>
 
 ---
 
 <!-- .slide: data-background="#1056b4" -->
 # Step 3
-## Create custom blocks
+## We need custom blocks!
 
 ---
 
 # Development phase
 
-* Worked off of the (large!) list of "blocks we need but don't exist".
-* We started in early 2018.
-* Mostly done, but still adding and tweaking blocks.
+* Worked from list of "blocks we need but don't exist"
+* We started in early 2018
+* Mostly done, but still adding and tweaking blocks
 * We learned a ton over the past year!
 
 ---
@@ -336,40 +354,42 @@ save: ( props ) => {
 
 ---
 
-<section class="full-screen-img" data-background-image="images/gutenberg-github-packages.jpg" data-background-size="contain" data-background-color="#fff"></section>
-
----
-
-# Packages for new block dev:
-
-* `/packages/blocks/`
-* `/packages/components/`
-* `/packages/editor/`
-
----
-
 # Components
 
 * UI elements that can be added to a custom block.
-* There are two different lists of components:
-  * general UI components (`/packages/components/`)
-  * editor components (`/packages/editor/`)
-* I have no idea why they are separated out. We are using components from both buckets.
+* Two lists of components:
+  * general components: [`/packages/components`](https://github.com/WordPress/gutenberg/tree/master/packages/components/src)
+  * editor components: [`/packages/editor`](https://github.com/WordPress/gutenberg/tree/master/packages/editor/src)
 
 ---
 
-# TODO: Screenshot of a component with documentation
+# Example: Dropdown Menu
+
+This component is very well documented!
+
+<small>https://github.com/WordPress/gutenberg/tree/master/packages/components/src/dropdown-menu</small>
 
 ---
 
-# Core block code
+# Blocks
 
-* `/packages/block-library/`
+* [`/packages/blocks`](https://github.com/WordPress/gutenberg/tree/master/packages/blocks/src)
+* Code for block registration
+* No documentation here, but...
+
+---
+
+# Developer handbook
+
+* In the docs folder under [`/packages/docs/designers-developers/developers`](https://github.com/WordPress/gutenberg/tree/master/docs/designers-developers/developers)
+* Great documentation about block registration, deprecation, etc.
+
+---
+
+# Also... core block code
+
+* [`/packages/block-library`](https://github.com/WordPress/gutenberg/tree/master/packages/block-library/src)
 * Very useful to see real world examples of how components are used.
-
----
-
-# TODO: Talk about documentation folder in Gutenberg github
 
 ---
 
@@ -379,12 +399,23 @@ save: ( props ) => {
 
 ---
 
-# Nested blocks
-## TODO: Flesh this out!
+# Remember our cards?
 
 ---
 
-# Parent block
+<section data-background-image="images/mccourt-cards-image-overlay.png" data-background-size="contain" data-background-color="#fff"></section>
+
+---
+
+# Nested blocks
+
+* Content blocks inside content blocks
+* Just like creating a regular block...
+* But now you need 2: __parent__ + __child__
+
+---
+
+# The parent block
 
 ---
 
@@ -392,7 +423,37 @@ save: ( props ) => {
 
 ---
 
-# Child block
+# The parent block:
+
+* Has its own attributes
+* Is registered just like any other block
+* Allows child blocks, but only from specified list
+* Children can be _any_ block (OOTB or custom)
+
+---
+
+```
+edit: ( props ) => {
+  const allowedBlocks = [ 'gu/img-overlay-child' ];
+
+  const getCardsTemplate = memoize( ( quantity ) => {
+    return times( quantity, () => [ 'gu/img-overlay-child' ] );
+  } );
+
+  return (
+    <div>
+      <InnerBlocks
+        template={ getCardsTemplate( 3 ) }
+        allowedBlocks={ allowedBlocks }
+      />
+    </div>
+  );
+}
+```
+
+---
+
+# The child block
 
 ---
 
@@ -400,41 +461,56 @@ save: ( props ) => {
 
 ---
 
+# The child block:
+
+* Has its own attributes (separate from parent)
+* Is no different than any other block
+
+---
+
 <!-- .slide: data-background="#d50032" -->
 # Lesson 4
-## Know what you want
-
-(or be willing to play around)
+## Know what you want...
+## or be OK with refactoring
+(Seriously, either is fine)
 
 ---
 
-### We didn't exactly know what we wanted
+### We didn't _exactly_ know what we wanted
 
-(even when we thought we did)
-
-* What do we need from the admin UI?
+* We know what kinds of content we need
+* But, what is the best way of presenting it in the admin UI?
 * So. Many. Options.
-* So, design and design and design _(#agile)_
+* Design and design and design _(#agile)_
 
 ---
 
-# Block refactoring
-
-Over the summer, we let some real users migrate their sites into WordPress.
-
-We got _tons_ of great feedback _(#uxtesting)_ and refactored our more complex blocks.
+<!-- .slide: data-background="#d50032" -->
+# Lesson 4 1/2
+## Let users play with your blocks
 
 ---
 
-## Components can go in either the block or inspector control.
+# Real blocks. Real users.
+
+* We let real users migrate their sites into WordPress
+* We got _tons_ of great feedback _(#uxtesting)_
+* Decided to refactor our more complex blocks _(\*ahem\* Card decks \*ahem\*)_
 
 ---
 
-# TODO: code examples
+# Going back to cards
+
+* Editing options were inline in the block
+* This bloated the block and made editing awkward
 
 ---
 
-# Remember the image overlay cards?
+# Epiphany!
+
+Components _could_ go inside the block editor...
+
+But, they can also go inside the __inspector panel__!
 
 ---
 
@@ -454,47 +530,12 @@ We got _tons_ of great feedback _(#uxtesting)_ and refactored our more complex b
 
 ---
 
-<!-- .slide: data-background="#d50032" -->
-# Lesson 5
-## Code architecture is really important
-
----
-
-# Our custom blocks:
-
-* Contained in a custom plugin from the start
-* But, we underestimated how many new blocks we needed (and their complexity)
-
----
-
-# We started so early!
-
-* Everything was changing
-* Gutenberg was still in beta, so...
-* Our code broke. All. The. Time.
-
----
-
-# Our code:
-# Frankenstein’s monster
-
----
-
-## We could (should) have spent some more time:
-
-* Architecting the plugin to compile a single JS file
-* Finding a better way to organize files
-* This will be done in a phase 2 of the plugin _(#technicaldebt)_
-
----
-
 <!-- .slide: data-background="#1056b4" -->
 # Lessons summary
-</section>
 
 ---
 
-## 1. Life will be much easier if you know React.
+## 1. Life will be much easier if you already know React.
 
 ---
 
@@ -502,11 +543,11 @@ We got _tons_ of great feedback _(#uxtesting)_ and refactored our more complex b
 
 ---
 
-## 3. Know what you want.
+## 3. Figure out what you really need.
 
 ---
 
-## 4. Architect. Architect. Architect.
+## 4. Be OK with refactoring if something isn't working.
 
 ---
 
@@ -519,6 +560,10 @@ We got _tons_ of great feedback _(#uxtesting)_ and refactored our more complex b
 ---
 
 ### These slides are available at http://thatdevgirl.com/talks/gutenberg/
+
+<hr>
+
+### Contact me at [her@thatdevgirl.com](mailto:her@thatdevgirl.com) or [@jonihalabi](https://twitter.com/jonihalabi)
 
 ---
 
@@ -534,4 +579,4 @@ We got _tons_ of great feedback _(#uxtesting)_ and refactored our more complex b
 # Photo credits
 
 * [XKCD Technical Analysis](https://xkcd.com/)
-* [Thank you image](https://commons.wikimedia.org/wiki/File:Thank_you_001.jpg)
+* [Thank you photo](https://www.pexels.com/photo/thank-you-text-on-black-and-brown-board-908301/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels) by [rawpixel.com](https://www.pexels.com/@rawpixel?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels) from Pexels
