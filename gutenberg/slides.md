@@ -13,7 +13,7 @@
 
 # @GU Web Services
 
-* Small team of PMs, designers, & devs
+* Small _(but mighty!)_ team of PMs, designers, & devs
 
 ---
 
@@ -22,9 +22,9 @@
 
 ---
 
-# We manage (almost) all the sites!
+# Manage (almost) all the sites
 
-* 300+ websites in a multisite Drupal 7 env.
+* 300+ websites in a multisite Drupal 7 env
 * Sites use 1 of 3 themes
   * Schools
   * Departments (units)
@@ -34,7 +34,7 @@
 
 # But...
 
-* Our theme code is pretty spaghetti.
+* Our theme code is pretty spaghetti
 * We did just launch new D7 themes, but....
 * D7 end of life is coming!
 
@@ -100,6 +100,7 @@ A single element in the UI.
 ---
 
 # Toolbar
+
 Each block can have a UI toolbar that appears above the block in the editor. It can include things like font options, alignment, and more.
 
 ---
@@ -356,7 +357,7 @@ save: ( props ) => {
 
 # Components
 
-* UI elements that can be added to a custom block.
+* UI elements that can be added to a custom block
 * Two lists of components:
   * general components: [`/packages/components`](https://github.com/WordPress/gutenberg/tree/master/packages/components/src)
   * editor components: [`/packages/editor`](https://github.com/WordPress/gutenberg/tree/master/packages/editor/src)
@@ -382,14 +383,14 @@ This component is very well documented!
 # Developer handbook
 
 * In the docs folder under [`/packages/docs/designers-developers/developers`](https://github.com/WordPress/gutenberg/tree/master/docs/designers-developers/developers)
-* Great documentation about block registration, deprecation, etc.
+* Great documentation about block registration, deprecation, etc
 
 ---
 
 # Also... core block code
 
 * [`/packages/block-library`](https://github.com/WordPress/gutenberg/tree/master/packages/block-library/src)
-* Very useful to see real world examples of how components are used.
+* Very useful to see real world examples of how components are used
 
 ---
 
