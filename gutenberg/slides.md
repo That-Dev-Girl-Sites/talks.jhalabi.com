@@ -487,7 +487,7 @@ edit: ( props ) => {
 ---
 
 <!-- .slide: data-background="#d50032" -->
-# Lesson 4 1/2
+# Lesson 4.5
 ## Let users play with your blocks
 
 ---
