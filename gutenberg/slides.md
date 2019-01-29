@@ -5,9 +5,9 @@
 
 # Hello! My name is Joni.
 
-* Senior Javascript front-end dev @ Georgetown
-* Currently living in DC _(via NJ, NY, and MA)_
-* Find me [@jonihalabi](https://twitter.com/jonihalabi)
+You can follow along at
+
+https://thatdevgirl.com/talks/gutenberg
 
 ---
 
