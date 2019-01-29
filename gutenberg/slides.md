@@ -22,7 +22,8 @@ https://thatdevgirl.com/talks/gutenberg
 
 ---
 
-# Manage (almost) all the sites
+# Manage all* the sites
+## _* ( where all == most )_
 
 * 300+ websites in a multisite Drupal 7 env
 * Sites use 1 of 3 themes
@@ -34,8 +35,8 @@ https://thatdevgirl.com/talks/gutenberg
 
 # But...
 
-* Our theme code is pretty spaghetti
-* We did just launch new D7 themes, but....
+* Old theme code is pretty spaghetti
+* Launched new D7 themes in 2016, but....
 * D7 end of life is coming!
 
 ---
@@ -61,7 +62,7 @@ https://thatdevgirl.com/talks/gutenberg
 
 <!-- .slide: data-background="#004100" -->
 # Quick vocabulary note
-## Because old habits die hard
+## _( Because old habits die hard )_
 
 * __Pre-5.0:__ "Gutenberg" was the editor & the project
 * __Now:__ "Gutenberg" is the project
@@ -162,7 +163,7 @@ The panel that appears to the right of the editor when a block is active.
 
 ---
 
-<!-- .slide: data-background="#d50032" -->
+<!-- .slide: data-background="#890000" -->
 # Lesson 1
 ## Know React.js before you start
 
@@ -336,7 +337,7 @@ save: ( props ) => {
 
 ---
 
-<!-- .slide: data-background="#d50032" -->
+<!-- .slide: data-background="#890000" -->
 # Lesson 2
 ## The Gutenberg API is your new BFF
 
@@ -394,7 +395,7 @@ This component is very well documented!
 
 ---
 
-<!-- .slide: data-background="#d50032" -->
+<!-- .slide: data-background="#890000" -->
 # Lesson 3
 ## "Fancy stuff" isn't that hard either!
 
@@ -469,7 +470,7 @@ edit: ( props ) => {
 
 ---
 
-<!-- .slide: data-background="#d50032" -->
+<!-- .slide: data-background="#890000" -->
 # Lesson 4
 ## Know what you want...
 ## or be OK with refactoring
@@ -486,7 +487,7 @@ edit: ( props ) => {
 
 ---
 
-<!-- .slide: data-background="#d50032" -->
+<!-- .slide: data-background="#890000" -->
 # Lesson 4.5
 ## Let users play with your blocks
 
@@ -560,7 +561,7 @@ But, they can also go inside the __inspector panel__!
 
 ---
 
-### These slides are available at http://thatdevgirl.com/talks/gutenberg/
+### These slides are available at https://thatdevgirl.com/talks/gutenberg/
 
 <hr>
 
@@ -568,11 +569,18 @@ But, they can also go inside the __inspector panel__!
 
 ---
 
-# Resources
+# Learning Gutenberg
+
+* [Organic Themes: How To Create A Custom Block For Gutenberg](https://organicthemes.com/create-custom-block-wordpress-gutenberg/)
+* [Zac Gordon: Gutenberg Block Development Course](https://javascriptforwp.com/product/gutenberg-block-development-course/)
+* [Lynda: Learning React JS](https://www.lynda.com/React-js-tutorials/Learning-React-js/645064-2.html )
+
+---
+
+# Other resources
 
 * [Gutenberg project Github](https://github.com/WordPress/gutenberg)
 * [Documentation about creating new blocks](https://github.com/WordPress/gutenberg/tree/master/packages/blocks)
-* [Zac Gordon's Gutenberg Block Development Course](https://javascriptforwp.com/product/gutenberg-block-development-course/)
 * [SVG to JSX Heroku app](https://svg2jsx.herokuapp.com)
 
 ---
