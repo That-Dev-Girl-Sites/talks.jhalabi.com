@@ -351,7 +351,7 @@ You already test different browsers and screen sizes. Testing with your keyboard
 
 # Thank you!
 
-http://thatdevgirl.com/talks/accessibility-edui/
+http://talks.thatdevgirl.com/accessibility-edui/
 
 ---
 
@@ -369,8 +369,8 @@ http://thatdevgirl.com/talks/accessibility-edui/
 ## References
 
 * [Accessibility statistics](http://www.interactiveaccessibility.com/accessibility-statistics)
-* [Accessibility and phone number formatting](http://www.jhalabi.com/blog/accessibility-phone-number-formatting/)
+* [Accessibility and phone number formatting](https://thatdevgirl.com/blog/accessibility-phone-number-formatting)
 * [I thought title text improved accessibility](https://silktide.com/i-thought-title-text-improved-accessibility-i-was-wrong/)
 * [Semantic differences between &lt;b&gt;, &lt;strong&gt;, &lt;i&gt;, and &lt;em&gt;](http://html5doctor.com/i-b-em-strong-element/)
-* [Testing with a screen reader](http://www.jhalabi.com/blog/accessibility-screen-reader/)
+* [Testing with a screen reader](https://thatdevgirl.com/blog/accessibility-screen-reader)
 * [Accessibility: Bold and italic formatting in HTML](http://accessibility.psu.edu/boldfacehtml/)

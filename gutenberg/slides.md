@@ -7,7 +7,7 @@
 
 You can follow along at
 
-https://thatdevgirl.com/talks/gutenberg
+https://talks.thatdevgirl.com/gutenberg
 
 ---
 
@@ -561,7 +561,7 @@ But, they can also go inside the __inspector panel__!
 
 ---
 
-### These slides are available at https://thatdevgirl.com/talks/gutenberg/
+### These slides are available at https://talks.thatdevgirl.com/gutenberg/
 
 <hr>
 

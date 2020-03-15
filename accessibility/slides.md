@@ -14,7 +14,7 @@
 
 ## P.S. All of these slides are online
 
-http://thatdevgirl.com/talks/accessibility/
+https://talks/thatdevgirl.com/accessibility/
 
 ---
 
@@ -118,7 +118,7 @@ How do we start coding?
 </html>
 ```
 
-[For example...](http://thatdevgirl.com/talks/accessibility/examples/kiss)
+[For example...](https://talks.thatdevgirl.com/accessibility/examples/kiss)
 
 Note:
 Keep your HTML code to the basics.
@@ -366,7 +366,7 @@ or
 
 ## Thank you!
 
-* Slides: http://thatdevgirl.com/talks/accessibility/
+* Slides: https://talks.thatdevgirl.com/accessibility/
 * Twitter: [@jonihalabi](https://twitter.com/jonihalabi)
 
 ---
@@ -384,8 +384,8 @@ or
 
 ## References
 
-* [Accessibility and phone number formatting](http://www.jhalabi.com/blog/accessibility-phone-number-formatting/)
+* [Accessibility and phone number formatting](https://thatdevgirl.com/blog/accessibility-phone-number-formatting)
 * [I thought title text improved accessibility](https://silktide.com/i-thought-title-text-improved-accessibility-i-was-wrong/)
 * [Semantic differences between &lt;b&gt;, &lt;strong&gt;, &lt;i&gt;, and &lt;em&gt;](http://html5doctor.com/i-b-em-strong-element/)
-* [Testing with a screen reader](http://www.jhalabi.com/blog/accessibility-screen-reader/)
+* [Testing with a screen reader](https://thatdevgirl.com/blog/accessibility-screen-reader)
 * [Accessibility: Bold and italic formatting in HTML](http://accessibility.psu.edu/boldfacehtml/)
