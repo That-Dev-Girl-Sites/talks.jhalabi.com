@@ -22,7 +22,7 @@ Combinations of atoms.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/style-guide-molecules.jpg" data-background-size="contain" data-background-color="#fff" aria-label="Screenshot of an article page on SFS, with all of the molecules, such as figures, outlined. Comginations of atoms make molecules."></section>
+<section class="full-screen-img" data-background-image="images/style-guide-molecules.jpg" data-background-size="contain" data-background-color="#fff" aria-label="Screenshot of an article page on SFS, with all of the molecules, such as figures, outlined. Combinations of atoms make molecules."></section>
 
 ---
 
