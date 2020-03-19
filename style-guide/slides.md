@@ -2,7 +2,7 @@
 
 ---
 
-<section class="full-screen-img" data-background-image="images/style-guide-example-screenshot.png" data-background-size="contain" data-background-color="#fff"></section>
+<section class="full-screen-img" data-background-image="images/style-guide-example-screenshot.png" data-background-size="contain" data-background-color="#fff" aria-label="Screenshot of an article page on SFS."></section>
 
 ---
 
@@ -12,7 +12,7 @@ Basic components that can not be further broken down into a smaller functional c
 
 ---
 
-<section class="full-screen-img" data-background-image="images/style-guide-atoms.jpg" data-background-size="contain" data-background-color="#fff"></section>
+<section class="full-screen-img" data-background-image="images/style-guide-atoms.jpg" data-background-size="contain" data-background-color="#fff" aria-label="Screenshot of an article page on SFS, with all of the atoms, such as paragraphs, headings, and images, outlined."></section>
 
 ---
 
@@ -22,7 +22,7 @@ Combinations of atoms.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/style-guide-molecules.jpg" data-background-size="contain" data-background-color="#fff"></section>
+<section class="full-screen-img" data-background-image="images/style-guide-molecules.jpg" data-background-size="contain" data-background-color="#fff" aria-label="Screenshot of an article page on SFS, with all of the molecules, such as figures, outlined. Comginations of atoms make molecules."></section>
 
 ---
 
@@ -32,7 +32,7 @@ Combinations of molecules (and atoms).
 
 ---
 
-<section class="full-screen-img" data-background-image="images/style-guide-organisms.jpg" data-background-size="contain" data-background-color="#fff"></section>
+<section class="full-screen-img" data-background-image="images/style-guide-organisms.jpg" data-background-size="contain" data-background-color="#fff" aria-label="Screenshot of an article page on SFS, with all of the organisms, such as the article header and article body, outlined. Combinations of molecules make organisms."></section>
 
 ---
 
@@ -42,7 +42,7 @@ Combinations of organisms (and molecules and atoms).
 
 ---
 
-<section class="full-screen-img" data-background-image="images/style-guide-example-screenshot.png" data-background-size="contain" data-background-color="#fff"></section>
+<section class="full-screen-img" data-background-image="images/style-guide-example-screenshot.png" data-background-size="contain" data-background-color="#fff" aria-label="Back to the screenshot of an article page on SFS. The combination of organisms make the template!"></section>
 
 ---
 
