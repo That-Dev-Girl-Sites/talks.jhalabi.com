@@ -1,0 +1,17 @@
+/**
+ * Main SCSS file for the front page.
+ */
+
+@import 'global/reset';
+@import 'global/colors';
+@import 'global/sizes';
+@import 'global/typography';
+
+@import 'layout/header';
+@import 'layout/main';
+@import 'layout/footer';
+
+@import 'component/button';
+@import 'component/page-heading';
+@import 'component/talks';
+@import 'component/bio';

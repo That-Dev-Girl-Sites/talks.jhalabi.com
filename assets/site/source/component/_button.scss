@@ -1,0 +1,28 @@
+/**
+ * Button link styles.
+ */
+
+.btn {
+  background-color: $blue;
+  border-radius: 5px;
+  color: $white;
+  display: inline-block;
+  margin: 2rem auto 1rem;
+  max-width: 10rem;
+  padding: .75rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  width: auto;
+
+  &:hover,
+  &:focus {
+    background-color: $red;
+    position: relative;
+    top: -2px;
+  }
+
+  @media screen and ( min-width: $large-screen ) {
+    margin: 2em 0 1em;
+  }
+}

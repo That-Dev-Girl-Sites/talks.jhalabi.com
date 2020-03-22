@@ -1,0 +1,35 @@
+/**
+ * Listing of talks block.
+ */
+
+.talks {
+  background-image: url( '../images/pattern-bg.svg' );
+  padding: 4rem 0;
+
+  .container {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr;
+
+    @media screen and ( min-width: $large-screen ) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  article {
+    background-color: $white;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px 0 rgba( $grey, 0.25 );
+    padding: 2rem;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+
+    li {
+      line-height: 1.5;
+      margin-bottom: 0.25rem;
+    }
+  }
+}

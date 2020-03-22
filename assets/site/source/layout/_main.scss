@@ -1,0 +1,20 @@
+/**
+ * Main content area styles.
+ */
+
+.site-wrapper {
+  margin-top: 78px;
+
+  @media screen and ( min-width: $medium_screen ) {
+    margin-top: 48px;
+  }
+}
+
+.container {
+  margin: 0 2rem;
+
+  @media screen and ( min-width: $large_screen ) {
+    margin: 0 auto;
+    max-width: 1024px;
+  }
+}

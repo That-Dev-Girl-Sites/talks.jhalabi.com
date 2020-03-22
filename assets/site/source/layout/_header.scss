@@ -1,0 +1,77 @@
+/**
+ * Page header styles.
+ */
+
+.page-header {
+  background: rgba( 0, 0, 0, 0.85 );
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+
+  // Site logo container.
+  p {
+    font-size: 1rem;
+    margin-bottom: 0;
+    padding: 0.25rem;
+
+    @media screen and ( min-width: $medium_screen ) {
+      float: left;
+      margin: 0 1rem;
+    }
+
+    span {
+      background: url( '../images/thatdevgirl-logo.png' ) no-repeat center;
+      background-size: contain;
+      display: block;
+      font-size: 0;
+      height: 38px;
+      width: 100%;
+
+      @media screen and ( min-width: $medium_screen ) {
+        height: 40px;
+        width: 253px;
+      }
+    }
+  }
+
+  // Site navigation.
+  nav {
+    background: $blue;
+    text-align: center;
+
+    @media screen and ( min-width: $medium_screen ) {
+      background: transparent;
+      border-left: 1px solid $white;
+      float: right;
+    }
+
+    li {
+      display: inline-block;
+
+      @media screen and ( min-width: $medium_screen ) {
+        display: block;
+        float: left;
+      }
+    }
+
+    a {
+      color: $white;
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 300;
+      padding: 0.5rem 0.75rem;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        background: $blue;
+      }
+
+      @media screen and ( min-width: $medium_screen ) {
+        padding: 1rem 1.5rem;
+      }
+    }
+  }
+}

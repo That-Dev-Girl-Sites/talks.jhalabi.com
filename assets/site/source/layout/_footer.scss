@@ -1,0 +1,15 @@
+/**
+ * Page footer styles.
+ */
+
+footer {
+  background: lighten( $black, 10% );
+  clear: both;
+  padding: 1.5rem 1rem;
+
+  p {
+    color: $grey_light;
+    font-size: 0.75rem;
+    margin: 0;
+  }
+}
