@@ -3,7 +3,7 @@
 
 ---
 
-# A little expectation setting
+# Expectation setting
 
 * I will be glossing over basic Gutenberg block creation.
 * I will be sharing some bits of block JS/React and some PHP code.
@@ -84,7 +84,7 @@ The `edit()` function should render this:
 ```
 <TextControl
   label='Google Sheets URL'
-  help='(The Google Sheet must be publicly viewable.)'
+  help='(Must be publicly viewable.)'
   value={ data }
   onChange={ onChangeData }
 />
@@ -92,12 +92,40 @@ The `edit()` function should render this:
 
 ---
 
-* `data` is an attribute of the block.
-  * (You can have others.)
+* `data` is an attribute of the block. _(You can have more.)_
 * `onChangeData` is the onChange function to store your attribute data:
 
 ```
-const onChangeData = ( value ) => { setAttributes( { data: value } ) };
+const onChangeData = ( value ) => {
+  setAttributes( { data: value } )
+};
+```
+
+---
+
+# Step 3
+
+## Extract the data
+
+* This happens when you render the block on the front end.
+* Now is probably a good time to mention that this block is a dynamic block.
+
+---
+
+```
+function besan_get_sheet_data( $attributes, $api_key ) {
+  // Extract the Google sheet ID from the sheet URL.
+  $sheet_id = preg_replace( '/(https:\/\/docs.google.com\/spreadsheets\/d\/)|\/edit.*/', '', $attributes['data'] );
+
+  // Calculate the range of data to get.
+  $range = $attributes['column'] . '2%3A' . $attributes['column'] . '1000';
+
+  // Make the call to get the data from Google.
+  $get_data = new WP_Http();
+  $url = 'https://sheets.googleapis.com/v4/spreadsheets/'. $sheet_id . '/values/' . $range . '/?&key=' . $api_key;
+
+  return $get_data -> get( $url );
+}
 ```
 
 ---
