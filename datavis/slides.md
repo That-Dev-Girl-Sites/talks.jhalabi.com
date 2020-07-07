@@ -5,9 +5,9 @@
 
 # Expectation setting
 
-* I will be glossing over basic Gutenberg block creation.
-* I will be sharing some bits of block JS/React and some PHP code.
-* There will be a little math.
+* Technical talk for developers.
+* Knowledge of dynamic Gutenberg block creation.
+* There will be _(some)_ math.
 
 ---
 
@@ -17,15 +17,15 @@
 
 ---
 
-# A (fictional) request
+# Once upon a time...
 
-Sam from the admissions office wants to show a chart of how many students from each department are returning to campus this fall.
+Sam from the admissions office wants to show a chart of how many students from each class are returning to campus this fall.
 
 Sam gives us... a giant spreadsheet.
 
 ---
 
-# Our mission
+# What is our quest?
 
 Create a custom Gutenberg block to display this chart.
 
@@ -33,35 +33,39 @@ Create a custom Gutenberg block to display this chart.
 
 # Challenge accepted
 
-1. Import the data into WordPress
-2. Display a graph
-3. Make the graph accessible and responsive
+1. Import the data into WordPress.
+2. Process the data.
+3. Make an accessible and responsive graph.
 
 ---
 
-<!-- .slide: data-background="#483758" -->
+<!-- .slide: data-background="#c45131" -->
 
-# Import the data into WordPress
+# Chapter 1
+## Import the data into WordPress
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-google-sheet.jpg" data-background-size="contain" data-background-color="#222" aria-label="Screenshot of an example Google Sheet, containing student information, including name, gender, class level, home state, major, and extracurricular activity"></section>
+<section class="full-screen-img" data-background-image="images/example-google-sheet.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of an example Google Sheet, containing student information, including name, gender, class level, home state, major, and extracurricular activity"></section>
 
 ---
 
 # A couple of options
 
-1. Have a content editor input all the data into a WordPress block.
-2. Have WordPress read the spreadsheet for us.
+1. Content editor enters data into fields of a block.
+2. WordPress reads the spreadsheet for us.
 
 ---
 
-# Google Integration!
+# Lazy wins!
 
-* Data is dynamic, so when the source changes, the page changes automatically.
-* _But_, there is now a second place we have to keep up with.
+* Google Sheets integration.
+* Dynamic data == page updates automatically.
+* _But_, there is another data source to keep up with.
 
 ---
+
+<!-- .slide: data-background="#483758" -->
 
 # Step 1
 
@@ -69,9 +73,11 @@ Create a custom Gutenberg block to display this chart.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/settings-google-api-key.jpg" data-background-size="contain" data-background-color="#222" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
+<section class="full-screen-img" data-background-image="images/settings-google-api-key.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
 
 ---
+
+<!-- .slide: data-background="#483758" -->
 
 # Step 2
 
@@ -103,34 +109,237 @@ const onChangeData = ( value ) => {
 
 ---
 
+<!-- .slide: data-background="#483758" -->
+
 # Step 3
 
 ## Extract the data
 
-* This happens when you render the block on the front end.
-* Now is probably a good time to mention that this block is a dynamic block.
+* We need a bunch of PHP to extract and process the data.
+* This is a __dynamic__ block!
+* Function called by the render callback.
 
 ---
 
 ```
-function besan_get_sheet_data( $attributes, $api_key ) {
-  // Extract the Google sheet ID from the sheet URL.
-  $sheet_id = preg_replace( '/(https:\/\/docs.google.com\/spreadsheets\/d\/)|\/edit.*/', '', $attributes['data'] );
+function get_sheet_data( $attributes, $api_key ) {
+  // Extract the Google sheet ID
+  $sheet_id = preg_replace(
+    '/(https:\/\/docs.google.com\/spreadsheets\/d\/)|\/edit.*/',
+    '',
+    $attributes['data']
+  );
+```
 
+---
+
+```
   // Calculate the range of data to get.
-  $range = $attributes['column'] . '2%3A' . $attributes['column'] . '1000';
+  $range = $attributes['column'];
+  $range .= '2%3A';
+  $range .= $attributes['column'];
+  $range .= '1000';
+```
 
-  // Make the call to get the data from Google.
+---
+
+```
   $get_data = new WP_Http();
-  $url = 'https://sheets.googleapis.com/v4/spreadsheets/'. $sheet_id . '/values/' . $range . '/?&key=' . $api_key;
+  $url = 'https://sheets.googleapis.com/v4/spreadsheets/';
+  $url .= $sheet_id;
+  $url .= '/values/' . $range;
+  $url .= '/?&key=' . $api_key;
 
-  return $get_data -> get( $url );
+  return $get_data->get( $url );
 }
 ```
 
 ---
 
+<!-- .slide: data-background="#c45131" -->
+
+# Chapter 2
+## Process the data
+
+---
+
+<!-- .slide: data-background="#483758" -->
+
+# Step 1
+
+Convert the data into something we can read (JSON).
+
+```
+$data_body = json_decode(
+  $raw_data['body'],
+  true
+);
+```
+
+---
+
+Then our data will look something like this:
+
+```
+Array(
+  [range] => 'Class Data'!E2:E101
+  [majorDimension] => ROWS
+  [values] => Array(
+    [0] => Array(
+      [0] => English
+    )
+
+    [1] => Array(
+      [0] => Math
+    )
+
+    [2] => Array(
+      [0] => English
+    )
+    ...
+)
+```
+
+---
+
+<!-- .slide: data-background="#483758" -->
+
+# Step 2
+
+Remember our problem: We need to count the number of students from each major.
+
+---
+
+```
+$data = array();
+foreach ( $data_body['values'] as $d ) {
+  if ( array_key_exists( $d[0], $data ) ) {
+    // If the value already exists
+    $data[ $d[0] ]++;
+  } else {
+    // Otherwise, create new item
+    $data[ $d[0] ] = 1;
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="#c45131" -->
+
+# Chapter 3
+## Make an accessible and responsive graph
+
+---
+
+# Horizontal bar chart
+
+We have lots of options, but let's make this example simple.
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
+
+---
+
+# Homegrown SVG or D3.js?
+
+---
+
+<!-- .slide: data-background="#483758" -->
+
+# Step 1
+
+Let's set up our SVG.
+
+---
+
+# SVG overview
+
+```
+<svg xmlns="http://www.w3.org/2000/svg"
+    width="100%" height="">
+
+  <title>My Chart</title>
+  <desc>What my chart is about!</desc>
+
+  <!-- Shapes go here! -->
+
+</svg>
+```
+
+---
+
+# SVG height
+
+The SVG needs to account for the height of the sum of the bars in the chart.
+
+```
+$svg_height =
+  sizeof($data) * ( BAR_HEIGHT + BAR_GAP )
+
+```
+
+---
+
+# SVG declaration
+
+## (with height)
+
+```
+'<svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="100%"
+   height="' . $svg_height . '">'
+```
+
+---
+
+<!-- .slide: data-background="#483758" -->
+
+# Step 2
+
+Create the X and Y axes.
+
+<small>(Yes, axes is the plural of "axis". Chop chop.)<small>
+
+---
+
+<!-- .slide: data-background="#483758" -->
+
+# Step 3
+
+Create the bars!
+
+<small>(a.k.a. the fun part.)</small>
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
+
+---
+
+# Thank you!!
+
+* All example code: https://github.com/thatdevgirl/besan-block
+* These slides: https://talks.thatdevgirl.com/datavis/
+  * More resources in the following slides.
+
+---
+
+<!-- .slide: data-background="#444054" -->
+
 # Resources
 
-* [Besan Block](https://github.com/thatdevgirl/besan-block) (A custom plugin that I wrote to do a lot of what I spoke about here.)
-* [Example Google Sheet you can play with](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0) (Public, view only)
+* [Besan Block](https://github.com/thatdevgirl/besan-block) (custom plugin; examples are from here)
+* [Example Google Sheet](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0) (public, view only)
+
+---
+
+<!-- .slide: data-background="#444054" -->
+
+# Accessible SVGs
+
+* [SVG Tutorial | W3Schools](https://www.w3schools.com/graphics/svg_intro.asp)
+* [Tips for Creating Accessible SVG | Sitepoint](https://www.sitepoint.com/tips-accessible-svg/)
+* [Accessible SVGs | CSS-Tricks](https://css-tricks.com/accessible-svgs/)

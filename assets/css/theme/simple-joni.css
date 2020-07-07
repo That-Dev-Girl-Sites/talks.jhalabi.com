@@ -1,6 +1,8 @@
 /**
  * A modified simple theme.
  *
+ * Colors from: https://coolors.co/bebbbb-444054-2f243a-fac9b8-de927d
+ *
  * Base is from the reveal.js "simple" theme, which is is Copyright (C) 2012
  * Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
  * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
@@ -225,8 +227,9 @@ body {
 }
 
 .reveal pre code {
+  background: rgba(255 ,255, 255, 0.1);
   display: block;
-  padding: 5px;
+  padding: 2rem 1rem;
   overflow: auto;
   max-height: 400px;
   word-wrap: normal;
