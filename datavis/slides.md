@@ -42,7 +42,7 @@ Create a custom Gutenberg block to display this chart.
 <!-- .slide: data-background="#c45131" -->
 
 # Chapter 1
-## Import the data into WordPress
+## Import the data into WordPress.
 
 ---
 
@@ -69,7 +69,7 @@ Create a custom Gutenberg block to display this chart.
 
 # Step 1
 
-## Get API Key from Google
+## Get an API key from Google.
 
 ---
 
@@ -113,7 +113,7 @@ const onChangeData = ( value ) => {
 
 # Step 3
 
-## Extract the data
+## Extract the data from the Sheet.
 
 * We need a bunch of PHP to extract and process the data.
 * This is a __dynamic__ block!
@@ -159,7 +159,7 @@ function get_sheet_data( $attributes, $api_key ) {
 <!-- .slide: data-background="#c45131" -->
 
 # Chapter 2
-## Process the data
+## Process the data.
 
 ---
 
@@ -228,17 +228,17 @@ foreach ( $data_body['values'] as $d ) {
 <!-- .slide: data-background="#c45131" -->
 
 # Chapter 3
-## Make an accessible and responsive graph
+## Make an accessible and responsive graph.
 
 ---
 
 # Horizontal bar chart
 
-We have lots of options, but let's make this example simple.
+We have a bunch of options, but let's make this example simple.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
+<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot our example bar chart of student class levels"></section>
 
 ---
 
@@ -301,7 +301,92 @@ $svg_height =
 
 Create the X and Y axes.
 
-<small>(Yes, axes is the plural of "axis". Chop chop.)<small>
+<small>(Yup. Axes is the plural of "axis". Chop chop.)<small>
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot our example bar chart of student class levels"></section>
+
+---
+
+# X axis
+
+```
+<line
+   role="presentation"
+   x1="OFFSET%" y1="0"
+   x2="OFFSET%" y2="HEIGHT_IN_PX"
+   stroke="#000" stroke-width="2" />
+```
+
+---
+
+# Y axis
+
+```
+<line
+   role="presentation"
+   x1="OFFSET%" y1="HEIGHT_IN_PX"
+   x2="100%"    y2="HEIGHT_IN_PX"
+   stroke="#000" stroke-width="2" />
+```
+
+---
+
+# Scale along Y axis
+
+```
+<text
+  role="presentation"
+  x="OFFSET%"
+  y="HEIGHT_IN_PX + A_LITTLE_MORE"
+  fill="#000" font-size="14">
+
+  0
+
+</text>
+```
+
+---
+
+# Scale along Y axis
+
+```
+<text
+  role="presentation"
+  x="96%"
+  y="HEIGHT_IN_PX + A_LITTLE_MORE"
+  fill="#000" font-size="14">
+
+  MAX_VALUE
+
+</text>
+```
+
+---
+
+# Group
+
+Put all of that code inside a SVG group, so user agents know that code belongs together.
+
+```
+<g class="chart_setup">
+  ...
+</g>
+```
+
+---
+
+# All together now
+
+```
+<g class="chart_setup">
+  <line role="presentation" x1="OFFSET%" y1="0" x2="OFFSET%" y2="HEIGHT_IN_PX" stroke="#000" stroke-width="2" />
+  <line role="presentation" x1="OFFSET%" y1="HEIGHT_IN_PX" x2="100%" y2="HEIGHT_IN_PX" stroke="#000" stroke-width="2" />
+  <text role="presentation" x="OFFSET%" y="HEIGHT_IN_PX + A_LITTLE_MORE" fill="#000" font-size="14">0</text>
+  <text role="presentation" x="96%" y="HEIGHT_IN_PX + A_LITTLE_MORE" fill="#000" font-size="14">MAX_VALUE</text>
+</g>
+```
 
 ---
 
@@ -315,15 +400,110 @@ Create the bars!
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
+# Start a group for all bars
+
+```
+<g role="list" aria-label="Bar graph">
+  BARS GO HERE.
+</g>
+```
+
+---
+
+# Bar creation
+
+* Loop through your array of data.
+* Create a group for each bar, containing
+   * The bar itself
+   * The text label for that bar
+   * (optional) Description
+
+---
+
+```
+<g
+  role="listitem" aria-label="LABEL, DATA"
+  tabindex="0">
+    <desc>
+      The number of LABEL students
+      returning is DATA
+    </desc>
+    BAR ELEMENT
+    LABEL ELEMENT
+</g>
+```
+
+---
+
+# Bar element
+
+```
+<rect
+  role="presentation"
+  x="OFFSET%"
+  y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)"
+  width="THIS_BARS_WIDTH%"
+  height="30"
+  fill="#00f" />
+```
+
+---
+
+# The bar's width
+
+The width of the current bar is the value of the bar (how many students in this class level) as a __percentage__.
+
+```
+VALUE / MAX_VALUE * 100
+```
+
+---
+
+# Bar label
+
+```
+<text
+  role="presentation"
+  x="0"
+  y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)"
+  fill="#000"
+  font-size="16">
+
+  LABEL
+
+</text>
+```
+
+---
+
+# All together now
+
+```
+<g role="list" aria-label="Bar graph">
+
+  <g role="listitem" aria-label="LABEL, DATA" tabindex="0">
+    <desc>Optional description for this bar</desc>
+    <rect role="presentation" x="OFFSET%" y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)" width="THIS_BARS_WIDTH%" height="30" fill="#00f" />
+    <text role="presentation" x="0" y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)" fill="#000" font-size="16">LABEL</text>
+  </g>
+
+  ...
+</g>
+```
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot our example bar chart of student class levels"></section>
 
 ---
 
 # Thank you!!
 
-* All example code: https://github.com/thatdevgirl/besan-block
-* These slides: https://talks.thatdevgirl.com/datavis/
-  * More resources in the following slides.
+https://talks.thatdevgirl.com/datavis/
+
+* Follow me at [@jonihalabi](https://twitter.com/jonihalabi)
+* https://thatdevgirl.com
+* https://jhalabi.com
 
 ---
 
