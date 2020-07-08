@@ -11,17 +11,15 @@
 
 ---
 
-> Without data you're just another person with an opinion.
->
-> <cite>-- W. Edwards Deming</cite>
-
----
-
 # Once upon a time...
 
 Sam from the admissions office wants to show a chart of how many students from each class are returning to campus this fall.
 
 Sam gives us... a giant spreadsheet.
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-google-sheet.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of an example Google Sheet, containing student information, including name, gender, class level, home state, major, and extracurricular activity"></section>
 
 ---
 
@@ -43,10 +41,6 @@ Create a custom Gutenberg block to display this chart.
 
 # Chapter 1
 ## Import the data into WordPress.
-
----
-
-<section class="full-screen-img" data-background-image="images/example-google-sheet.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of an example Google Sheet, containing student information, including name, gender, class level, home state, major, and extracurricular activity"></section>
 
 ---
 
@@ -91,19 +85,19 @@ The `edit()` function should render this:
 <TextControl
   label='Google Sheets URL'
   help='(Must be publicly viewable.)'
-  value={ data }
-  onChange={ onChangeData }
+  value={ sheetUrl }
+  onChange={ onChangeUrl }
 />
 ```
 
 ---
 
-* `data` is an attribute of the block. _(You can have more.)_
-* `onChangeData` is the onChange function to store your attribute data:
+* `sheetUrl` is one attribute of the block.
+* `onChangeUrl` is the `onChange` function to store your attribute data:
 
 ```
-const onChangeData = ( value ) => {
-  setAttributes( { data: value } )
+const onChangeUrl = ( value ) => {
+  setAttributes( { sheetUrl: value } )
 };
 ```
 
@@ -113,13 +107,15 @@ const onChangeData = ( value ) => {
 
 # Step 3
 
-## Extract the data from the Sheet.
+## Extract the data.
 
-* We need a bunch of PHP to extract and process the data.
+* We need PHP to extract and process the data.
 * This is a __dynamic__ block!
 * Function called by the render callback.
 
 ---
+
+The first step is to get the ID from the Sheet URL.
 
 ```
 function get_sheet_data( $attributes, $api_key ) {
@@ -127,11 +123,13 @@ function get_sheet_data( $attributes, $api_key ) {
   $sheet_id = preg_replace(
     '/(https:\/\/docs.google.com\/spreadsheets\/d\/)|\/edit.*/',
     '',
-    $attributes['data']
+    $attributes['sheetUrl']
   );
 ```
 
 ---
+
+The block has another attribute for the column we want from the chart.
 
 ```
   // Calculate the range of data to get.
@@ -142,6 +140,8 @@ function get_sheet_data( $attributes, $api_key ) {
 ```
 
 ---
+
+Call the Google API and get the data.
 
 ```
   $get_data = new WP_Http();
@@ -182,7 +182,7 @@ Then our data will look something like this:
 
 ```
 Array(
-  [range] => 'Class Data'!E2:E101
+  [range] => 'Class Data'!C2:C101
   [majorDimension] => ROWS
   [values] => Array(
     [0] => Array(
@@ -190,11 +190,11 @@ Array(
     )
 
     [1] => Array(
-      [0] => Math
+      [0] => 4. Senior
     )
 
     [2] => Array(
-      [0] => English
+      [0] => 1. Freshman
     )
     ...
 )
@@ -210,6 +210,10 @@ Remember our problem: We need to count the number of students from each major.
 
 ---
 
+<section class="full-screen-img" data-background-image="images/example-google-sheet.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of an example Google Sheet, containing student information, including name, gender, class level, home state, major, and extracurricular activity"></section>
+
+---
+
 ```
 $data = array();
 foreach ( $data_body['values'] as $d ) {
@@ -221,6 +225,19 @@ foreach ( $data_body['values'] as $d ) {
     $data[ $d[0] ] = 1;
   }
 }
+```
+
+---
+
+Now we have an array that looks something like this:
+
+```
+Array(
+  ['1. Freshman'] => '8',
+  ['2. Sophomore'] => '8',
+  ['3. Junior'] => '12',
+  ['4. Senior'] => '8'
+)
 ```
 
 ---
@@ -509,7 +526,7 @@ https://talks.thatdevgirl.com/datavis/
 
 <!-- .slide: data-background="#444054" -->
 
-# Resources
+# Reference: General
 
 * [Besan Block](https://github.com/thatdevgirl/besan-block) (custom plugin; examples are from here)
 * [Example Google Sheet](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0) (public, view only)
@@ -518,8 +535,43 @@ https://talks.thatdevgirl.com/datavis/
 
 <!-- .slide: data-background="#444054" -->
 
-# Accessible SVGs
+# Reference: SVGs
 
 * [SVG Tutorial | W3Schools](https://www.w3schools.com/graphics/svg_intro.asp)
 * [Tips for Creating Accessible SVG | Sitepoint](https://www.sitepoint.com/tips-accessible-svg/)
 * [Accessible SVGs | CSS-Tricks](https://css-tricks.com/accessible-svgs/)
+
+---
+
+<!-- .slide: data-background="#444054" -->
+
+# Google API <small>(1/2)</small>
+
+<small>
+* To get this key, go to the [Google APIs Dashboard](https://console.developers.google.com/apis/dashboard). You should have a Google account to access this dashboard.
+* Inside the dashboard, go to "Select a Project" at the top of the page and click on "New Project".
+* Give your project a name and click the "Create" button.
+* From the [Library](https://console.developers.google.com/apis/library) page, search for the "Google Sheets API" and click the blue "Enable" button.
+</small>
+
+---
+
+<!-- .slide: data-background="#444054" -->
+
+# Google API <small>(2/2)</small>
+
+<small>
+* From the [Credentials](https://console.developers.google.com/apis/credentials) page, click "Create credentials" and select "API key" in the drop-down menu that appears.
+* A pop-up window with your API key will appear. Copy the key, then click "Restrict Key".
+* Under the "API restrictions" heading, check "Restrict Key", then select the "Google Sheets API" from the drop down menu.
+* Click "Save".
+</small>
+
+
+---
+
+<!-- .slide: data-background="#444054" -->
+
+> Without data you're just another person with an opinion.
+>
+> <cite>-- W. Edwards Deming</cite>
