@@ -167,7 +167,7 @@ Call the Google API and get the data.
 
 # Step 1
 
-Convert the data into something we can read (JSON).
+Convert the data into something PHP can read.
 
 ```
 $data_body = json_decode(
@@ -186,7 +186,7 @@ Array(
   [majorDimension] => ROWS
   [values] => Array(
     [0] => Array(
-      [0] => English
+      [0] => 1. Freshman
     )
 
     [1] => Array(
@@ -326,7 +326,7 @@ Create the X and Y axes.
 
 ---
 
-# X axis
+# Y axis
 
 ```
 <line
@@ -338,7 +338,7 @@ Create the X and Y axes.
 
 ---
 
-# Y axis
+# X axis
 
 ```
 <line
@@ -350,7 +350,7 @@ Create the X and Y axes.
 
 ---
 
-# Scale along Y axis
+# Scale along X axis
 
 ```
 <text
@@ -366,7 +366,7 @@ Create the X and Y axes.
 
 ---
 
-# Scale along Y axis
+# Scale along X axis
 
 ```
 <text
@@ -460,7 +460,7 @@ Create the bars!
   x="OFFSET%"
   y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)"
   width="THIS_BARS_WIDTH%"
-  height="30"
+  height="BAR_HEIGHT"
   fill="#00f" />
 ```
 
