@@ -40,14 +40,6 @@ Create a custom Gutenberg block to display this chart.
 
 # Step 1
 
-## Get an API key from Google.
-
----
-
-<!-- .slide: data-background="#483758" -->
-
-# Step 2
-
 ## Have your block store the URL of your Google sheet.
 
 ---
@@ -67,7 +59,7 @@ The `edit()` function should render this:
 
 <!-- .slide: data-background="#483758" -->
 
-# Step 3
+# Step 2
 
 ## Extract the data.
 
@@ -258,7 +250,7 @@ Create the bars!
 
 ---
 
-# Bar creation
+# Single bar creation
 
 * Loop through your array of data.
 * Create a group for each bar, containing
