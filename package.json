@@ -8,7 +8,6 @@
   },
   "author": "Joni Halabi",
   "license": "MIT",
-
   "devDependencies": {
     "gulp": "latest",
     "gulp-clean-css": "latest",
