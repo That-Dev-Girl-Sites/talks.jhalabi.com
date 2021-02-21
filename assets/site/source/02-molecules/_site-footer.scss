@@ -1,0 +1,33 @@
+/**
+ * Molecules: Site Footer
+ */
+
+footer {
+  clear: both;
+
+  // Layout styles.
+  .footer-copyright {
+    border-top: 1px solid $footer-border;
+    padding: 2rem;
+
+    @media screen and ( min-width: $md ) {
+      padding: 2rem 0;
+    }
+
+    p {
+      color: $footer-copyright;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    // Inner div to constrain block text.
+    div {
+      @media screen and ( min-width: $md ) {
+        margin-left: $page-margin-large;
+        max-width: $max-width;
+        width: 50%;
+      }
+    }
+  }
+
+}

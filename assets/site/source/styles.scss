@@ -2,16 +2,24 @@
  * Main SCSS file for the front page.
  */
 
-@import 'global/reset';
-@import 'global/colors';
-@import 'global/sizes';
-@import 'global/typography';
+@import '00-global/colors';
+@import '00-global/fonts';
+@import '00-global/sizes';
+@import '00-global/reset';
 
-@import 'layout/header';
-@import 'layout/main';
-@import 'layout/footer';
+@import '00-layout/body';
+@import '00-layout/main';
+@import '00-layout/section';
 
-@import 'component/button';
-@import 'component/page-heading';
-@import 'component/talks';
-@import 'component/bio';
+@import '00-utilities/has-background';
+
+@import '01-atoms/headings';
+@import '01-atoms/link';
+@import '01-atoms/list';
+@import '01-atoms/paragraph';
+
+@import '02-molecules/nameplate';
+@import '02-molecules/nav-primary';
+@import '02-molecules/site-footer';
+@import '02-molecules/site-header';
+@import '02-molecules/tagline';

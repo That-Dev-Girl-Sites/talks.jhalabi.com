@@ -1,0 +1,18 @@
+/**
+ * Layout: Main
+ */
+
+main {
+
+  margin: 0 $page-margin-small;
+
+  @media screen and ( min-width: $md ) {
+    margin-left: $page-margin-large;
+    max-width: $max-width;
+  }
+
+  p:last-child {
+    margin-bottom: 4rem;
+  }
+
+}

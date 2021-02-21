@@ -1,0 +1,17 @@
+/**
+ * Global: Reset
+ */
+
+* {
+  @include sans;
+  box-sizing: border-box;
+  color: $color;
+  font-size: 100%;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+br {
+  clear: both;
+}

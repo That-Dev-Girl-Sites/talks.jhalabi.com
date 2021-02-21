@@ -1,0 +1,15 @@
+/**
+ * Molecules: Site Header
+ */
+
+.site-header {
+
+  border-bottom: 2px solid $site-header-border;
+  margin-left: $page-margin-small;
+  margin-right: 0;
+
+  @media screen and ( min-width: $md ) {
+    margin-left: $page-margin-large;
+  }
+
+}
