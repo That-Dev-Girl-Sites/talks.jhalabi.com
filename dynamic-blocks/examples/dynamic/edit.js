@@ -4,17 +4,21 @@
 
 const BookEdit = ( props ) => {
 
+  // Get WP packages.
   const { RichText } = wp.blockEditor;
   const { TextControl } = wp.components;
   const { Fragment } = wp.element;
 
+  // Get block properties.
   const { setAttributes } = props;
   const { title, author, summary } = props.attributes;
 
+  // Set on change callbacks.
   const onChangeTitle = ( value ) => { setAttributes( { title: value } ) };
   const onChangeAuthor = ( value ) => { setAttributes( { author: value } ) };
   const onChangeSummary = ( value ) => { setAttributes( { summary: value } ) };
 
+  // Return the edit markup.
   return (
     <Fragment>
       <TextControl

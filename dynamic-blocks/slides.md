@@ -4,7 +4,7 @@ Customize Gutenberg without living in fear of validation errors
 
 ---
 
-# Hello! I'm Joni.
+# Hi, I'm Joni!
 
 * **Nerd Life:** Developer @ Georgetown University
 * **Home Life:**  Mom to an adorable 3 year old
@@ -34,7 +34,7 @@ No problem, you say! We can create a custom Gutenberg block for that.
 
 # Book block!
 
-Let's create the block, the documented way.
+Let's create the block, the standard way.
 
 ---
 
@@ -89,12 +89,15 @@ Add the editor UI.
 ```
 const BookEdit = ( props ) => {
 
+  // Get WP packages.
   const { TextControl } = wp.components;
   const { Fragment } = wp.element;
 
+  // Get block properties.
   const { setAttributes } = props;
   const { title, author } = props.attributes;
 
+  // Set on change callbacks.
   const onChangeTitle = ( value ) => {
     setAttributes( { title: value } )
   };
@@ -103,6 +106,7 @@ const BookEdit = ( props ) => {
     setAttributes( { author: value } )
   };
 
+  // Return the edit markup.
   return (
     <Fragment>
       <TextControl
@@ -128,7 +132,7 @@ export default BookEdit;
 
 # Step 3
 
-Create the save function for the front-end UX.
+Create the front-end markup.
 
 ---
 
@@ -161,7 +165,7 @@ export default BookSave;
 
 <!-- .slide: style="text-align: left;"> -->  
 
-# Our story continues...
+# Our story continues
 
 Jordan loves the new Book block! However, it looks a bit plain. Can we change the title so that it is a header instead of a paragraph?
 
@@ -173,7 +177,7 @@ Sure, you say! Easy peasy.
 
 # Book block, v2
 
-Update the `save()` function to use a heading tag instead of a `<p>` tag.
+Update the markup in the `save()` function to use a `<h3>` tag instead of a `<p>` tag.
 
 ---
 
@@ -210,7 +214,7 @@ Gutenberg likes to make sure the block's front-end code is what it expects it to
 
 ---
 
-# Block code in the database
+# In the database:
 
 ```
 <!-- wp:my/book {"title":"Charlotte's Web",
@@ -264,7 +268,7 @@ export default BookDeprecated;
 
 ---
 
-Every time you change the expected output, you need a new deprecation object item.
+## Every time you change the expected output, you need a new deprecation object item.
 
 ---
 
@@ -286,7 +290,7 @@ Every time you change the expected output, you need a new deprecation object ite
 
 <!-- .slide: data-background="#3a6952" -->
 
-# Rewrite Book block, dynamic-style
+# Book block 2.0, dynamic-style
 
 ---
 
@@ -307,8 +311,8 @@ class Book {
     register_block_type( 'my/book', [
 
       'attributes' => [
-        'title'  => [ 'type' => 'string', 'default' => '' ],
-        'author' => [ 'type' => 'string', 'default' => '' ]
+        'title'  => [ 'type' => 'string' ],
+        'author' => [ 'type' => 'string' ]
       ],
 
       'render_callback' => [ $this, 'render' ]
@@ -338,7 +342,7 @@ new Book;
 # Step 2
 
 * Remove the attribute declaration from the JS registration
-* Update the `save()` JS function to return null
+* Update the `save()` JS function to return `null`
 
 ---
 
@@ -364,7 +368,7 @@ registerBlockType( 'my/book', {
 
 # Step 3
 
-Nothing. The edit function is the only thing left and that can stay the same.
+Nothing! The edit function is the only thing left and that can stay the same.
 
 ---
 
@@ -376,7 +380,12 @@ Nothing. The edit function is the only thing left and that can stay the same.
 
 ---
 
-code to show how the block is stored in the database now.
+## In the database, 2.0
+
+```
+<!-- wp:my/book {"title":"Charlotte's Web",
+"author":"E. B. White"} /-->
+```
 
 ---
 
@@ -443,17 +452,29 @@ Update the JS `edit()` function.
 ```
 const BookEdit = ( props ) => {
 
+  // Get WP packages.
   const { RichText } = wp.blockEditor;
   const { TextControl } = wp.components;
   const { Fragment } = wp.element;
 
+  // Get block properties.
   const { setAttributes } = props;
   const { title, author, summary } = props.attributes;
 
-  const onChangeTitle = ( value ) => { setAttributes( { title: value } ) };
-  const onChangeAuthor = ( value ) => { setAttributes( { author: value } ) };
-  const onChangeSummary = ( value ) => { setAttributes( { summary: value } ) };
+  // Set on change callbacks.
+  const onChangeTitle = ( value ) => {
+    setAttributes( { title: value } )
+  };
 
+  const onChangeAuthor = ( value ) => {
+    setAttributes( { author: value } )
+  };
+
+  const onChangeSummary = ( value ) => {
+    setAttributes( { summary: value } )
+  };
+
+  // Return the edit markup.
   return (
     <Fragment>
       <TextControl
@@ -472,7 +493,7 @@ const BookEdit = ( props ) => {
         placeholder='Book summary goes here.'
         value={ summary }
         onChange={ onChangeSummary }
-        allowedFormats={ [ 'core/bold', 'core/italic' ] }
+        allowedFormats={['core/bold', 'core/italic']}
       />
     </Fragment>
   );
@@ -501,18 +522,23 @@ export default BookEdit;
 
 ---
 
-# Want more?
+# These slides
 
-* Slides: https://talks.jhalabi.com/dynamic-blocks
-
-## Example code:
-
-* Static block: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
-* Dynamic block: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/dynamic
+https://talks.jhalabi.com/dynamic-blocks
 
 ---
 
-# Thank you so much!!
+<!-- .slide: style="text-align: left;"> -->  
+
+# Example code
+
+Static block: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
+
+Dynamic block: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/dynamic
+
+---
+
+# Thank you!!
 
 * Tweet at me! [@jonihalabi](https://twitter.com/jonihalabi)
 * Check out my GitHub: [@thatdevgirl](https://github.com/thatdevgirl)
