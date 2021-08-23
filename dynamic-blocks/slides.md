@@ -504,8 +504,11 @@ export default BookEdit;
 # Want more?
 
 * Slides: https://talks.jhalabi.com/dynamic-blocks
-* Static block example: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
-* Dynamic block example: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
+
+## Example code:
+
+* Static block: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
+* Dynamic block: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/dynamic
 
 ---
 
