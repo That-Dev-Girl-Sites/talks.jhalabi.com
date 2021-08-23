@@ -213,8 +213,11 @@ Gutenberg likes to make sure the block's front-end code is what it expects it to
 # Block code in the database
 
 ```
-<!-- wp:my/book {"title":"Charlotte's Web","author":"E. B. White"} -->
-<div class="my-book-block" class="wp-block-my-book"><p>Charlotte's Web</p><p>E. B. White</p></div>
+<!-- wp:my/book {"title":"Charlotte's Web",
+"author":"E. B. White"} -->
+<div class="my-book-block"
+class="wp-block-my-book"><p>Charlotte's
+Web</p><p>E. B. White</p></div>
 <!-- /wp:my/book -->
 ```
 
@@ -235,7 +238,29 @@ Gutenberg likes to make sure the block's front-end code is what it expects it to
 
 ---
 
-put deprecation code here.
+```
+const BookDeprecated = [
+  {
+    attributes: {
+      title: { type: 'text' },
+      author: { type: 'text' }
+    },
+
+    save: ( props ) => {
+      const { title, author } = props.attributes;
+
+      return (
+        <div class="my-book-block">
+          <p>{ title }</p>
+          <p>{ author }</p>
+        </div>
+      );
+    }
+  }
+];
+
+export default BookDeprecated;
+```
 
 ---
 
@@ -292,13 +317,20 @@ class Book {
 
 
   public function render( $attributes ): string {
+    $title = $attributes['title'];
+    $author = $attributes['author'];
+
     return <<<HTML
       <div class="my-book-block">
-        <h3>$attributes['title']</h3>
-        <p>$attributes['author']</p>
+        <h3>$title</h3>
+        <p>$author</p>
       </div>
 HTML;
   }
+
+}
+
+new Book;
 ```
 
 ---
@@ -313,7 +345,9 @@ HTML;
 ```
 registerBlockType( 'my/book', {
   title: 'Book',
-  description: 'A simple book block',
+  description: 'A simple book block.',
+  category: 'text',
+  icon: 'book-alt',
 
   edit: ( props ) => {
     return ( BookEdit( props ) );
@@ -322,6 +356,7 @@ registerBlockType( 'my/book', {
   save: () => {
     return null;
   }
+
 } );
 ```
 
@@ -333,7 +368,11 @@ Nothing. The edit function is the only thing left and that can stay the same.
 
 ---
 
-screenshots of the edit screen and front-end UI. Nothing has changed.
+<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block edit UI, with input fields for the book title and author. Same as before."></section>
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-dynamic-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block front-end. Same as before, but with the title as a header. The author is still a paragraph."></section>
 
 ---
 
@@ -379,11 +418,15 @@ Update the PHP.
 
 ```
 public function render( $attributes ): string {
+  $title = $attributes['title'];
+  $author = $attributes['author'];
+  $summary = $attributes['summary'];
+
   return <<<HTML
     <div class="my-book-block">
-      <h3>$attributes['title']</h3>
-      <p>$attributes['author']</p>
-      <p>$attributes['summary']</p>
+      <h3>$title</h3>
+      <p>$author</p>
+      <p>$summary</p>
     </div>
 HTML;
 }
@@ -398,33 +441,55 @@ Update the JS `edit()` function.
 ---
 
 ```
-return (
-  <Fragment>
-    <TextControl
-      label='Title'
-      value={ title }
-      onChange={ onChangeTitle }
-    />
+const BookEdit = ( props ) => {
 
-    <TextControl
-      label='Author'
-      value={ author }
-      onChange={ onChangeAuthor }
-    />
+  const { RichText } = wp.blockEditor;
+  const { TextControl } = wp.components;
+  const { Fragment } = wp.element;
 
-    <RichText
-      placeholder='Book summary goes here.'
-      value={ summary }
-      onChange={ onChangeSummary }
-      allowedFormats=[ { 'core/bold', 'core/italic' } ]
-    />
-  </Fragment>
-)
+  const { setAttributes } = props;
+  const { title, author, summary } = props.attributes;
+
+  const onChangeTitle = ( value ) => { setAttributes( { title: value } ) };
+  const onChangeAuthor = ( value ) => { setAttributes( { author: value } ) };
+  const onChangeSummary = ( value ) => { setAttributes( { summary: value } ) };
+
+  return (
+    <Fragment>
+      <TextControl
+        label='Title'
+        value={ title }
+        onChange={ onChangeTitle }
+      />
+
+      <TextControl
+        label='Author'
+        value={ author }
+        onChange={ onChangeAuthor }
+      />
+
+      <RichText
+        placeholder='Book summary goes here.'
+        value={ summary }
+        onChange={ onChangeSummary }
+        allowedFormats={ [ 'core/bold', 'core/italic' ] }
+      />
+    </Fragment>
+  );
+
+}
+
+export default BookEdit;
 ```
 
 ---
 
-screenshots of the edit screen and front-end UI, now with the summary.
+<section class="full-screen-img" data-background-image="images/example-dynamic-updated-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The dynamic version of the Book Block edit UI, with input fields for the book title, author, and summary."></section>
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-dynamic-updated-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The dynamic version of the Book Block front-end, this time with the title as a heading and author and summary as paragraphs."></section>
+
 
 ---
 
@@ -436,9 +501,16 @@ screenshots of the edit screen and front-end UI, now with the summary.
 
 ---
 
-# Thank you!
+# Want more?
 
 * Slides: https://talks.jhalabi.com/dynamic-blocks
+* Static block example: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
+* Dynamic block example: https://github.com/That-Dev-Girl-Sites/talks.jhalabi.com/tree/main/dynamic-blocks/examples/static
+
+---
+
+# Thank you so much!!
+
 * Tweet at me! [@jonihalabi](https://twitter.com/jonihalabi)
 * Check out my GitHub: [@thatdevgirl](https://github.com/thatdevgirl)
 * Other randomness at [jhalabi.com](https://jhalabi.com)
