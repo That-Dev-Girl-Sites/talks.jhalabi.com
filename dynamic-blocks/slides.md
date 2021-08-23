@@ -45,23 +45,37 @@ Register the block.
 ---
 
 ```
-registerBlockType( 'my/book', {
-  title: 'Book',
-  description: 'A simple book block',
+import BookEdit from './edit.js';
+import BookSave from './save.js';
 
-  attributes: {
-    title: { type: 'text' },
-    author: { type: 'text' }
-  },
+const Book = ( () => {
 
-  edit: ( props ) => {
-    return ( BookEdit( props ) );
-  },
+  const { registerBlockType } = wp.blocks;
 
-  save: ( props ) => {
-    return { BookSave( props ) };
-  }
-} );
+  registerBlockType( 'my/book', {
+    title: 'Book',
+    description: 'A simple book block.',
+    category: 'text',
+    icon: 'book-alt',
+
+    attributes: {
+      title: { type: 'text' },
+      author: { type: 'text' }
+    },
+
+    edit: ( props ) => {
+      return ( BookEdit( props ) );
+    },
+
+    save: ( props ) => {
+      return ( BookSave( props ) );
+    }
+
+  } );
+
+} )();
+
+export default Book;
 ```
 
 ---
@@ -73,30 +87,41 @@ Add the editor UI.
 ---
 
 ```
-const { TextControl } = wp.components;
-const { Fragment } = wp.element;
+const BookEdit = ( props ) => {
 
-const { setAttributes } = props;
-const { title, author } = props.attributes;
+  const { TextControl } = wp.components;
+  const { Fragment } = wp.element;
 
-const onChangeTitle = ( value ) => { setAttributes( { title: value } ) };
-const onChangeAuthor = ( value ) => { setAttributes( { author: value } ) };
+  const { setAttributes } = props;
+  const { title, author } = props.attributes;
 
-return (
-  <Fragment>
-    <TextControl
-      label='Title'
-      value={ title }
-      onChange={ onChangeTitle }
-    />
+  const onChangeTitle = ( value ) => {
+    setAttributes( { title: value } )
+  };
 
-    <TextControl
-      label='Author'
-      value={ author }
-      onChange={ onChangeAuthor }
-    />
-  </Fragment>
-)
+  const onChangeAuthor = ( value ) => {
+    setAttributes( { author: value } )
+  };
+
+  return (
+    <Fragment>
+      <TextControl
+        label='Title'
+        value={ title }
+        onChange={ onChangeTitle }
+      />
+
+      <TextControl
+        label='Author'
+        value={ author }
+        onChange={ onChangeAuthor }
+      />
+    </Fragment>
+  );
+
+}
+
+export default BookEdit;
 ```
 
 ---
@@ -108,19 +133,29 @@ Create the save function for the front-end UX.
 ---
 
 ```
-const { title, author } = props.attributes;
+const BookSave = ( props ) => {
 
-return (
-  <div class="my-book-block">
-    <p>{ title }</p>
-    <p>{ author }</p>
-  </div>
-)
+  const { title, author } = props.attributes;
+
+  return (
+    <div class="my-book-block">
+      <p>{ title }</p>
+      <p>{ author }</p>
+    </div>
+  );
+
+}
+
+export default BookSave;
 ```
 
 ---
 
-And yay! We have a block. Insert screenshots of the front and backend UIs. This means I actually have to code the block at some point.
+<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block edit UI, with input fields for the book title and author."></section>
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-static-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block front-end, with the title and author displayed as paragraphs."></section>
 
 ---
 
@@ -143,8 +178,6 @@ Update the `save()` function to use a heading tag instead of a `<p>` tag.
 ---
 
 ```
-const { title, author } = props.attributes;
-
 return (
   <div class="my-book-block">
     <h3>{ title }</h3>
@@ -161,7 +194,11 @@ return (
 
 ---
 
-insert screenshot of a validation error here. thought: it might be helpful to have 2 versions of the block source code - static vs. dynamic.
+<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
+
+---
+
+<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation errors on the Book Block in the developer console."></section>
 
 ---
 
@@ -175,7 +212,11 @@ Gutenberg likes to make sure the block's front-end code is what it expects it to
 
 # Block code in the database
 
-put that code here.
+```
+<!-- wp:my/book {"title":"Charlotte's Web","author":"E. B. White"} -->
+<div class="my-book-block" class="wp-block-my-book"><p>Charlotte's Web</p><p>E. B. White</p></div>
+<!-- /wp:my/book -->
+```
 
 ---
 
