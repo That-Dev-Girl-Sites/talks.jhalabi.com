@@ -1,4 +1,4 @@
-# Dynamic Blocks for the win!
+# Dynamic Blocks... for the win!
 
 Customize Gutenberg without living in fear of validation errors.
 
@@ -24,13 +24,19 @@ Customize Gutenberg without living in fear of validation errors.
 
 * Migrating from Drupal to WordPress
 * Decided to embrace Gutenberg in its alpha stage
-* Learned React / Gutenberg API on the go, via their docs
+* Learned React / Gutenberg API on the go
+
+---
+
+<!-- .slide: data-background="#3a6952" -->
+
+# A simple example
 
 ---
 
 <!-- .slide: style="text-align: left;"> -->  
 
-# Once upon a time...
+## Once upon a time...
 
 Jordan, who manages the library site, asks for a website block that can display a book's title and author.
 
@@ -163,9 +169,13 @@ export default BookSave;
 
 ---
 
+<!-- .slide: data-background="#d1e4dd" -->
+
 <section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block edit UI, with input fields for the book title and author."></section>
 
 ---
+
+<!-- .slide: data-background="#d1e4dd" -->
 
 <section class="full-screen-img" data-background-image="images/example-static-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block front-end, with the title and author displayed as paragraphs."></section>
 
@@ -200,6 +210,8 @@ return (
 
 ---
 
+<!-- .slide: data-background="#d1e4dd" -->
+
 <section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
 
 ---
@@ -209,6 +221,8 @@ return (
 # Block Validation Error!
 
 ---
+
+<!-- .slide: data-background="#333333" -->
 
 <section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation errors on the Book Block in the developer console."></section>
 
@@ -245,7 +259,9 @@ Gutenberg likes to make sure the block's front-end code is what it expects it to
 
 ---
 
-# Remember: Our `save()` markup
+# Remember
+
+This is our `save()` markup:
 
 ```
 <div class="my-book-block">
@@ -401,9 +417,13 @@ Nothing! The edit function is the only thing left and that can stay the same.
 
 ---
 
+<!-- .slide: data-background="#d1e4dd" -->
+
 <section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block edit UI, with input fields for the book title and author. Same as before."></section>
 
 ---
+
+<!-- .slide: data-background="#d1e4dd" -->
 
 <section class="full-screen-img" data-background-image="images/example-dynamic-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block front-end. Same as before, but with the title as a header. The author is still a paragraph."></section>
 
