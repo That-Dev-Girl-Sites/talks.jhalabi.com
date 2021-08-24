@@ -1,6 +1,6 @@
-# Dynamic Blocks FTW!
+# Dynamic Blocks for the win!
 
-Customize Gutenberg without living in fear of validation errors
+Customize Gutenberg without living in fear of validation errors.
 
 ---
 
@@ -17,6 +17,14 @@ Customize Gutenberg without living in fear of validation errors
 * Technical talk for developers
 * Lots of talk about JS and PHP
 * Knowledge of Gutenberg block creation is helpful
+
+---
+
+# How this all started
+
+* Migrating from Drupal to WordPress
+* Decided to embrace Gutenberg in its alpha stage
+* Learned React / Gutenberg API on the go, via their docs
 
 ---
 
@@ -192,13 +200,13 @@ return (
 
 ---
 
-<!-- .slide: data-background="#9f1b19" -->
-
-# Block Validation Error!
+<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
+<!-- .slide: data-background="#9f1b19" -->
+
+# Block Validation Error!
 
 ---
 
@@ -214,19 +222,6 @@ Gutenberg likes to make sure the block's front-end code is what it expects it to
 
 ---
 
-# In the database:
-
-```
-<!-- wp:my/book {"title":"Charlotte's Web",
-"author":"E. B. White"} -->
-<div class="my-book-block"
-class="wp-block-my-book"><p>Charlotte's
-Web</p><p>E. B. White</p></div>
-<!-- /wp:my/book -->
-```
-
----
-
 # Validation process
 
 * Pre-render the block using the current `save()` function and block attribute data.
@@ -236,9 +231,36 @@ Web</p><p>E. B. White</p></div>
 
 ---
 
+# In the database
+
+```
+<!-- wp:my/book {"title":"Charlotte's Web",
+"author":"E. B. White"} -->
+<div class="my-book-block" class="wp-block-my-book">
+<p>Charlotte's Web</p>
+<p>E. B. White</p>
+</div>
+<!-- /wp:my/book -->
+```
+
+---
+
+# Remember: Our `save()` markup
+
+```
+<div class="my-book-block">
+  <h3>{ title }</h3>
+  <p>{ author }</p>
+</div>
+```
+
+---
+
 <!-- .slide: data-background="#3a6952" -->
 
-# Deprecation object
+# Deprecations
+
+Deprecations are previous versions of the block that WordPress can use to validate updated blocks.
 
 ---
 
@@ -278,13 +300,20 @@ export default BookDeprecated;
 
 ---
 
-# What's different?
+# Definition: Static Block
 
-* Markup is rendered in the PHP, not the JS
-* Only attribute data is stored in the DB, not markup
-* Markup is created on page load
-    * Necessary for blocks with dynamic data
-    * Also useful for blocks with static data
+* Block is registered in the JS
+* Markup is created by the JS `save()` function
+* Markup is saved in the DB as part of the post content
+
+---
+
+# Definition: Dynamic Block
+
+* Block is registered in both the JS and PHP
+* Only block attribute data is saved to the DB
+* No markup is saved to the DB
+* Markup is rendered by the PHP
 
 ---
 
