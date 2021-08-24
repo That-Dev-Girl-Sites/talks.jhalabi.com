@@ -169,11 +169,11 @@ export default BookSave;
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book Block edit UI, with input fields for the book title and author."></section>
+<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book block edit UI, with input fields for the book title and author."></section>
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-static-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book Block front-end, with the title and author displayed as paragraphs."></section>
+<section class="full-screen-img" data-background-image="images/example-static-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book block front-end, with the title and author displayed as paragraphs."></section>
 
 ---
 
@@ -206,7 +206,7 @@ return (
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
+<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="Validation error on the Book block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
 
 ---
 
@@ -216,7 +216,7 @@ return (
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#222222" aria-label="Validation errors on the Book Block in the developer console."></section>
+<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#222222" aria-label="Validation errors on the Book block in the developer console."></section>
 
 ---
 
@@ -314,7 +314,7 @@ export default BookDeprecated;
 
 # Definition:
 
-## Static Block
+## Static block
 
 * Block is registered in the JS
 * Markup is created by the JS `save()` function
@@ -326,7 +326,7 @@ export default BookDeprecated;
 
 # Definition:
 
-## Dynamic Block
+## Dynamic block
 
 * Block is registered in both the JS and PHP
 * Only block attribute data is saved to the DB
@@ -337,9 +337,9 @@ export default BookDeprecated;
 
 <!-- .slide: data-background="#3a6952" -->
 
-# Book block v2, take 2
+# Book block, take 2
 
-# Dynamic edition
+## Dynamic edition
 
 ---
 
