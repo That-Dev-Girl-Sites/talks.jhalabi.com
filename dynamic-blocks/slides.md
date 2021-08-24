@@ -169,15 +169,11 @@ export default BookSave;
 
 ---
 
-<!-- .slide: data-background="#d1e4dd" -->
-
-<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block edit UI, with input fields for the book title and author."></section>
+<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book Block edit UI, with input fields for the book title and author."></section>
 
 ---
 
-<!-- .slide: data-background="#d1e4dd" -->
-
-<section class="full-screen-img" data-background-image="images/example-static-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block front-end, with the title and author displayed as paragraphs."></section>
+<section class="full-screen-img" data-background-image="images/example-static-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book Block front-end, with the title and author displayed as paragraphs."></section>
 
 ---
 
@@ -210,9 +206,7 @@ return (
 
 ---
 
-<!-- .slide: data-background="#d1e4dd" -->
-
-<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
+<section class="full-screen-img" data-background-image="images/example-validation-error-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="Validation error on the Book Block front-end, saying 'This block contains unexpected or invalid content', and offering to attempt block recovery."></section>
 
 ---
 
@@ -222,9 +216,7 @@ return (
 
 ---
 
-<!-- .slide: data-background="#333333" -->
-
-<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Validation errors on the Book Block in the developer console."></section>
+<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#333333" aria-label="Validation errors on the Book Block in the developer console."></section>
 
 ---
 
@@ -417,15 +409,11 @@ Nothing! The edit function is the only thing left and that can stay the same.
 
 ---
 
-<!-- .slide: data-background="#d1e4dd" -->
-
-<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block edit UI, with input fields for the book title and author. Same as before."></section>
+<section class="full-screen-img" data-background-image="images/example-static-edit.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book Block edit UI, with input fields for the book title and author. Same as before."></section>
 
 ---
 
-<!-- .slide: data-background="#d1e4dd" -->
-
-<section class="full-screen-img" data-background-image="images/example-dynamic-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The Book Block front-end. Same as before, but with the title as a header. The author is still a paragraph."></section>
+<section class="full-screen-img" data-background-image="images/example-dynamic-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The Book Block front-end. Same as before, but with the title as a header. The author is still a paragraph."></section>
 
 ---
 
@@ -554,11 +542,11 @@ export default BookEdit;
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-dynamic-updated-edit.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The dynamic version of the Book Block edit UI, with input fields for the book title, author, and summary."></section>
+<section class="full-screen-img" data-background-image="images/example-dynamic-updated-edit.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The dynamic version of the Book Block edit UI, with input fields for the book title, author, and summary."></section>
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-dynamic-updated-frontend.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="The dynamic version of the Book Block front-end, this time with the title as a heading and author and summary as paragraphs."></section>
+<section class="full-screen-img" data-background-image="images/example-dynamic-updated-frontend.jpg" data-background-size="contain" data-background-color="#d1e4dd" aria-label="The dynamic version of the Book Block front-end, this time with the title as a heading and author and summary as paragraphs."></section>
 
 
 ---
