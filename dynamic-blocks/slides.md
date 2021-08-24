@@ -216,7 +216,7 @@ return (
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#333333" aria-label="Validation errors on the Book Block in the developer console."></section>
+<section class="full-screen-img" data-background-image="images/example-validation-error-console.jpg" data-background-size="contain" data-background-color="#222222" aria-label="Validation errors on the Book Block in the developer console."></section>
 
 ---
 
@@ -298,6 +298,8 @@ export default BookDeprecated;
 
 ---
 
+<!-- .slide: style="text-align: left;"> -->  
+
 ## Every time you change the expected output, you need a new deprecation object item.
 
 ---
@@ -308,7 +310,11 @@ export default BookDeprecated;
 
 ---
 
-# Definition: Static Block
+<!-- .slide: style="text-align: left;"> --> 
+
+# Definition:
+
+## Static Block
 
 * Block is registered in the JS
 * Markup is created by the JS `save()` function
@@ -316,7 +322,11 @@ export default BookDeprecated;
 
 ---
 
-# Definition: Dynamic Block
+<!-- .slide: style="text-align: left;"> --> 
+
+# Definition:
+
+## Dynamic Block
 
 * Block is registered in both the JS and PHP
 * Only block attribute data is saved to the DB
@@ -327,7 +337,9 @@ export default BookDeprecated;
 
 <!-- .slide: data-background="#3a6952" -->
 
-# Book block 2.0, dynamic-style
+# Book block v2, take 2
+
+# Dynamic edition
 
 ---
 
@@ -417,7 +429,7 @@ Nothing! The edit function is the only thing left and that can stay the same.
 
 ---
 
-## In the database, 2.0
+## In the database, take 2
 
 ```
 <!-- wp:my/book {"title":"Charlotte's Web",
