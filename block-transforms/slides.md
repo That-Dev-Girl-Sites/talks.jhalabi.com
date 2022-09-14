@@ -4,23 +4,6 @@
 
 ---
 
-# Hi, I'm Joni!
-
-```
-{
-  "At work": "Developer @ Georgetown University",
-  "At home": "Single mom to an adorable 4 year old",
-  "Also": [ 
-    "Author",
-    "Reader",
-    "Knitter",
-    "Ukulele student"
-  ]
-}
-```
-
----
-
 <!-- .slide: data-background="#3a6952" -->
 
 # What is a block transform?
@@ -273,9 +256,20 @@ Presto chango! We have transformed our blocks!
 
 # Thank you! 💜
 
-* Tweet at me! [@jonihalabi](https://twitter.com/jonihalabi)
-* GitHub: [@thatdevgirl](https://github.com/thatdevgirl)
-* Website at: [https://jhalabi.com](https://jhalabi.com)
+{
+  "Name": "Joni Halabi",
+  "Roles": [ 
+    "Developer @ Georgetown University",
+    "Single mom",
+    "Author"
+  ],
+  "Socials": [
+    "Twitter @jonihalabi",
+    "Github @thatdevgirl",
+    "https://jhalabi.com"
+  ]
+}
+```
 
 ---
 
