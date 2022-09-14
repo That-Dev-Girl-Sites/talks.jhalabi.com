@@ -256,13 +256,10 @@ Presto chango! We have transformed our blocks!
 
 # Thank you! 💜
 
+```
 {
   "Name": "Joni Halabi",
-  "Roles": [ 
-    "Developer @ Georgetown University",
-    "Single mom",
-    "Author"
-  ],
+  "Role": "Developer @ Georgetown University",
   "Socials": [
     "Twitter @jonihalabi",
     "Github @thatdevgirl",
