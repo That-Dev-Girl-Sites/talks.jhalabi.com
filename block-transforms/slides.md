@@ -267,10 +267,7 @@ export default FancyIntroTransform;
 
 # Ta-da!
 
-Presto chango! We have transformed our blocks! 
-
-These slides can be found at:
-https://talks.jhalabi.com/block-transforms
+Presto chango! We have transformed our blocks!
 
 ---
 
