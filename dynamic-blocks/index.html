@@ -7,9 +7,9 @@
   <title>Dynamic blocks FTW!: Customize Gutenberg without living in fear of validation errors</title>
   <link rel="stylesheet" href="https://use.typekit.net/dtf4tpd.css" media="all">
 
-  <link rel="stylesheet" href="../assets/css/reveal.css">
-  <link rel="stylesheet" href="../assets/css/theme/simple-joni.css">
-  <link rel="stylesheet" href="../assets/lib/css/zenburn.css">
+  <link rel="stylesheet" href="../assets/reveal/css/reset.css">
+  <link rel="stylesheet" href="../assets/reveal/css/reveal.css">
+  <link rel="stylesheet" href="../assets/reveal/css/theme/simple.css">
 </head>
 
 <body>
@@ -19,8 +19,20 @@
     </div>
   </div>
 
-  <script src="../assets/lib/js/head.min.js"></script>
-  <script src="../assets/js/reveal.js"></script>
-  <script src="../assets/js/reveal-init.js"></script>
+  <script src="../assets/reveal/js/reveal.js"></script>
+  <script src="../assets/reveal/plugin/notes/notes.js"></script>
+  <script src="../assets/reveal/plugin/markdown/markdown.js"></script>
+  <script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+  </script>
 </body>
 </html>

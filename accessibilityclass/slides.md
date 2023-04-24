@@ -364,11 +364,17 @@ Color blind users can't read red text on a blue background.
 
 ---
 
-`<img src="kitten.jpg">`
+```
+<img src="kitten.jpg">
+```
 
 ---
 
-`<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
+```
+<img
+  src="kitten.jpg"
+  alt="A kitten wearing a fez because fezzes are cool">
+```
 
 ![A kitten wearing a fez because fezzes are cool](images/kitten.jpg)
 
@@ -404,7 +410,12 @@ Read as "seven hundred three (pause) five hundred fifty-five (pause) one thousan
 
 ## This works, but...
 
-`<span>7</span> <span>0</span> <span>3</span> <span>5</span> <span>5</span> <span>5</span> - <span>1</span> <span>2</span> <span>1</span> <span>2</span>`
+```
+<span>7</span> <span>0</span> <span>3</span> 
+<span>5</span> <span>5</span> <span>5</span> - 
+<span>1</span> <span>2</span> 
+<span>1</span> <span>2</span>
+```
 
 Note:
 OMG no.
@@ -413,7 +424,13 @@ OMG no.
 
 ## Our telephone numbers
 
-`<a href="tel:7035551212" aria-label="7 0 3. 5 5 5. 1 2 1 2.">(703) 555-1212</a>`
+```
+<a 
+  href="tel:7035551212" 
+  aria-label="7 0 3. 5 5 5. 1 2 1 2.">
+  (703) 555-1212
+</a>
+```
 
 ---
 

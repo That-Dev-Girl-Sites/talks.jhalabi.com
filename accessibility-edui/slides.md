@@ -63,11 +63,17 @@ All HTML tags have specific semantic meaning - i.e. b vs. strong; i vs em
 
 ---
 
-`<img src="kitten.jpg">`
+```
+<img src="kitten.jpg">
+```
 
 ---
 
-`<img src="kitten.jpg" alt="A kitten wearing a fez because fezzes are cool">`
+```
+<img 
+  src="kitten.jpg"
+  alt="A kitten wearing a fez because fezzes are cool">
+```
 
 ![A kitten wearing a fez because fezzes are cool](images/kitten.jpg)
 
