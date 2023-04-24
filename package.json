@@ -1,7 +1,7 @@
 {
   "name": "talks",
-  "version": "3.0.0",
-  "description": "Packages for talks.thatdevgirl.com",
+  "version": "3.1.0",
+  "description": "Packages for talks.jhalabi.com",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,9 +9,9 @@
   "author": "Joni Halabi",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "latest",
-    "gulp-clean-css": "latest",
-    "gulp-rename": "latest",
-    "gulp-sass": "latest"
+    "gulp": "4.0.*",
+    "gulp-clean-css": "4.3.*",
+    "gulp-rename": "2.0.*",
+    "gulp-sass": "5.1.*"
   }
 }
