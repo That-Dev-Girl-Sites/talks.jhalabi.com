@@ -9,7 +9,7 @@ $lg:                  1000px;
 
 // Content width.
 $logo-size:           4rem;
-$logo-size-half:      $logo-size / 2;
+$logo-size-half:      calc($logo-size / 2);
 
 $page-margin-small:   2rem;
 $page-margin-large:   14rem;
