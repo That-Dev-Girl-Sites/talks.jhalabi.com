@@ -8,9 +8,10 @@
 
 ```
 {
-  "name": "Joni Halabi",
-  "role": "Sr. Web Developer @ Georgetown",
-  "socials": "@jonihalabi"
+  "name":     "Joni Halabi",
+  "role":     "Senior Web Developer @ Georgetown",
+  "socials":  "@jonihalabi",
+  "subtheme": "music"
 }
 ```
 
