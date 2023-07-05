@@ -219,7 +219,7 @@ _(and other issues and lessons learned from this experiment)_
 
 ---
 
-# Thank you!
+<section class="full-screen-img" data-background-image="images/thank-you.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-3 year old daughter sitting on a dolphin statue at a playground. She has her hands raised in the air, triumphantly. Image text reads 'Hooray! Thank you everyone!'"></section>
 
 ---
 
