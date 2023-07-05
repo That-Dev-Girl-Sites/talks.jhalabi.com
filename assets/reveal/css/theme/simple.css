@@ -4,17 +4,27 @@
  * Colors from: https://coolors.co/bebbbb-444054-2f243a-fac9b8-de927d
  */
 
-@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url('https://fonts.googleapis.com/css?family=News+Cycle:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
 
 body {
+  /* Primary colors */
   --purple:      #291f32;
   --purple-dark: #291f32;
-  --white:       #d7d5d5;
   --peach:       #f7a78d;
   --peach-light: #fac9b8;
-  --green:       #3a6952;
 
+  /* Neutral colors */
+  --white:       #d7d5d5;
+  --black:       #222;
+  --white-rgb:   255, 255, 255;
+  --black-rgb:   0, 0, 0;
+
+  /* Secondary colors (chapters) */
+  --green:       #2b4f3e;
+  --blue:        #205d83;
+ 
+  /* Fonts */
   --sans-serif: 'Lato', sans-serif;
   --heading-sans: 'News Cycle', Impact, sans-serif;
 }
@@ -33,7 +43,11 @@ body {
 }
 
 .reveal .slide-background  {
-  background: var( --purple );
+  background-color: var( --purple );
+}
+
+.reveal section[data-layout='all-center'] * {
+  text-align: center;
 }
 
 
@@ -53,7 +67,7 @@ body {
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: normal;
-  margin: 0 0 1.5rem 0;
+  margin-block-end: 1.5rem;
   text-transform: none;
   text-shadow: none;
   word-wrap: break-word;
@@ -71,8 +85,10 @@ body {
  */
 
 .reveal p {
-  line-height: 1.6;
-  margin: 1.25rem 0 2.5rem;
+  line-height: 1.4;
+  margin-block-start: 1.25rem;
+  margin-block-end: 2.5rem;
+  text-align: left;
 }
 
 .reveal strong,
@@ -95,14 +111,13 @@ body {
 
 .reveal small {
   display: inline-block;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   line-height: 1.2;
-  vertical-align: top;
 }
 
-.reveal small * {
+/* .reveal small * {
   vertical-align: top;
-}
+} */
 
 
 
@@ -114,7 +129,7 @@ body {
 .reveal dl,
 .reveal ul {
   display: inline-block;
-  margin: 0 0 0 2.5rem;
+  margin-inline-start: 2.5rem;
   text-align: left;
 }
 
@@ -139,11 +154,12 @@ body {
 .reveal ol ol,
 .reveal ol ul {
   display: block;
-  margin-left: 2.5rem;
+  margin-inline-start: 2.5rem;
 }
 
 .reveal li {
-  line-height: 1.6;
+  line-height: 1.4;
+  margin-block-end: 1rem;
 }
 
 .reveal dt {
@@ -151,7 +167,18 @@ body {
 }
 
 .reveal dd {
-  margin-left: 2.5rem;
+  margin-inline-start: 2.5rem;
+}
+
+
+
+/**
+ * Breaks.
+ */
+
+hr {
+  margin-block: 4rem;
+  width: 4rem;
 }
 
 
@@ -165,8 +192,10 @@ body {
   display: block;
   font-size: 4.44rem;
   font-style: italic;
-  margin: 1rem auto;
-  padding: 2rem 4rem;
+  margin-block: 1rem;
+  margin-inline: auto;
+  padding-block: 2rem;
+  padding-inline: 4rem;
   position: relative;
   text-align: left;
   width: 100%;
@@ -192,11 +221,11 @@ body {
  */
 
 .reveal pre {
-  background-color: rgba( 255, 255, 255, 0.2 );
+  background-color: rgba(var( --white-rgb ), 0.2);
   font-family: monospace;
   font-size: 1.75rem;
   line-height: 1.2;
-  margin: 1.25rem auto;
+  margin-block: 1.25rem;
   padding: 1rem;
   text-align: left;
   word-wrap: break-word;
@@ -204,12 +233,17 @@ body {
 
 .reveal code {
   font-family: monospace;
+  background: rgba(var( --white-rgb ), 0.2);
+  font-size: 95%;
+  padding-inline: 0.5rem;
 }
 
 .reveal pre code {
+  background: transparent;
   display: block;
   overflow: auto;
   max-height: 80vh;
+  padding-inline: 0;
   word-wrap: normal;
 }
 
@@ -244,10 +278,10 @@ body {
  */
 
 .reveal section img {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(var( --white-rgb ), 0.12);
   border: 0.25rem solid #000;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
-  margin: 1rem 0;
+  box-shadow: 0 0 0.625rem rgba(var( --black-rgb ), 0.15);
+  margin-block: 1rem;
 }
 
 .reveal section img.plain {
@@ -260,9 +294,9 @@ body {
 }
 
 .reveal a:hover img {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(var( --white-rgb ), 0.2);
   border-color: var( --peach-light );
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 20px rgba(var( --black-rgb ), 0.55);
 }
 
 
@@ -301,7 +335,7 @@ body {
 .reveal table th,
 .reveal table td { 
   border-bottom: 1px solid;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   text-align: left;
 }
 
@@ -318,4 +352,28 @@ body {
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
   border-bottom: none;
+}
+
+
+/**
+ * Special elements
+ */
+
+/* Section numbering */
+
+.section-number {
+  align-items: center;
+  background: var(--black );
+  border-radius: 50%;
+  display: flex;
+  height: 7rem;
+  margin-inline: auto;
+  margin-block-end: 2rem;
+  width: 7rem;
+}
+
+.section-number span {
+  display: block;
+  font-size: 4rem;
+  width: 100%;
 }
