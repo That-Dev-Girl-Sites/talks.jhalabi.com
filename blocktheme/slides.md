@@ -112,10 +112,55 @@ The main difference between a *classic theme* and a *block theme* is how the tem
 
 # Pattern library
 
-* What is it? Atomic design elements, Twig templates + SCSS
-* Why is it?
-	* Talk about the advantages of a pattern library - consistency, assurance that we are adhering to visual identity, UX, and a11y guidelines
-* How is it?
+* GU style guide, written in KSS Node
+* Loosely based on atomic design... kinda
+* Patterns written in Twig and SCSS
+
+---
+
+<!-- .slide: data-background="var(--blue)" -->
+
+# GU pattern library
+
+* Follow GU visual identity guidelines
+* Adhere to accessibility requirements
+* Remain consistent across sites
+
+---
+
+<section class="full-screen-img" data-background-image="images/pattern-library-heading.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Screen capture of the 'heading' folder in our pattern library Github repository. It lists the path of the folder as 'pattern-library/source/scss/text/heading'. The folder contains 3 files: _index.scss, eg-heading.twig, and heading.twig."></section>
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+```
+{#- Default to <h2> if no heading level is set. -#}
+{%- set heading_level = heading_level | default( 2 ) -%}
+
+<h{{ heading_level }} gu-heading
+  {{- ""}} {{ heading_class ? heading_class }}
+>
+
+  {%- block heading_content -%}
+    {{- heading_text -}}
+  {%- endblock heading_content -%}
+
+</h{{ heading_level }}>
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+```
+{% include "@text/heading/heading.twig" with {
+  heading_text: "May I Suggest"
+} %}
+```
+
+Note:
+* The namespaces, like `@text` are defined in the KSS configuration file.
 
 ---
 
@@ -138,32 +183,123 @@ _(or, how we built a very different block theme)_
 
 # Requirements
 
-* Want to use the functionality of `theme.json`
-* Also want to lock down the core design of the theme
-* Also want to incorporate templates from our pattern library
+* Use the functionality of `theme.json`
+* Lock down the core design of the theme
+* Use markup/patterns from our Pattern Library
 
 ---
 
-* We use templates as intended. (Remember our definition?)
+<section class="full-screen-img" data-background-image="images/theme-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the block theme. This includes the folders assets, blocks, templates, and the files functions.php, style.css, and theme.json. The 'templates' file is open, revealing a long list of HTML files, one for each WordPress template."></section>
 
 ---
 
-Show the file structure here
+<h1 class="r-fit-text">Block theme templates</h1>
+
+* All HTML and references to WP blocks
+* Block references: `<!-- wp:BLOCK_NAME /-->`
 
 ---
 
-* But, no template parts
-  * our global elements /(e.g. site header, footer, etc)/ come from the pattern library.
-* Instead, the theme registers theme-only blocks that call the pattern library patterns using Timber
+# Our block theme
+
+* Templates, but no template parts
+  * (We do not want the template parts accessible by content editors)
+* Register theme-only blocks that call the pattern library patterns using Timber
 
 ---
 
-* The blocks are only registered on the server side because they are dynamic blocks that call external patterns. The blocks do not need JS because they are not static and they do not want or need an editor UI. This is a departure from the “standard” way to register a block.
-* This deviation also means that you cannot use them in the block theme editor UI, because the blocks are not registered in the JS (and that editor is all ReactJS).
+```
+<!-- wp:gu1789/site-header /-->
+
+<main class="gu-page page-default">
+  <!-- wp:gu1789/page-breadcrumbs /-->
+
+  <!-- wp:gu1789/page-title { 
+    "heading-class": "page-title" } 
+  /-->
+
+  <!-- wp:post-content /-->
+</main>
+
+<!-- wp:gu1789/site-footer /-->
+```
 
 ---
 
-Show how the theme-only blocks are constructed here
+<section class="full-screen-img" data-background-image="images/theme-block-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the blocks directory theme. This includes a number of folders, including the page-title folder. The page-title folder is open, revealing 3 files: block.json, README.md, and register.php"></section>
+
+---
+
+# Theme blocks
+
+* Dynamic blocks that call external patterns
+* Only registered server-side
+* No JS necessary because we do not want an editor UI
+* You cannot use them in the post editor, because they are not registered in JS
+
+---
+
+```
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+
+  "name": "gu1789/page-title",
+  "title": "Title",
+  "description": "A theme-only block to display the page title from the pattern library."
+}
+```
+
+---
+
+```
+use Timber\Timber;
+
+class PageTitle {
+  public function __construct() {
+    add_action( 'init', [ $this, 'register' ] );
+  }
+
+  public function register(): void {
+    register_block_type( __DIR__, [
+      'render_callback' => [ $this, 'render' ]
+    ] );
+  }
+
+  public function render( array $attributes ): string { }
+}
+
+new PageTitle;
+```
+
+---
+
+```
+public function render( array $attrs ): string {
+  global $post;
+
+  // If heading classes are passed in, use them.
+  $class = $attrs['heading_class'] ?? '';
+
+  // If heading text is passed in, use that. 
+  // Otherwise, use the post title.
+  $text = $attrs['heading_text'] ?? $post->post_title;
+
+  return Timber::fetch( '@text/heading/heading.twig', [
+    'heading_level'  => 1,
+    'heading_class'  => $class,
+    'heading_text'   => $text,
+  ] );
+}
+```
+
+---
+
+<section class="full-screen-img" data-background-image="images/page-editor.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The WordPress post editor, displaying a page with the title 'Somewhere Different Now'. Below the page title is a paragraph, which reads 'I took a long drive by the church and the high dive; Past the riverbank hillside, where we looked at the clouds'"></section>
+
+---
+
+<section class="full-screen-img" data-background-image="images/page-front-end.jpg" data-background-size="contain" data-background-color="var(--white)" aria-label="The WordPress site's front end, displaying a page with the title 'Somewhere Different Now'. The page is branded with the Georgetown University logo type and a site title of 'WordPress Test Site'. The page header also includes a search icon and a menu with 2 items labelled 'One' and 'Two'. Below the page title is a paragraph, which reads 'I took a long drive by the church and the high dive; Past the riverbank hillside, where we looked at the clouds'"></section>
 
 ---
 
@@ -227,4 +363,5 @@ _(and other issues and lessons learned from this experiment)_
 
 * [Block theme overview, via the WordPress Editor Handbook](https://developer.wordpress.org/block-editor/how-to-guides/themes/block-theme-overview/)
 * [All about theme.json](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/) 
-* [Core blocks reference](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/core-blocks.md)
+* [Core blocks reference guide](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/core-blocks.md)
+* [KSS Node, to write a style guide](https://github.com/kss-node/kss-node)
