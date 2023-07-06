@@ -41,17 +41,28 @@ _(on a story about our themes @ GU)_
 
 ---
 
-Add the story about GU here. We have a theme that hooks into an external pattern library.
+# Websites @ GU
 
-Our original classic theme accidentally turned into a hybrid theme when we introduced `theme.json` to take advantage of block styling customizations
+* Support almost 400 sites
+* Almost all of them are on WordPress
+* 1 parent theme, 1 child theme
+* Using Gutenberg since it was in alpha
 
-We discovered some issues with this, mostly in the post editor (block template selection). This was our “aha!” moment that the hybrid theme was not really working for us.
+---
 
-WordPress does not really have a example for using theme.json inside a classic theme. (This is called a hybrin theme.) As soon as you introduce that file into a theme, WP makes the assumption that the theme is a block theme and works accordingly.
+# Our themes
 
-So, we decided to convert our classic theme into a block theme.
+* Our classic theme accidentally turned into a **hybrid** theme when we intro'ed `theme.json`
+* We ❤ block styling customizations
+* Our "hmmm..." moment: A post-editor bug with block template selection
 
-Requirement: Our theme's markup needs to come from the pattern library.
+---
+
+<!-- .slide: data-layout="all-center" -->
+
+# Experiment time!
+
+We decided to convert our classic theme into a block theme.
 
 ---
 
@@ -266,7 +277,7 @@ class PageTitle {
     ] );
   }
 
-  public function render( array $attributes ): string { }
+  public function render( array $attrs ): string {...}
 }
 
 new PageTitle;
@@ -314,21 +325,55 @@ _(and other issues and lessons learned from this experiment)_
 
 ---
 
-# Issues
+<h1 class="r-fit-text">Issue #1: The blocks</h1>
 
-* Theme blocks are visible to the post editor, unintentionally
-* We do not want these blocks to be seen, edited, or moved by a content editor
-* They seem to be only visible to admins, thankfully, but cause a block error in the customizer. (We could eliminate the error by registering the blocks in the JS, but that’s just more code… that’s a judgement call.
-* Hahaha.. child themes. There is currently a core bug where child themes cannot find the parent theme directory is both themes are block themes. [#57141 (WP_Theme cannot locate a parent block theme)     – WordPress Trac](https://core.trac.wordpress.org/ticket/57141)
+* Theme blocks are visible to the post editor
+* We don't want them to be seen, edited, or moved by a content editor
+* Also caused a block error in the customizer
 
+---
+
+# Solution
+
+Register the block in the JS & hide the block from the block inserter.
+
+```
+function hide( settings, name ) {
+  if ( ARRAY_OF_BLOCKS.includes( name ) ) {
+    return lodash.assign( {}, settings, {
+      supports: { inserter: false },
+    } );
+  }
+  return settings;
+};
+
+wp.hooks.addFilter( 
+  'blocks.registerBlockType', 'gu', hide );
+```
+
+---
+
+<h1 class="r-fit-text">Issue #2: Child themes</h1>
+
+* Core bug: child themes cannot find the parent theme directory if both themes are block themes. 
+* [#57141 (WP_Theme cannot locate a parent block theme)](https://core.trac.wordpress.org/ticket/57141)
+  * (opened November 2022)
+
+---
+
+<h1 class="r-fit-text">Issue #3: Too complicated!</h1>
+
+* Dependencies with other repos
+* Large amount of functionality with settings, etc.
 
 ---
 
 # Conclusions
 
-* We learned stuff... like never convert a complex classic theme into a full-on block theme. Omg.
-* This idea is not 100% flushed out for production, because of the issues above. 
-* It was a great experiment in flexing what we can do with blocks and WP themes, but needs more work.
+* Converting a complex classic theme to a block theme is... complex
+* None of this is 100% flushed out for production
+* Great experiment in stretching what we can do with WP
+* Best for a brand-new theme
 
 ---
 
