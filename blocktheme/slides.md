@@ -391,6 +391,9 @@ wp.hooks.addFilter(
 
 ---
 
+<!-- .slide: data-background="var(--black)" -->
+<!-- .slide: data-layout="all-center" -->
+
 # Feedback please!
 
 ![QR code to leave feedback for this session](images/feedback-qr-code.jpg)
