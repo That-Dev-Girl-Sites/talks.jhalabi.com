@@ -391,6 +391,12 @@ wp.hooks.addFilter(
 
 ---
 
+# Feedback please!
+
+![QR code to leave feedback for this session](images/feedback-qr-code.jpg)
+
+---
+
 # Playlist
 
 0. [_This Is Me_](https://eddiefromohio.com/cds/f/EFO/32), Eddie From Ohio
