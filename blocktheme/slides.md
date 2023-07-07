@@ -385,7 +385,9 @@ wp.hooks.addFilter(
 
 * Find these slides @ [talks.jhalabi.com/blocktheme](https://talks.jhalabi.com/blocktheme)
 * Find me @ [jhalabi.com](https://jhalabi.com)
-  * Also WPCampus Slack & @jonihalabi in most places
+  * WPCampus Slack
+  * @jonihalabi
+  * @thatdevgirl on GH
 
 ---
 
