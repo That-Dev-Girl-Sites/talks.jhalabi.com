@@ -44,7 +44,7 @@ _(on a story about our themes @ GU)_
 # Websites @ GU
 
 * Support almost 400 sites
-* Almost all of them are on WordPress
+* Almost all are on WordPress
 * 1 parent theme, 1 child theme
 * Using Gutenberg since it was in alpha
 
