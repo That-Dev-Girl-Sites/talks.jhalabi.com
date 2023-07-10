@@ -121,6 +121,15 @@ The main difference between a *classic theme* and a *block theme* is how the tem
 
 <!-- .slide: data-background="var(--blue)" -->
 
+# Template part
+
+* Container block used to display other blocks, e.g. in a site header
+* Available in the block inserter for use by content editors
+
+---
+
+<!-- .slide: data-background="var(--blue)" -->
+
 # Pattern library
 
 * GU style guide, written in KSS Node
@@ -200,44 +209,46 @@ _(or, how we built a very different block theme)_
 
 ---
 
-<section class="full-screen-img" data-background-image="images/theme-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the block theme. This includes the folders assets, blocks, templates, and the files functions.php, style.css, and theme.json. The 'templates' file is open, revealing a long list of HTML files, one for each WordPress template."></section>
+<section class="full-screen-img" data-background-image="images/theme-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the block theme. This includes the folders assets, blocks, templates, and the files functions.php, style.css, and theme.json. The 'templates' folder is open, revealing a long list of HTML files, one for each WordPress template."></section>
 
 ---
 
-<section class="full-screen-img" data-background-image="images/theme-json-example.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="A screenshot of part of the theme.json file for our GU block theme. In this snippet, three custom templates are defined: Chaptered Page, Landing Page, and Parent Child Page. Below the template definitions are part of the color settings overrides. Background, custom, customDuotone, customGradient, defaultGradients, and defaultPalette are all set to false."></section>
+# Our block theme
 
+* Uses templates
+* Does **not** use template parts, because:
+  * Template parts contain other blocks - does not help us hook into our patterns
+  * We also do not want them editable content editors
 
 ---
 
-<h1 class="r-fit-text">Block theme templates</h1>
+<h1 class="r-fit-text">Solution to template parts</h1>
+
+Register theme-only blocks that call the pattern library patterns using Timber
+
+---
+
+# Template files
 
 * All HTML and references to WP blocks
 * Block references: `<!-- wp:BLOCK_NAME /-->`
 
 ---
 
-# Our block theme
-
-* Templates, but no template parts
-  * (We do not want the template parts accessible by content editors)
-* Register theme-only blocks that call the pattern library patterns using Timber
-
----
-
 ```
-<!-- wp:gu1789/site-header /-->
+<!-- wp:gu/site-header /-->
 
 <main class="gu-page page-default">
-  <!-- wp:gu1789/page-breadcrumbs /-->
+  <!-- wp:gu/page-breadcrumbs /-->
 
-  <!-- wp:gu1789/page-title { 
+  <!-- wp:gu/page-title { 
     "heading-class": "page-title" } 
   /-->
 
   <!-- wp:post-content /-->
 </main>
 
-<!-- wp:gu1789/site-footer /-->
+<!-- wp:gu/site-footer /-->
 ```
 
 ---
@@ -250,23 +261,26 @@ _(or, how we built a very different block theme)_
 
 * Dynamic blocks that call external patterns
 * Only registered server-side
-* No JS necessary because we do not want an editor UI
-* You cannot use them in the post editor, because they are not registered in JS
+* No JS — we do not want an editor UI
 
 ---
+
+<!-- .slide: data-background="var(--black)" -->
 
 ```
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
 
-  "name": "gu1789/page-title",
+  "name": "gu/page-title",
   "title": "Title",
-  "description": "A theme-only block to display the page title from the pattern library."
+  "description": "Display the page title from the pattern library."
 }
 ```
 
 ---
+
+<!-- .slide: data-background="var(--black)" -->
 
 ```
 use Timber\Timber;
@@ -290,6 +304,8 @@ new PageTitle;
 
 ---
 
+<!-- .slide: data-background="var(--black)" -->
+
 ```
 public function render( array $attrs ): string {
   global $post;
@@ -311,11 +327,51 @@ public function render( array $attrs ): string {
 
 ---
 
+<!-- .slide: data-background="var(--black)" -->
+
+```
+{#- Default to <h2> if no heading level is set. -#}
+{%- set heading_level = heading_level | default( 2 ) -%}
+
+<h{{ heading_level }} gu-heading
+  {{- ""}} {{ heading_class ? heading_class }}
+>
+
+  {%- block heading_content -%}
+    {{- heading_text -}}
+  {%- endblock heading_content -%}
+
+</h{{ heading_level }}>
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+```
+<h1 gu-heading page-title>
+
+  TITLE OF MY POST
+
+</h1>
+```
+
+---
+
 <section class="full-screen-img" data-background-image="images/page-editor.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The WordPress post editor, displaying a page with the title 'Somewhere Different Now'. Below the page title is a paragraph, which reads 'I took a long drive by the church and the high dive; Past the riverbank hillside, where we looked at the clouds'"></section>
 
 ---
 
 <section class="full-screen-img" data-background-image="images/page-front-end.jpg" data-background-size="contain" data-background-color="var(--white)" aria-label="The WordPress site's front end, displaying a page with the title 'Somewhere Different Now'. The page is branded with the Georgetown University logo type and a site title of 'WordPress Test Site'. The page header also includes a search icon and a menu with 2 items labelled 'One' and 'Two'. Below the page title is a paragraph, which reads 'I took a long drive by the church and the high dive; Past the riverbank hillside, where we looked at the clouds'"></section>
+
+---
+
+# Extensions
+
+* Theme-only blocks are just blocks
+* Can be used as children of other theme-only blocks
+* Combine them to create more complex structures; e.g. site header
+  * We have a pattern for that too!
 
 ---
 
@@ -396,15 +452,6 @@ wp.hooks.addFilter(
 
 ---
 
-<!-- .slide: data-background="var(--black)" -->
-<!-- .slide: data-layout="all-center" -->
-
-# Feedback please!
-
-![QR code to leave feedback for this session](images/feedback-qr-code.jpg)
-
----
-
 # Playlist
 
 0. [_This Is Me_](https://eddiefromohio.com/cds/f/EFO/32), Eddie From Ohio
@@ -416,6 +463,14 @@ wp.hooks.addFilter(
 
 ---
 
+<!-- .slide: data-layout="all-center" -->
+
+# Feedback, please!
+
+![QR code to leave feedback for this session](images/feedback-qr-code.jpg)
+
+---
+
 <section class="full-screen-img" data-background-image="images/thank-you.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-3 year old daughter sitting on a dolphin statue at a playground. She has her hands raised in the air, triumphantly. Image text reads 'Hooray! Thank you everyone!'"></section>
 
 ---
@@ -423,6 +478,7 @@ wp.hooks.addFilter(
 # Tech references
 
 * [Block theme overview, via the WordPress Editor Handbook](https://developer.wordpress.org/block-editor/how-to-guides/themes/block-theme-overview/)
+* [Block theme template and template parts](https://developer.wordpress.org/themes/block-themes/templates-and-template-parts/)
 * [All about theme.json](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/) 
 * [Core blocks reference guide](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/core-blocks.md)
 * [KSS Node, to write a style guide](https://github.com/kss-node/kss-node)
