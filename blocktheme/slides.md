@@ -26,7 +26,7 @@
 
 ---
 
-<section class="full-screen-img" data-background-image="images/get-to-business.jpg" data-background-size="contain" data-background-color="var(--purple)" aria-label="My 4 year old daughter looking pretty badass with her sunglasses, holding a unicorn. Image text reads 'Enough chit chat. Time to get down to business.'"></section>
+<section class="full-screen-img" data-background-image="images/get-to-business.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My 4 year old daughter looking pretty badass with her sunglasses, holding a unicorn. Image text reads 'Enough chit chat. Time to get down to business.'"></section>
 
 ---
 
@@ -113,7 +113,7 @@ The main difference between a *classic theme* and a *block theme* is how the tem
 
 # Block theme
 
-* Declared in WP by the existance of `theme.json`
+* Declared in WP by the existence of `theme.json`
 * Templates are HTML files that live in a `templates/` folder
 * Templates are automatically recognized by WP
 
@@ -204,6 +204,11 @@ _(or, how we built a very different block theme)_
 
 ---
 
+<section class="full-screen-img" data-background-image="images/theme-json-example.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="A screenshot of part of the theme.json file for our GU block theme. In this snippet, three custom templates are defined: Chaptered Page, Landing Page, and Parent Child Page. Below the template definitions are part of the color settings overrides. Background, custom, customDuotone, customGradient, defaultGradients, and defaultPalette are all set to false."></section>
+
+
+---
+
 <h1 class="r-fit-text">Block theme templates</h1>
 
 * All HTML and references to WP blocks
@@ -237,7 +242,7 @@ _(or, how we built a very different block theme)_
 
 ---
 
-<section class="full-screen-img" data-background-image="images/theme-block-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the blocks directory theme. This includes a number of folders, including the page-title folder. The page-title folder is open, revealing 3 files: block.json, README.md, and register.php"></section>
+<section class="full-screen-img" data-background-image="images/theme-block-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the blocks directory theme. This includes several folders, including the page-title folder. The page-title folder is open, revealing 3 files: block.json, README.md, and register.php"></section>
 
 ---
 
