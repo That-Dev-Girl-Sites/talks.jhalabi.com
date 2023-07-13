@@ -330,6 +330,16 @@ public function render( array $attrs ): string {
 <!-- .slide: data-background="var(--black)" -->
 
 ```
+<!-- wp:gu/page-title { 
+  "heading-class": "page-title" } 
+/-->
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+```
 {#- Default to <h2> if no heading level is set. -#}
 {%- set heading_level = heading_level | default( 2 ) -%}
 
