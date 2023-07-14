@@ -158,9 +158,9 @@ The main difference between a *classic theme* and a *block theme* is how the tem
 {#- Default to <h2> if no heading level is set. -#}
 {%- set heading_level = heading_level | default( 2 ) -%}
 
-<h{{ heading_level }} gu-heading
+<h{{ heading_level }} class="gu-heading
   {{- ""}} {{ heading_class ? heading_class }}
->
+">
 
   {%- block heading_content -%}
     {{- heading_text -}}
@@ -351,9 +351,9 @@ public function render( array $attrs ): string {
 {#- Default to <h2> if no heading level is set. -#}
 {%- set heading_level = heading_level | default( 2 ) -%}
 
-<h{{ heading_level }} gu-heading
+<h{{ heading_level }} class="gu-heading
   {{- ""}} {{ heading_class ? heading_class }}
->
+">
 
   {%- block heading_content -%}
     {{- heading_text -}}
@@ -369,7 +369,7 @@ public function render( array $attrs ): string {
 ### Front end markup!
 
 ```
-<h1 gu-heading page-title>
+<h1 class="gu-heading page-title">
 
   TITLE OF MY POST
 
