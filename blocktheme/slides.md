@@ -209,10 +209,6 @@ _(or, how we built a very different block theme)_
 
 ---
 
-<section class="full-screen-img" data-background-image="images/theme-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the block theme. This includes the folders assets, blocks, templates, and the files functions.php, style.css, and theme.json. The 'templates' folder is open, revealing a long list of HTML files, one for each WordPress template."></section>
-
----
-
 # Our block theme
 
 * Uses templates
@@ -222,9 +218,13 @@ _(or, how we built a very different block theme)_
 
 ---
 
-<h1 class="r-fit-text">Solution to template parts</h1>
+<h1 class="r-fit-text">Instead of template parts</h1>
 
 Register theme-only blocks that call the pattern library patterns using Timber
+
+---
+
+<section class="full-screen-img" data-background-image="images/theme-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the block theme. This includes the folders assets, blocks, templates, and the files functions.php, style.css, and theme.json. The 'templates' folder is open, revealing a long list of HTML files, one for each WordPress template."></section>
 
 ---
 
@@ -253,10 +253,6 @@ Register theme-only blocks that call the pattern library patterns using Timber
 
 ---
 
-<section class="full-screen-img" data-background-image="images/theme-block-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the blocks directory theme. This includes several folders, including the page-title folder. The page-title folder is open, revealing 3 files: block.json, README.md, and register.php"></section>
-
----
-
 # Theme blocks
 
 * Dynamic blocks that call external patterns
@@ -265,7 +261,13 @@ Register theme-only blocks that call the pattern library patterns using Timber
 
 ---
 
+<section class="full-screen-img" data-background-image="images/theme-block-file-system.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The directory listing of the blocks directory theme. This includes several folders, including the page-title folder. The page-title folder is open, revealing 3 files: block.json, README.md, and register.php"></section>
+
+---
+
 <!-- .slide: data-background="var(--black)" -->
+
+### `theme.json`
 
 ```
 {
@@ -281,6 +283,8 @@ Register theme-only blocks that call the pattern library patterns using Timber
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### PHP registration
 
 ```
 use Timber\Timber;
@@ -329,6 +333,8 @@ public function render( array $attrs ): string {
 
 <!-- .slide: data-background="var(--black)" -->
 
+### In the theme template:
+
 ```
 <!-- wp:gu/page-title { 
   "heading-class": "page-title" } 
@@ -338,6 +344,8 @@ public function render( array $attrs ): string {
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### Reminder: This is our pattern
 
 ```
 {#- Default to <h2> if no heading level is set. -#}
@@ -357,6 +365,8 @@ public function render( array $attrs ): string {
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### Front end markup!
 
 ```
 <h1 gu-heading page-title>
