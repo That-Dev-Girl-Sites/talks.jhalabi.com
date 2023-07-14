@@ -386,7 +386,7 @@ public function render( array $attrs ): string {
 
 ---
 
-# Extensions
+# Keep it going!
 
 * Theme-only blocks are just blocks
 * Can be used as children of other theme-only blocks
@@ -406,10 +406,10 @@ _(and other issues and lessons learned from this experiment)_
 
 ---
 
-<h1 class="r-fit-text">Issue #1: The blocks</h1>
+<h1 class="r-fit-text">Issue #1: Block visibility</h1>
 
-* Theme blocks are visible to the post editor
-* We don't want them to be seen, edited, or moved by a content editor
+* Theme blocks are visible in the block inserter
+* But... we don't want them to be seen, edited, or moved by a content editor
 * Also caused a block error in the customizer
 
 ---
