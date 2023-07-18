@@ -466,7 +466,6 @@ wp.hooks.addFilter(
 
 * Find these slides @ [talks.jhalabi.com/blocktheme](https://talks.jhalabi.com/blocktheme)
 * Find me @ [jhalabi.com](https://jhalabi.com)
-  * WPCampus Slack
   * @jonihalabi
   * @thatdevgirl on GH
 
@@ -484,14 +483,6 @@ wp.hooks.addFilter(
 ---
 
 <section class="full-screen-img" data-background-image="images/thank-you.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-3 year old daughter sitting on a dolphin statue at a playground. She has her hands raised in the air, triumphantly. Image text reads 'Hooray! Thank you everyone!'"></section>
-
----
-
-<!-- .slide: data-layout="all-center" -->
-
-# Feedback, please!
-
-![QR code to leave feedback for this session](images/feedback-qr-code.jpg)
 
 ---
 
