@@ -267,7 +267,7 @@ Register theme-only blocks that call the pattern library patterns using Timber
 
 <!-- .slide: data-background="var(--black)" -->
 
-### `theme.json`
+### `block.json`
 
 ```
 {
