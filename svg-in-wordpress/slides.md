@@ -15,7 +15,7 @@
 }
 ```
 
---- 
+---
 
 <!-- .slide: data-background="var(--blue)" -->
 
@@ -438,7 +438,9 @@ $svg_height = $chart_height + 40;
 
 <!-- .slide: data-background="var(--blue)" -->
 
-# Next up: Create the X and Y axes
+# Next up
+
+## Create the X and Y axes
 
 (Yup. Axes is the plural of "axis". Chop chop.)
 
@@ -472,7 +474,7 @@ $svg_height = $chart_height + 40;
 
 ---
 
-### Scale along X axis
+### Scale along X axis: min value
 
 ```
 <text
@@ -488,7 +490,7 @@ $svg_height = $chart_height + 40;
 
 ---
 
-### Scale along X axis
+### Scale along X axis: max value
 
 ```
 <text
@@ -531,7 +533,8 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
     A_LITTLE_MORE" fill="#000" font-size="14">0</text>
 
   <text role="presentation" x="96%" y="CHART_HEIGHT + 
-    A_LITTLE_MORE" fill="#000" font-size="14">MAX_VALUE</text>
+    A_LITTLE_MORE" fill="#000" font-size="14">
+    MAX_VALUE</text>
 </g>
 ```
 
@@ -539,11 +542,13 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 
 <!-- .slide: data-background="var(--blue)" -->
 
-# The fun part: Create the bars!
+# The fun part!
+
+## Create the bars
 
 ---
 
-# Group all the bars
+### Group all the bars
 
 ```
 <g role="list" aria-label="Chart data">
@@ -559,7 +564,7 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 * Create a group for each bar, containing
    * The bar itself
    * The text label for that bar
-   * AIRA description, for screen reader agents
+   * ARIA description, for screen reader agents
 
 ---
 
@@ -578,7 +583,7 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 
 ---
 
-# Bar element
+### Bar element
 
 ```
 <rect
@@ -602,7 +607,7 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-# Bar label
+### Bar label
 
 ```
 <text
@@ -636,7 +641,7 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot our example bar chart of student class levels"></section>
+<section class="full-screen-img" data-background-image="images/bar-chart.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states."></section>
 
 ---
 
@@ -644,11 +649,18 @@ VALUE / MAX_VALUE * 100
 
 ---
 
+# See this in action
+
+* Besan Block @ https://github.com/thatdevgirl/besan-block
+* All example code is from this custom plugin
+
+---
+
 <!-- .slide: data-background="var(--green)" -->
 
 <div class="section-number"><span>/</span></div>
 
-# Stay in touch!
+# Stay in touch
 
 * Find these slides @ [talks.jhalabi.com/svg-in-wordpress](https://talks.jhalabi.com/svg-in-wordpress)
 * Find me @ [jhalabi.com](https://jhalabi.com)
@@ -657,19 +669,13 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-# Reference: General
-
-* [Besan Block](https://github.com/thatdevgirl/besan-block) (custom plugin; examples are from here)
-* [Example Google Sheet](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0) (public, view only)
-
----
-
-# Reference: SVGs
+# References
 
 * [SVG Tutorial | W3Schools](https://www.w3schools.com/graphics/svg_intro.asp)
 * [Tips for Creating Accessible SVG | Sitepoint](https://www.sitepoint.com/tips-accessible-svg/)
 * [Accessible SVGs | CSS-Tricks](https://css-tricks.com/accessible-svgs/)
 * [Carnegie Museum Web Accessibility Guidelines: SVG](https://web-accessibility.carnegiemuseums.org/code/svg/)
+* Insert reference to dynamic block creation talk here.
 
 ---
 
