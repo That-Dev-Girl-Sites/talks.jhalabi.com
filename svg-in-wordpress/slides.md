@@ -29,7 +29,7 @@
 
 ## Admissions wants:
 
-A visualization on our website, displaying of how many students from each class are returning to campus this fall.
+A visualization on our website, displaying of how many students from each US state are returning to campus this fall.
 
 ---
 
@@ -105,8 +105,10 @@ import { default as Metadata } from './block.json';
   } );
 
 })();
-
 ```
+
+Note:
+* index.js
 
 ---
 
@@ -114,9 +116,6 @@ import { default as Metadata } from './block.json';
 
 ```
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-
   "name": "my/chart",
   "title": "Chart",
 
@@ -137,6 +136,9 @@ import { default as Metadata } from './block.json';
 }
 ```
 
+Note:
+* block.json
+
 ---
 
 <!-- .slide: data-background="var(--black)" -->
@@ -153,9 +155,20 @@ const chartEdit = ( props ) => {
   const blockProps = useBlockProps();
 
   // Declare change event handlers.
-  const onChangeData   = ( value ) => { setAttributes( { data: value } ) };
-  const onChangeColumn = ( value ) => { setAttributes( { column: value } ) };
+  const onChangeData   = ( value ) => { 
+    setAttributes( { data: value } ) };
+  const onChangeColumn = ( value ) => { 
+    setAttributes( { column: value } ) };
+```
 
+Note:
+* Edit module in edit.js, part 1
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+```
   // Return the edit UI.
   return (
     <div { ...blockProps }>
@@ -184,68 +197,15 @@ const chartEdit = ( props ) => {
 export default chartEdit;
 ```
 
+Note:
+* Edit module in edit.js, part 2
+
 ---
 
 <section class="full-screen-img" data-background-image="images/edit-ui.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The WordPress post editor with the Chart block selected. The main editor area displays a sample vertical bar chart in purple. The inspector panel, on the right-hand side, shows options to edit the block's attributes. The 'Chart' title is at the top of the panel, followed by a description saying 'Display a chart using data in a Google sheet.' Below that is a panel titled 'Data Source' with 2 text fields. One is labelled 'Google Sheets URL' and the other is labelled 'Columns'."></section>
 
 ---
 
-
-
-
-
-<!-- .slide: data-background="#483758" -->
-
-# Step 3
-
-## Extract the data.
-
-* We need PHP to extract and process the data.
-* This is a __dynamic__ block!
-* Function called by the render callback.
-
----
-
-The first step is to get the ID from the Sheet URL.
-
-```
-function get_sheet_data( $attributes, $api_key ) {
-  // Extract the Google sheet ID
-  $sheet_id = preg_replace(
-    '/(https:\/\/docs.google.com\/spreadsheets\/d\/)|\/edit.*/',
-    '',
-    $attributes['sheetUrl']
-  );
-```
-
----
-
-The block has another attribute for the column we want from the chart.
-
-```
-  // Calculate the range of data to get.
-  $range = $attributes['column'];
-  $range .= '2%3A';
-  $range .= $attributes['column'];
-  $range .= '1000';
-```
-
----
-
-Call the Google API and get the data.
-
-```
-  $get_data = new WP_Http();
-  $url = 'https://sheets.googleapis.com/v4/spreadsheets/';
-  $url .= $sheet_id;
-  $url .= '/values/' . $range;
-  $url .= '/?&key=' . $api_key;
-
-  return $get_data->get( $url );
-}
-```
-
----
 
 <!-- .slide: data-background="var(--green)" -->
 
@@ -255,20 +215,65 @@ Call the Google API and get the data.
 
 ---
 
-<!-- .slide: data-background="#483758" -->
+* Do this in PHP
+* Use `WP_Http`
 
-# Step 1
+---
 
-Convert the data into something PHP can read.
+<!-- .slide: data-background="var(--black)" -->
+
+Get the data I need from the block attributes.
 
 ```
-$data_body = json_decode(
-  $raw_data['body'],
-  true
-);
+// Get the API key from WP options.
+$api_key = 'API_KEY';
+
+// Get relevant attribute data.
+$data = $attrs['data'];
+$column = $attrs['column'];
 ```
 
 ---
+
+<!-- .slide: data-background="var(--black)" -->
+
+Extract the Google Sheet ID from the URL.
+
+```
+$sheet_id = preg_replace( 
+  '/(https:\/\/docs.google.com\/spreadsheets\/d\/)|\/edit.*/', 
+  '', $data );
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+Calculate the range of data to get.
+
+```
+$range = $column . '2%3A' . $column . '1000';
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+Get the data from Google.
+
+```
+$get_data = new WP_Http();
+$data_url = 'https://sheets.googleapis.com/v4/spreadsheets/'. 
+  $sheet_id . '/values/' . $range . '/?&key=' . $api_key;
+$raw_data = $get_data->get( $data_url );
+
+// Decode the raw (JSON string) data.
+$data_body json_decode( $raw_data['body'], true );
+```
+
+---
+
+<!-- .slide: data-background="var(--blue)" -->
 
 Then our data will look something like this:
 
@@ -278,15 +283,15 @@ Array(
   [majorDimension] => ROWS
   [values] => Array(
     [0] => Array(
-      [0] => 1. Freshman
+      [0] => CA
     )
 
     [1] => Array(
-      [0] => 4. Senior
+      [0] => SD
     )
 
     [2] => Array(
-      [0] => 1. Freshman
+      [0] => NC
     )
     ...
 )
@@ -294,41 +299,61 @@ Array(
 
 ---
 
-<!-- .slide: data-background="#483758" -->
+# Remember our problem
 
-# Step 2
-
-Remember our problem: We need to count the number of students from each major.
+We need to count the number of students from each major.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-google-sheet.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of an example Google Sheet, containing student information, including name, gender, class level, home state, major, and extracurricular activity"></section>
+<!-- .slide: data-background="var(--black)" -->
 
----
+Check for errors.
 
 ```
-$data = array();
+if ( array_key_exists( 'error', $data_body ) ) 
+  { return false; }
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+Find and count all of the unique values in the data.
+
+```
+$data = [];
 foreach ( $data_body['values'] as $d ) {
   if ( array_key_exists( $d[0], $data ) ) {
-    // If the value already exists
+    // If the value already exists in the 
+    // new data array, just add 1 to it.
     $data[ $d[0] ]++;
   } else {
-    // Otherwise, create new item
+    // Otherwise, create a new item.
     $data[ $d[0] ] = 1;
   }
 }
-```
 
+return $data;
+```
 ---
+
+<!-- .slide: data-background="var(--blue)" -->
 
 Now we have an array that looks something like this:
 
 ```
-Array(
-  ['1. Freshman'] => '8',
-  ['2. Sophomore'] => '8',
-  ['3. Junior'] => '12',
-  ['4. Senior'] => '8'
+Array
+(
+  [CA] => 6
+  [NC] => 6
+  [MD] => 2
+  [MA] => 4
+  [WI] => 1
+  [FL] => 2
+  [SC] => 2
+  [AK] => 2
+  [NY] => 4
+  [NH] => 2
 )
 ```
 
@@ -336,7 +361,7 @@ Array(
 
 <!-- .slide: data-background="var(--green)" -->
 
-<div class="section-number"><span>1</span></div>
+<div class="section-number"><span>3</span></div>
 
 # Make an accessible and responsive graph.
 
@@ -348,7 +373,7 @@ We have a bunch of options, but let's make this example simple.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot our example bar chart of student class levels"></section>
+<section class="full-screen-img" data-background-image="images/bar-chart.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states."></section>
 
 ---
 
