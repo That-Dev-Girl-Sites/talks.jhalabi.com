@@ -15,6 +15,14 @@
 }
 ```
 
+--- 
+
+<!-- .slide: data-background="var(--blue)" -->
+
+> Without data you're just another person with an opinion.
+>
+> <cite>-- W. Edwards Deming</cite>
+
 ---
 
 <section class="full-screen-img" data-background-image="images/get-to-business.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-4 year old daughter looking pretty badass with her sunglasses, holding a unicorn. Image text reads 'Enough chit chat. Time to get down to business.'"></section>
@@ -535,7 +543,7 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 
 ---
 
-# Start a group for all bars
+# Group all the bars
 
 ```
 <g role="list" aria-label="Chart data">
@@ -649,16 +657,12 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-<!-- .slide: data-background="#444054" -->
-
 # Reference: General
 
 * [Besan Block](https://github.com/thatdevgirl/besan-block) (custom plugin; examples are from here)
 * [Example Google Sheet](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0) (public, view only)
 
 ---
-
-<!-- .slide: data-background="#444054" -->
 
 # Reference: SVGs
 
@@ -669,42 +673,6 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-<!-- .slide: data-background="#444054" -->
-
-# Google API <small>(1/2)</small>
-
-<small>
-* To get this key, go to the [Google APIs Dashboard](https://console.developers.google.com/apis/dashboard). You should have a Google account to access this dashboard.
-* Inside the dashboard, go to "Select a Project" at the top of the page and click on "New Project".
-* Give your project a name and click the "Create" button.
-* From the [Library](https://console.developers.google.com/apis/library) page, search for the "Google Sheets API" and click the blue "Enable" button.
-</small>
-
----
-
-<!-- .slide: data-background="#444054" -->
-
-# Google API <small>(2/2)</small>
-
-<small>
-* From the [Credentials](https://console.developers.google.com/apis/credentials) page, click "Create credentials" and select "API key" in the drop-down menu that appears.
-* A pop-up window with your API key will appear. Copy the key, then click "Restrict Key".
-* Under the "API restrictions" heading, check "Restrict Key", then select the "Google Sheets API" from the drop down menu.
-* Click "Save".
-</small>
-
-
----
-
-Credits
+# Credits
 
 * Crossroads meme background image: https://knowyourmeme.com/memes/dramatic-crossroads
-
-
----
-
-<!-- .slide: data-background="#444054" -->
-
-> Without data you're just another person with an opinion.
->
-> <cite>-- W. Edwards Deming</cite>
