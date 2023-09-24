@@ -65,7 +65,7 @@ Write a custom Gutenberg block to interpret and chart this data.
 
 ---
 
-<section class="full-screen-img" data-background-image="images/fork-in-the-road.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Crossroads meme in a cartoon style. A person, facing away from us, is standing at a fork in the road. To the left is a bright, sunny castle, labelled 'Automatic import from Sheets'. To the right is a dark, stormy castle, labelled 'Manually enter data'."></section>
+<section class="full-screen-img" data-background-image="images/fork-in-the-road-meme.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Crossroads meme in a cartoon style. A person, facing away from us, is standing at a fork in the road. To the left is a bright, sunny castle, labelled 'Automatic import from Sheets'. To the right is a dark, stormy castle, labelled 'Manually enter data'."></section>
 
 ---
 
