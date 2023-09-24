@@ -17,11 +17,15 @@
 
 ---
 
+<section class="full-screen-img" data-background-image="images/get-to-business.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-4 year old daughter looking pretty badass with her sunglasses, holding a unicorn. Image text reads 'Enough chit chat. Time to get down to business.'"></section>
+
+---
+
 <!-- .slide: data-background="var(--green)" -->
 
 <div class="section-number"><span>0</span></div>
 
-# Today's jouney
+# Today's journey
 
 ---
 
@@ -628,13 +632,20 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-# Thank you!!
+<section class="full-screen-img" data-background-image="images/thank-you.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-3 year old daughter sitting on a dolphin statue at a playground. She has her hands raised in the air, triumphantly. Image text reads 'Hooray! Thank you everyone!'"></section>
 
-https://talks.thatdevgirl.com/datavis/
+---
 
-* Follow me at [@jonihalabi](https://twitter.com/jonihalabi)
-* https://thatdevgirl.com
-* https://jhalabi.com
+<!-- .slide: data-background="var(--green)" -->
+
+<div class="section-number"><span>/</span></div>
+
+# Stay in touch!
+
+* Find these slides @ [talks.jhalabi.com/svg-in-wordpress](https://talks.jhalabi.com/svg-in-wordpress)
+* Find me @ [jhalabi.com](https://jhalabi.com)
+  * @jonihalabi
+  * @thatdevgirl on GH
 
 ---
 
@@ -654,6 +665,7 @@ https://talks.thatdevgirl.com/datavis/
 * [SVG Tutorial | W3Schools](https://www.w3schools.com/graphics/svg_intro.asp)
 * [Tips for Creating Accessible SVG | Sitepoint](https://www.sitepoint.com/tips-accessible-svg/)
 * [Accessible SVGs | CSS-Tricks](https://css-tricks.com/accessible-svgs/)
+* [Carnegie Museum Web Accessibility Guidelines: SVG](https://web-accessibility.carnegiemuseums.org/code/svg/)
 
 ---
 
