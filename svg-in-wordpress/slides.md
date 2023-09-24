@@ -145,7 +145,6 @@ Note:
 
 ```
 const chartEdit = ( props ) => {
-
   const { useBlockProps } = wp.blockEditor;
   const { TextControl } = wp.components;
 
@@ -169,27 +168,22 @@ Note:
 <!-- .slide: data-background="var(--black)" -->
 
 ```
-  // Return the edit UI.
   return (
     <div { ...blockProps }>
-
       ...
 
       <TextControl
         label='Google Sheets URL'
         value={ data }
-        onChange={ onChangeData }
-      />
+        onChange={ onChangeData } />
 
       { /* Spreadsheet column. */ }
       <TextControl
         label='Column'
         value={ column }
-        onChange={ onChangeColumn }
-      />
+        onChange={ onChangeColumn } />
 
       ...
-
     </div>
   );
 };
@@ -222,7 +216,7 @@ Note:
 
 <!-- .slide: data-background="var(--black)" -->
 
-Get the data I need from the block attributes.
+### Get the data I need from the block attributes.
 
 ```
 // Get the API key from WP options.
@@ -237,7 +231,7 @@ $column = $attrs['column'];
 
 <!-- .slide: data-background="var(--black)" -->
 
-Extract the Google Sheet ID from the URL.
+### Extract the Google Sheet ID from the URL.
 
 ```
 $sheet_id = preg_replace( 
@@ -249,7 +243,7 @@ $sheet_id = preg_replace(
 
 <!-- .slide: data-background="var(--black)" -->
 
-Calculate the range of data to get.
+### Calculate the range of data to get.
 
 ```
 $range = $column . '2%3A' . $column . '1000';
@@ -259,12 +253,14 @@ $range = $column . '2%3A' . $column . '1000';
 
 <!-- .slide: data-background="var(--black)" -->
 
-Get the data from Google.
+### Get the data from Google.
 
 ```
 $get_data = new WP_Http();
-$data_url = 'https://sheets.googleapis.com/v4/spreadsheets/'. 
+$data_url = 
+  'https://sheets.googleapis.com/v4/spreadsheets/'. 
   $sheet_id . '/values/' . $range . '/?&key=' . $api_key;
+
 $raw_data = $get_data->get( $data_url );
 
 // Decode the raw (JSON string) data.
@@ -272,8 +268,6 @@ $data_body json_decode( $raw_data['body'], true );
 ```
 
 ---
-
-<!-- .slide: data-background="var(--blue)" -->
 
 Then our data will look something like this:
 
@@ -299,6 +293,8 @@ Array(
 
 ---
 
+<!-- .slide: data-layout="all-center" -->
+
 # Remember our problem
 
 We need to count the number of students from each major.
@@ -307,7 +303,7 @@ We need to count the number of students from each major.
 
 <!-- .slide: data-background="var(--black)" -->
 
-Check for errors.
+### Check for errors.
 
 ```
 if ( array_key_exists( 'error', $data_body ) ) 
@@ -318,7 +314,7 @@ if ( array_key_exists( 'error', $data_body ) )
 
 <!-- .slide: data-background="var(--black)" -->
 
-Find and count all of the unique values in the data.
+### Find and count all of the unique values in the data.
 
 ```
 $data = [];
@@ -335,9 +331,8 @@ foreach ( $data_body['values'] as $d ) {
 
 return $data;
 ```
----
 
-<!-- .slide: data-background="var(--blue)" -->
+---
 
 Now we have an array that looks something like this:
 
