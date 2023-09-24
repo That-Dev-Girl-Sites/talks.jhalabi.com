@@ -206,7 +206,7 @@ Note:
 # Strategy 
 
 * Do this in PHP
-* Use `WP_Http` to read Sheet data
+* Use `WP_Http` to read Google Sheet data
 
 ---
 
@@ -267,7 +267,7 @@ $data_body json_decode( $raw_data['body'], true );
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Check for errors.
+### Check for errors
 
 ```
 if ( array_key_exists( 'error', $data_body ) ) 
@@ -276,7 +276,7 @@ if ( array_key_exists( 'error', $data_body ) )
 
 ---
 
-Then our data will look something like this:
+Our data will look something like this:
 
 ```
 Array(
@@ -353,7 +353,7 @@ Array
 
 <div class="section-number"><span>3</span></div>
 
-# Make a visualization
+# Make a visualization!
 
 ---
 
@@ -369,6 +369,8 @@ Array
 
 ---
 
+<!-- .slide: data-background="var(--blue)" -->
+
 # Let's write some SVG code!
 
 ---
@@ -382,7 +384,7 @@ Array
   height="...">
 
   <title id="my-chart">My Chart</title>
-  <desc>What my chart is about!</desc>
+  <desc>More detailed description of this chart</desc>
 
   <!-- Shapes go here! -->
 
@@ -397,11 +399,13 @@ Note:
 
 # SVG height
 
-The SVG needs to account for the height of the sum of the bars in the chart.
+Need to account for the heights of the sum of the bars in the chart, plus space in between.
 
 ```
-$svg_height =
-  sizeof($data) * ( BAR_HEIGHT + BAR_GAP )
+$chart_height =
+  sizeof($data) * ( BAR_HEIGHT + BAR_GAP );
+
+$svg_height = $chart_height + 40;
 
 ```
 
@@ -420,51 +424,49 @@ $svg_height =
 
 ---
 
-<!-- .slide: data-background="#483758" -->
+<!-- .slide: data-background="var(--blue)" -->
 
-# Step 2
+# Next up: Create the X and Y axes
 
-Create the X and Y axes.
-
-<small>(Yup. Axes is the plural of "axis". Chop chop.)<small>
+(Yup. Axes is the plural of "axis". Chop chop.)
 
 ---
 
-<section class="full-screen-img" data-background-image="images/example-bar-chart.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot our example bar chart of student class levels"></section>
+<section class="full-screen-img" data-background-image="images/bar-chart.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states."></section>
 
 ---
 
-# Y axis
+### Y axis
 
 ```
 <line
    role="presentation"
-   x1="OFFSET%" y1="0"
-   x2="OFFSET%" y2="HEIGHT_IN_PX"
+   x1="20%" y1="0"
+   x2="20%" y2="CHART_HEIGHT"
    stroke="#000" stroke-width="2" />
 ```
 
 ---
 
-# X axis
+### X axis
 
 ```
 <line
    role="presentation"
-   x1="OFFSET%" y1="HEIGHT_IN_PX"
-   x2="100%"    y2="HEIGHT_IN_PX"
+   x1="20%" y1="CHART_HEIGHT"
+   x2="100%"    y2="CHART_HEIGHT"
    stroke="#000" stroke-width="2" />
 ```
 
 ---
 
-# Scale along X axis
+### Scale along X axis
 
 ```
 <text
   role="presentation"
-  x="OFFSET%"
-  y="HEIGHT_IN_PX + A_LITTLE_MORE"
+  x="20%"
+  y="CHART_HEIGHT + A_LITTLE_MORE"
   fill="#000" font-size="14">
 
   0
@@ -474,13 +476,13 @@ Create the X and Y axes.
 
 ---
 
-# Scale along X axis
+### Scale along X axis
 
 ```
 <text
   role="presentation"
   x="96%"
-  y="HEIGHT_IN_PX + A_LITTLE_MORE"
+  y="CHART_HEIGHT + A_LITTLE_MORE"
   fill="#000" font-size="14">
 
   MAX_VALUE
@@ -490,45 +492,49 @@ Create the X and Y axes.
 
 ---
 
-# Group
+### Group
 
 Put all of that code inside a SVG group, so user agents know that code belongs together.
 
 ```
-<g class="chart_setup">
+<g class="chart_axes">
   ...
 </g>
 ```
 
 ---
 
-# All together now
+### All together now
 
 ```
-<g class="chart_setup">
-  <line role="presentation" x1="OFFSET%" y1="0" x2="OFFSET%" y2="HEIGHT_IN_PX" stroke="#000" stroke-width="2" />
-  <line role="presentation" x1="OFFSET%" y1="HEIGHT_IN_PX" x2="100%" y2="HEIGHT_IN_PX" stroke="#000" stroke-width="2" />
-  <text role="presentation" x="OFFSET%" y="HEIGHT_IN_PX + A_LITTLE_MORE" fill="#000" font-size="14">0</text>
-  <text role="presentation" x="96%" y="HEIGHT_IN_PX + A_LITTLE_MORE" fill="#000" font-size="14">MAX_VALUE</text>
+<g class="chart_axes">
+  <line role="presentation" x1="20%" y1="0" 
+    x2="20%" y2="CHART_HEIGHT" stroke="#000" 
+    stroke-width="2" />
+
+  <line role="presentation" x1="20%" y1="CHART_HEIGHT" 
+    x2="100%" y2="CHART_HEIGHT" stroke="#000" 
+    stroke-width="2" />
+  <text role="presentation" x="20%" y="CHART_HEIGHT +
+    A_LITTLE_MORE" fill="#000" font-size="14">0</text>
+
+  <text role="presentation" x="96%" y="CHART_HEIGHT + 
+    A_LITTLE_MORE" fill="#000" font-size="14">MAX_VALUE</text>
 </g>
 ```
 
 ---
 
-<!-- .slide: data-background="#483758" -->
+<!-- .slide: data-background="var(--blue)" -->
 
-# Step 3
-
-Create the bars!
-
-<small>(a.k.a. the fun part.)</small>
+# The fun part: Create the bars!
 
 ---
 
 # Start a group for all bars
 
 ```
-<g role="list" aria-label="Bar graph">
+<g role="list" aria-label="Chart data">
   BARS GO HERE.
 </g>
 ```
@@ -541,7 +547,7 @@ Create the bars!
 * Create a group for each bar, containing
    * The bar itself
    * The text label for that bar
-   * (optional) Description
+   * AIRA description, for screen reader agents
 
 ---
 
