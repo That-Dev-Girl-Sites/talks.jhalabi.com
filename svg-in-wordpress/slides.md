@@ -145,13 +145,11 @@ Note:
 
 ```
 const chartEdit = ( props ) => {
-  const { useBlockProps } = wp.blockEditor;
   const { TextControl } = wp.components;
 
   // Get the values needed from props.
   const { setAttributes } = props;
   const { data, column } = props.attributes;
-  const blockProps = useBlockProps();
 
   // Declare change event handlers.
   const onChangeData   = ( value ) => { 
@@ -168,27 +166,23 @@ Note:
 <!-- .slide: data-background="var(--black)" -->
 
 ```
-  return (
-    <div { ...blockProps }>
-      ...
+return (
+  <div>
+    ...
 
-      <TextControl
-        label='Google Sheets URL'
-        value={ data }
-        onChange={ onChangeData } />
+    <TextControl label='Google Sheets URL'
+      value={ data }
+      onChange={ onChangeData } />
 
-      { /* Spreadsheet column. */ }
-      <TextControl
-        label='Column'
-        value={ column }
-        onChange={ onChangeColumn } />
+    { /* Spreadsheet column. */ }
+    <TextControl label='Column'
+      value={ column }
+      onChange={ onChangeColumn } />
 
-      ...
-    </div>
-  );
-};
+    ...
+  </div>
+);
 
-export default chartEdit;
 ```
 
 Note:
@@ -209,14 +203,16 @@ Note:
 
 ---
 
+# Strategy 
+
 * Do this in PHP
-* Use `WP_Http`
+* Use `WP_Http` to read Sheet data
 
 ---
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Get the data I need from the block attributes.
+### Get necessary data from block attributes
 
 ```
 // Get the API key from WP options.
@@ -231,7 +227,7 @@ $column = $attrs['column'];
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Extract the Google Sheet ID from the URL.
+### Extract the Google Sheet ID
 
 ```
 $sheet_id = preg_replace( 
@@ -243,7 +239,7 @@ $sheet_id = preg_replace(
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Calculate the range of data to get.
+### Calculate the data range
 
 ```
 $range = $column . '2%3A' . $column . '1000';
@@ -253,7 +249,7 @@ $range = $column . '2%3A' . $column . '1000';
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Get the data from Google.
+### Get the data from Google
 
 ```
 $get_data = new WP_Http();
@@ -265,6 +261,17 @@ $raw_data = $get_data->get( $data_url );
 
 // Decode the raw (JSON string) data.
 $data_body json_decode( $raw_data['body'], true );
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+### Check for errors.
+
+```
+if ( array_key_exists( 'error', $data_body ) ) 
+  { return false; }
 ```
 
 ---
@@ -295,7 +302,7 @@ Array(
 
 <!-- .slide: data-layout="all-center" -->
 
-# Remember our problem
+# Not done yet!
 
 We need to count the number of students from each major.
 
@@ -303,33 +310,21 @@ We need to count the number of students from each major.
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Check for errors.
-
-```
-if ( array_key_exists( 'error', $data_body ) ) 
-  { return false; }
-```
-
----
-
-<!-- .slide: data-background="var(--black)" -->
-
-### Find and count all of the unique values in the data.
+### Count all unique values in the data
 
 ```
 $data = [];
+
 foreach ( $data_body['values'] as $d ) {
   if ( array_key_exists( $d[0], $data ) ) {
-    // If the value already exists in the 
-    // new data array, just add 1 to it.
+    // If the value already exists, increment
     $data[ $d[0] ]++;
+
   } else {
     // Otherwise, create a new item.
     $data[ $d[0] ] = 1;
   }
 }
-
-return $data;
 ```
 
 ---
@@ -358,13 +353,15 @@ Array
 
 <div class="section-number"><span>3</span></div>
 
-# Make an accessible and responsive graph.
+# Make a visualization
 
 ---
 
-# Horizontal bar chart
+# Requirements
 
-We have a bunch of options, but let's make this example simple.
+* Accessible
+* Responsive
+* Let's keep this simple: horizontal bar chart
 
 ---
 
@@ -372,15 +369,7 @@ We have a bunch of options, but let's make this example simple.
 
 ---
 
-# Homegrown SVG or D3.js?
-
----
-
-<!-- .slide: data-background="#483758" -->
-
-# Step 1
-
-Let's set up our SVG.
+# Let's write some SVG code!
 
 ---
 
@@ -388,15 +377,21 @@ Let's set up our SVG.
 
 ```
 <svg xmlns="http://www.w3.org/2000/svg"
-    width="100%" height="">
+  aria-labelledby="my-chart"
+  width="100%" 
+  height="...">
 
-  <title>My Chart</title>
+  <title id="my-chart">My Chart</title>
   <desc>What my chart is about!</desc>
 
   <!-- Shapes go here! -->
 
 </svg>
 ```
+
+Note:
+* The title is the first step in making the chart accessible.
+* Can get the title and description from block attributes - need to ask for it!
 
 ---
 
@@ -417,8 +412,8 @@ $svg_height =
 ## (with height)
 
 ```
-'<svg
-   xmlns="http://www.w3.org/2000/svg"
+'<svg xmlns="http://www.w3.org/2000/svg"
+   aria-labelledby="my-chart"
    width="100%"
    height="' . $svg_height . '">'
 ```
