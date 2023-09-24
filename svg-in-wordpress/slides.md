@@ -21,13 +21,13 @@
 
 <div class="section-number"><span>0</span></div>
 
-# Today's itinerary
+# Today's jouney
 
 ---
 
 <!-- .slide: data-layout="all-center" -->
 
-## Admissions wants
+## Admissions wants:
 
 A visualization on our website, displaying of how many students from each class are returning to campus this fall.
 
@@ -45,13 +45,13 @@ A visualization on our website, displaying of how many students from each class 
 
 # Our mission
 
-Create a custom Gutenberg block to create this chart.
+Write a custom Gutenberg block to interpret and chart this data.
 
 ---
 
 # Set a course!
 
-1. Import data into WordPress
+1. Create a block that can read the data
 1. Process the data
 1. Make an accessible and responsive visualization
 
@@ -61,72 +61,138 @@ Create a custom Gutenberg block to create this chart.
 
 <div class="section-number"><span>1</span></div>
 
-# Import data into WordPress
+# Create a block
 
 ---
 
-<section class="full-screen-img" data-background-image="images/fork-in-the-road.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Google map of Manhattan, New York City, USA, showing a few different routes between Times Square and the Booklyn Bridge. One route is highlighted in green with a time estimate of 16 minutes and, for the purposes of this presentation, labelled as 'Automatically import from Google'. Another route is not highlighted with a joke time estimate of 916 minutes and, again, for this presentation, labelled as 'Manually enter data.'"></section>
+<section class="full-screen-img" data-background-image="images/fork-in-the-road.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Crossroads meme in a cartoon style. A person, facing away from us, is standing at a fork in the road. To the left is a bright, sunny castle, labelled 'Automatic import from Sheets'. To the right is a dark, stormy castle, labelled 'Manually enter data'."></section>
 
 ---
 
-# A fork in the road
+# Automatic sounds a whole lot better
 
-1. Content editor enters data into fields of a block.
-2. WordPress reads the spreadsheet for us.
-
----
-
-# 
-
-* Google Sheets integration.
-* Dynamic data == page updates automatically.
-* _But_, there is another data source to keep up with.
+* Updates to the Sheet are automatically displayed on the page.
+* Requires an API key.
+* Also means that the site has an external dependency.
 
 ---
 
-<!-- .slide: data-background="#483758" -->
+# Block setup
 
-# Step 1
-
-## Get an API key from Google.
-
----
-
-<section class="full-screen-img" data-background-image="images/settings-google-api-key.jpg" data-background-size="contain" data-background-color="#291f32" aria-label="Screenshot of a WordPress settings page with a single field for a Google API key"></section>
-
----
-
-<!-- .slide: data-background="#483758" -->
-
-# Step 2
-
-## Have your block store the URL of your Google sheet.
+* Dynamic block _(because dynamic data!)_
+* `block.json`
+* Attributes save:
+  * Sheet URL
+  * Column to chart
+  * Chart title
+  * Caption
 
 ---
 
-The `edit()` function should render this:
+<!-- .slide: data-background="var(--black)" -->
 
 ```
-<TextControl
-  label='Google Sheets URL'
-  help='(Must be publicly viewable.)'
-  value={ sheetUrl }
-  onChange={ onChangeUrl }
-/>
+import { default as Edit } from './edit.js';
+import { default as Metadata } from './block.json';
+
+( function() {
+
+  const { registerBlockType } = wp.blocks;
+
+  registerBlockType( Metadata, {
+    edit: Edit,
+    save: () => { return null; }
+  } );
+
+})();
+
 ```
 
 ---
 
-* `sheetUrl` is one attribute of the block.
-* `onChangeUrl` is the `onChange` function to store your attribute data:
+<!-- .slide: data-background="var(--black)" -->
 
 ```
-const onChangeUrl = ( value ) => {
-  setAttributes( { sheetUrl: value } )
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+
+  "name": "my/chart",
+  "title": "Chart",
+
+  "attributes": {
+    "data": {
+      "type": "string", "default": ""
+    },
+    "column": {
+      "type": "string", "default": "A"
+    },
+    "title": {
+      "type": "string", "default": ""
+    },
+    "caption": {
+      "type": "string", "default": ""
+    }
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+```
+const chartEdit = ( props ) => {
+
+  const { useBlockProps } = wp.blockEditor;
+  const { TextControl } = wp.components;
+
+  // Get the values needed from props.
+  const { setAttributes } = props;
+  const { data, column } = props.attributes;
+  const blockProps = useBlockProps();
+
+  // Declare change event handlers.
+  const onChangeData   = ( value ) => { setAttributes( { data: value } ) };
+  const onChangeColumn = ( value ) => { setAttributes( { column: value } ) };
+
+  // Return the edit UI.
+  return (
+    <div { ...blockProps }>
+
+      ...
+
+      <TextControl
+        label='Google Sheets URL'
+        value={ data }
+        onChange={ onChangeData }
+      />
+
+      { /* Spreadsheet column. */ }
+      <TextControl
+        label='Column'
+        value={ column }
+        onChange={ onChangeColumn }
+      />
+
+      ...
+
+    </div>
+  );
 };
+
+export default chartEdit;
 ```
 
 ---
+
+<section class="full-screen-img" data-background-image="images/edit-ui.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The WordPress post editor with the Chart block selected. The main editor area displays a sample vertical bar chart in purple. The inspector panel, on the right-hand side, shows options to edit the block's attributes. The 'Chart' title is at the top of the panel, followed by a description saying 'Display a chart using data in a Google sheet.' Below that is a panel titled 'Data Source' with 2 text fields. One is labelled 'Google Sheets URL' and the other is labelled 'Columns'."></section>
+
+---
+
+
+
+
 
 <!-- .slide: data-background="#483758" -->
 
@@ -593,6 +659,13 @@ https://talks.thatdevgirl.com/datavis/
 * Under the "API restrictions" heading, check "Restrict Key", then select the "Google Sheets API" from the drop down menu.
 * Click "Save".
 </small>
+
+
+---
+
+Credits
+
+* Crossroads meme background image: https://knowyourmeme.com/memes/dramatic-crossroads
 
 
 ---
