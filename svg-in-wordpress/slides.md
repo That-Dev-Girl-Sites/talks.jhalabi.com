@@ -39,13 +39,13 @@
 
 <!-- .slide: data-layout="all-center" -->
 
-## Admissions wants:
+## University admissions wants:
 
 A visualization on our website, displaying of how many students from each US state are returning to campus this fall.
 
 ---
 
-## Admissions has...
+## University admissions has...
 
 ---
 
@@ -63,7 +63,7 @@ Write a custom Gutenberg block to interpret and chart this data.
 
 # Set a course!
 
-1. Create a block that can read the data
+1. Create a block to read the spreadsheet data
 1. Process the data
 1. Make an accessible and responsive visualization
 
@@ -81,11 +81,16 @@ Write a custom Gutenberg block to interpret and chart this data.
 
 ---
 
-# Automatic sounds a whole lot better
+### Automatic sounds so much better
 
-* Updates to the Sheet are automatically displayed on the page.
-* Requires an API key.
-* Also means that the site has an external dependency.
+* Data updates are automatically displayed on the page
+
+<br><br> 
+
+### However...
+
+* Requires an API key
+* Also means that the site has an external dependency
 
 ---
 
@@ -96,12 +101,14 @@ Write a custom Gutenberg block to interpret and chart this data.
 * Attributes save:
   * Sheet URL
   * Column to chart
-  * Chart title
+  * Title
   * Caption
 
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### `index.js`
 
 ```
 import { default as Edit } from './edit.js';
@@ -119,12 +126,11 @@ import { default as Metadata } from './block.json';
 })();
 ```
 
-Note:
-* index.js
-
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### `block.json`
 
 ```
 {
@@ -133,27 +139,22 @@ Note:
 
   "attributes": {
     "data": {
-      "type": "string", "default": ""
-    },
+      "type": "string", "default": "" },
     "column": {
-      "type": "string", "default": "A"
-    },
+      "type": "string", "default": "A" },
     "title": {
-      "type": "string", "default": ""
-    },
+      "type": "string", "default": "" }
     "caption": {
-      "type": "string", "default": ""
-    }
+      "type": "string", "default": "" }
   }
 }
 ```
 
-Note:
-* block.json
-
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### `edit.js` (part 1)
 
 ```
 const chartEdit = ( props ) => {
@@ -176,6 +177,8 @@ Note:
 ---
 
 <!-- .slide: data-background="var(--black)" -->
+
+### `edit.js` (part 2)
 
 ```
 return (
@@ -202,7 +205,7 @@ Note:
 
 ---
 
-<section class="full-screen-img" data-background-image="images/edit-ui.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The WordPress post editor with the Chart block selected. The main editor area displays a sample vertical bar chart in purple. The inspector panel, on the right-hand side, shows options to edit the block's attributes. The 'Chart' title is at the top of the panel, followed by a description saying 'Display a chart using data in a Google sheet.' Below that is a panel titled 'Data Source' with 2 text fields. One is labelled 'Google Sheets URL' and the other is labelled 'Columns'."></section>
+<section class="full-screen-img" data-background-image="images/example-edit-ui.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="The WordPress post editor with the Chart block selected. The main editor area displays a sample vertical bar chart in purple. The inspector panel, on the right-hand side, shows options to edit the block's attributes. The 'Chart' title is at the top of the panel, followed by a description saying 'Display a chart using data in a Google sheet.' Below that is a panel titled 'Data Source' with 2 text fields. One is labelled 'Google Sheets URL' and the other is labelled 'Columns'."></section>
 
 ---
 
@@ -217,14 +220,14 @@ Note:
 
 # Strategy 
 
-* Do this in PHP
+* Server side processing in PHP
 * Use `WP_Http` to read Google Sheet data
 
 ---
 
 <!-- .slide: data-background="var(--black)" -->
 
-### Get necessary data from block attributes
+### Get data from block attributes
 
 ```
 // Get the API key from WP options.
@@ -234,6 +237,9 @@ $api_key = 'API_KEY';
 $data = $attrs['data'];
 $column = $attrs['column'];
 ```
+
+Note:
+* The API key will come from somewhere. I use a custom site option. You could add it as a GH secret or in the code, but be careful - you want to stay secure.
 
 ---
 
@@ -395,17 +401,18 @@ Array
   width="100%" 
   height="...">
 
-  <title id="my-chart">My Chart</title>
-  <desc>More detailed description of this chart</desc>
+  <title id="my-chart">
+    A horizontal bar chart depicting how many students are
+    attending our university from each US state.
+  </title>
 
   <!-- Shapes go here! -->
-
 </svg>
 ```
 
 Note:
 * The title is the first step in making the chart accessible.
-* Can get the title and description from block attributes - need to ask for it!
+* Can get this from the block attributes - ask for it!
 
 ---
 
@@ -437,6 +444,7 @@ $svg_height = $chart_height + 40;
 ---
 
 <!-- .slide: data-background="var(--blue)" -->
+<!-- .slide: data-layout="all-center" -->
 
 # Next up
 
@@ -446,9 +454,11 @@ $svg_height = $chart_height + 40;
 
 ---
 
-<section class="full-screen-img" data-background-image="images/bar-chart.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states."></section>
+<section class="full-screen-img" data-background-image="images/bar-chart-annotated.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states, annotated to show where the x and y values in a SVG live."></section>
 
 ---
+
+<!-- .slide: data-background="var(--black)" -->
 
 ### Y axis
 
@@ -462,17 +472,21 @@ $svg_height = $chart_height + 40;
 
 ---
 
+<!-- .slide: data-background="var(--black)" -->
+
 ### X axis
 
 ```
 <line
    role="presentation"
-   x1="20%" y1="CHART_HEIGHT"
-   x2="100%"    y2="CHART_HEIGHT"
+   x1="20%"  y1="CHART_HEIGHT"
+   x2="100%" y2="CHART_HEIGHT"
    stroke="#000" stroke-width="2" />
 ```
 
 ---
+
+<!-- .slide: data-background="var(--black)" -->
 
 ### Scale along X axis: min value
 
@@ -490,6 +504,8 @@ $svg_height = $chart_height + 40;
 
 ---
 
+<!-- .slide: data-background="var(--black)" -->
+
 ### Scale along X axis: max value
 
 ```
@@ -506,19 +522,9 @@ $svg_height = $chart_height + 40;
 
 ---
 
-### Group
+<!-- .slide: data-background="var(--black)" -->
 
-Put all of that code inside a SVG group, so user agents know that code belongs together.
-
-```
-<g class="chart_axes">
-  ...
-</g>
-```
-
----
-
-### All together now
+### Group everything together
 
 ```
 <g class="chart_axes">
@@ -529,6 +535,7 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
   <line role="presentation" x1="20%" y1="CHART_HEIGHT" 
     x2="100%" y2="CHART_HEIGHT" stroke="#000" 
     stroke-width="2" />
+
   <text role="presentation" x="20%" y="CHART_HEIGHT +
     A_LITTLE_MORE" fill="#000" font-size="14">0</text>
 
@@ -547,6 +554,8 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 ## Create the bars
 
 ---
+
+<!-- .slide: data-background="var(--black)" -->
 
 ### Group all the bars
 
@@ -568,14 +577,15 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 
 ---
 
+<!-- .slide: data-background="var(--black)" -->
+
+### A group for bar elements
+
 ```
 <g
-  role="listitem" aria-label="LABEL, DATA"
+  role="listitem" 
+  aria-label="There are ITEMS entries under LABEL"
   tabindex="0">
-    <desc>
-      The number of LABEL students
-      returning is DATA
-    </desc>
     BAR ELEMENT
     LABEL ELEMENT
 </g>
@@ -583,7 +593,9 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 
 ---
 
-### Bar element
+<!-- .slide: data-background="var(--black)" -->
+
+### The bar
 
 ```
 <rect
@@ -597,7 +609,7 @@ Put all of that code inside a SVG group, so user agents know that code belongs t
 
 ---
 
-# The bar's width
+## Note about the bar width
 
 The width of the current bar is the value of the bar (how many students in this class level) as a __percentage__.
 
@@ -624,15 +636,23 @@ VALUE / MAX_VALUE * 100
 
 ---
 
-# All together now
+<!-- .slide: data-background="var(--black)" -->
+
+### All together now
 
 ```
-<g role="list" aria-label="Bar graph">
+<g role="list" aria-label="Chart data">
 
-  <g role="listitem" aria-label="LABEL, DATA" tabindex="0">
-    <desc>Optional description for this bar</desc>
-    <rect role="presentation" x="OFFSET%" y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)" width="THIS_BARS_WIDTH%" height="30" fill="#00f" />
-    <text role="presentation" x="0" y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)" fill="#000" font-size="16">LABEL</text>
+  <g role="listitem" tabindex="0"
+    aria-label="There are ITEMS entries under LABEL">
+
+    <rect role="presentation" x="OFFSET%" 
+      y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)" 
+      width="THIS_BARS_WIDTH%" height="BAR_HEIGHT" 
+      fill="#f0f" />
+    <text role="presentation" x="0" 
+      y="NUMBER_OF_BARS_SO_FAR * (BAR_HEIGHT + GAP)" 
+      fill="#000" font-size="16">LABEL</text>
   </g>
 
   ...
@@ -641,7 +661,44 @@ VALUE / MAX_VALUE * 100
 
 ---
 
+<!-- .slide: data-background="var(--blue)" -->
+
+# Finally, a caption
+
+---
+
+<!-- .slide: data-background="var(--black)" -->
+
+### Wrap the chart in a figure
+
+```
+<figure>
+
+  <svg>...</svg>
+
+  <figcaption>
+    At our university, students come from all over the 
+    United States. This fall, most of our students hail 
+    from CA, NC, MA, and NY.
+  </figcaption>
+
+</figure>
+```
+
+---
+
 <section class="full-screen-img" data-background-image="images/bar-chart.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states."></section>
+
+---
+
+# More a11y tips
+ 
+* Pay attention to color contrast
+* Limit animations
+* Add bar values as text to each bar
+* Include a `<table>` alternative
+* Write meaningful labels
+* Test, test, test!!
 
 ---
 
@@ -660,7 +717,7 @@ VALUE / MAX_VALUE * 100
 
 <div class="section-number"><span>/</span></div>
 
-# Stay in touch
+# Stay in touch!
 
 * Find these slides @ [talks.jhalabi.com/svg-in-wordpress](https://talks.jhalabi.com/svg-in-wordpress)
 * Find me @ [jhalabi.com](https://jhalabi.com)
@@ -672,10 +729,10 @@ VALUE / MAX_VALUE * 100
 # References
 
 * [SVG Tutorial | W3Schools](https://www.w3schools.com/graphics/svg_intro.asp)
-* [Tips for Creating Accessible SVG | Sitepoint](https://www.sitepoint.com/tips-accessible-svg/)
-* [Accessible SVGs | CSS-Tricks](https://css-tricks.com/accessible-svgs/)
+* [Accessible SVG patterns | Smashing Magazine](https://www.smashingmagazine.com/2021/05/accessible-svg-patterns-comparison/)
 * [Carnegie Museum Web Accessibility Guidelines: SVG](https://web-accessibility.carnegiemuseums.org/code/svg/)
-* Insert reference to dynamic block creation talk here.
+* [How to make charts and graphs more accessible](https://blog.pope.tech/2023/08/31/how-to-make-charts-and-graphs-more-accessible/)
+* [Writing a custom WordPress block](https://jhalabi.com/blog/writing-custom-wp-block)
 
 ---
 
