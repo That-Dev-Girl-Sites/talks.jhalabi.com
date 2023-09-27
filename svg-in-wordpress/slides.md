@@ -17,14 +17,6 @@
 
 ---
 
-<!-- .slide: data-background="var(--blue)" -->
-
-> Without data you're just another person with an opinion.
->
-> <cite>-- W. Edwards Deming</cite>
-
----
-
 <section class="full-screen-img" data-background-image="images/get-to-business.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="My then-4 year old daughter looking pretty badass with her sunglasses, holding a unicorn. Image text reads 'Enough chit chat. Time to get down to business.'"></section>
 
 ---
@@ -154,31 +146,7 @@ import { default as Metadata } from './block.json';
 
 <!-- .slide: data-background="var(--black)" -->
 
-### `edit.js` (part 1)
-
-```
-const chartEdit = ( props ) => {
-  const { TextControl } = wp.components;
-
-  // Get the values needed from props.
-  const { setAttributes } = props;
-  const { data, column } = props.attributes;
-
-  // Declare change event handlers.
-  const onChangeData   = ( value ) => { 
-    setAttributes( { data: value } ) };
-  const onChangeColumn = ( value ) => { 
-    setAttributes( { column: value } ) };
-```
-
-Note:
-* Edit module in edit.js, part 1
-
----
-
-<!-- .slide: data-background="var(--black)" -->
-
-### `edit.js` (part 2)
+### `edit.js`
 
 ```
 return (
@@ -199,9 +167,6 @@ return (
 );
 
 ```
-
-Note:
-* Edit module in edit.js, part 2
 
 ---
 
@@ -709,7 +674,18 @@ VALUE / MAX_VALUE * 100
 # See this in action
 
 * Besan Block @ https://github.com/thatdevgirl/besan-block
-* All example code is from this custom plugin
+* Example code is from this custom plugin
+
+---
+
+# References
+
+* SVG Tutorial - https://www.w3schools.com/graphics/svg_intro.asp
+* Accessible SVG patterns - https://www.smashingmagazine.com/2021/05/accessible-svg-patterns-comparison/
+* Carnegie Museum Web A11y Guidelines: SVG - https://web-accessibility.carnegiemuseums.org/code/svg/
+* Make charts and graphs more accessible - https://blog.pope.tech/2023/08/31/how-to-make-charts-and-graphs-more-accessible/
+* Writing a custom WordPress block - https://jhalabi.com/blog/writing-custom-wp-block
+* WP_HTTP class - https://developer.wordpress.org/reference/classes/wp_http/
 
 ---
 
@@ -723,16 +699,6 @@ VALUE / MAX_VALUE * 100
 * Find me @ [jhalabi.com](https://jhalabi.com)
   * @jonihalabi
   * @thatdevgirl on GH
-
----
-
-# References
-
-* [SVG Tutorial | W3Schools](https://www.w3schools.com/graphics/svg_intro.asp)
-* [Accessible SVG patterns | Smashing Magazine](https://www.smashingmagazine.com/2021/05/accessible-svg-patterns-comparison/)
-* [Carnegie Museum Web Accessibility Guidelines: SVG](https://web-accessibility.carnegiemuseums.org/code/svg/)
-* [How to make charts and graphs more accessible](https://blog.pope.tech/2023/08/31/how-to-make-charts-and-graphs-more-accessible/)
-* [Writing a custom WordPress block](https://jhalabi.com/blog/writing-custom-wp-block)
 
 ---
 
