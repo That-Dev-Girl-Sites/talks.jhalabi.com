@@ -248,17 +248,6 @@ $data_body json_decode( $raw_data['body'], true );
 
 ---
 
-<!-- .slide: data-background="var(--black)" -->
-
-### Check for errors
-
-```
-if ( array_key_exists( 'error', $data_body ) ) 
-  { return false; }
-```
-
----
-
 Our data will look something like this:
 
 ```
@@ -349,6 +338,25 @@ Array
 ---
 
 <section class="full-screen-img" data-background-image="images/bar-chart.jpg" data-background-size="contain" data-background-color="var(--black)" aria-label="Example horizontal bar chart of student home states."></section>
+
+---
+
+<!-- .slide: data-background="var(--blue)" -->
+
+# Decision point: Chart in SVG
+
+---
+
+<!-- .slide: data-background="var(--green)" -->
+
+# SVG
+
+Scalable Vector Graphic, a XML-based image format for 2-D graphics
+
+* All code
+* No image loss, because code scales
+* Smaller file size
+* Code is semantic; can add ARIA attributes
 
 ---
 
