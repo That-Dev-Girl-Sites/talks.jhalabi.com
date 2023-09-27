@@ -343,7 +343,9 @@ Array
 
 <!-- .slide: data-background="var(--blue)" -->
 
-# Decision point: Chart in SVG
+# Decision point!
+
+## Chart in SVG
 
 ---
 
@@ -683,6 +685,7 @@ VALUE / MAX_VALUE * 100
 
 * Besan Block @ https://github.com/thatdevgirl/besan-block
 * Example code is from this custom plugin
+* **Also:** Writing a custom WordPress block - https://jhalabi.com/blog/writing-custom-wp-block
 
 ---
 
@@ -692,8 +695,7 @@ VALUE / MAX_VALUE * 100
 * Accessible SVG patterns - https://www.smashingmagazine.com/2021/05/accessible-svg-patterns-comparison/
 * Carnegie Museum Web A11y Guidelines: SVG - https://web-accessibility.carnegiemuseums.org/code/svg/
 * Make charts and graphs more accessible - https://blog.pope.tech/2023/08/31/how-to-make-charts-and-graphs-more-accessible/
-* Writing a custom WordPress block - https://jhalabi.com/blog/writing-custom-wp-block
-* WP_HTTP class - https://developer.wordpress.org/reference/classes/wp_http/
+
 
 ---
 
