@@ -276,7 +276,7 @@ Array(
 
 # Not done yet!
 
-We need to count the number of students from each major.
+We need to count the number of students from each state.
 
 ---
 
@@ -586,7 +586,7 @@ $svg_height = $chart_height + 40;
 
 ## Note about the bar width
 
-The width of the current bar is the value of the bar (how many students in this class level) as a __percentage__.
+The width of the current bar is the value of the bar (how many students from this state) as a __percentage__.
 
 ```
 VALUE / MAX_VALUE * 100
