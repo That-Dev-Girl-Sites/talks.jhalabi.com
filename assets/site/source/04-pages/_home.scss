@@ -1,0 +1,18 @@
+/**
+ * Pages: Home
+ */
+
+.home {
+  &-inventory {
+    @extend .fixed-width;
+
+    padding-block-start: 2rem;
+  }
+
+  &-bio {
+    @extend .fixed-width;
+
+    background-color: var(--battleship-gray-light-25);
+    padding-block-start: 2rem;
+  }
+}

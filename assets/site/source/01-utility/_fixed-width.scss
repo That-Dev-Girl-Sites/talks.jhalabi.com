@@ -1,0 +1,12 @@
+/**
+ * Utility: Fixed width
+ */
+
+.fixed-width {
+  padding-block: 4rem;
+  padding-inline: 2rem;
+
+  @media screen and ( min-width: $screen-md ) {
+    padding-inline: calc( (100vw - #{$screen-md} - 2rem) / 2 );
+  }
+}

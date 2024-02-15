@@ -1,0 +1,19 @@
+/**
+ * Tags: Headings
+ */
+
+ h1 {
+  --font-size: var(--type-h1);
+  --line-height: 1.2;
+
+  margin-block-end: 1rem;
+}
+
+
+h2 {
+  --font-size: var(--type-h2);
+  --line-height: 1.5;
+
+  margin-block-end: 2rem;
+  margin-block-start: 4rem;
+}

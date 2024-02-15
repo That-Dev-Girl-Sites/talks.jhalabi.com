@@ -1,0 +1,9 @@
+/**
+ * Global: Site header
+ */
+
+.site-header {
+  @extend .fixed-width;
+
+  border-bottom: 2px solid var(--black);
+}

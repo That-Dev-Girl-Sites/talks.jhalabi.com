@@ -1,0 +1,23 @@
+/**
+ * Base: Reset
+ *
+ * A very minimal reset file.
+ */
+
+ *,
+ ::before,
+ ::after {
+   box-sizing: border-box;
+   color: var( --text-color );
+   font-family: var( --font-family );
+   font-size: var( --font-size );
+   font-weight: var( --font-weight );
+   line-height: var( --line-height );
+   margin: 0;
+   padding: 0;
+ }
+ 
+ br {
+   clear: both;
+ }
+ 

@@ -1,0 +1,34 @@
+/**
+ * Base: Typography
+ */
+
+ :root,
+ ::after,
+ ::before {
+   // Font sizes, based on the type scale major third.
+   --type-nameplate: 3.815rem;
+   --type-h1:        2.441rem;
+   --type-h2:        1.953rem;
+   --type-p:         1rem;
+   --type-p-bigger:  1.1rem;
+   --type-p-smaller: 0.9rem;
+ 
+   --line-height:    2;
+ 
+   // Baseline typography.
+   --font-family:   'PT Mono', monospace;
+   --font-size:     16px;
+   --font-weight:   400;
+   --text-color:    var(--black);
+ }
+ 
+ 
+ b,
+ strong {
+   --font-weight: bold;
+ }
+ 
+ small {
+   --font-size: var(--type-p-smaller);
+   font-style: italic;
+ }

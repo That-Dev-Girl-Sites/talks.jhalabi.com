@@ -2,23 +2,36 @@
 <html lang="en">
 
 <head>
-  <title>Inventory of Presentation Slides - Joni Halabi</title>
+  <title>Joni Halabi: Workshop and class presentations</title>
 
-  <link rel="stylesheet" type="text/css" href="/assets/site/build/styles.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Web development conference and workshop slides by Joni Halabi.">
+  <link rel="stylesheet" type="text/css" href="/assets/site/build/styles.min.css?v=20240215">
+
+  <meta name="description" content="Inventory of web development focused presentation slides by Joni Halabi.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
-  <link rel="manifest" href="assets/icons/site.webmanifest">
-  <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#b26e63">
-  <link rel="shortcut icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#b26e63">
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico">
   <meta name="msapplication-TileColor" content="#222222">
-  <meta name="msapplication-config" content="assets/icons/browserconfig.xml">
+  <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
   <meta name="theme-color" content="#222222">
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LMXWQM7X1W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LMXWQM7X1W');
+  </script>
 </head>
 
 <body>
@@ -28,26 +41,24 @@
 
   <header class="site-header">
     <h1 class="nameplate">
-      <a href="https://jhalabi.com">Joni Halabi</a>
+      <a href="/">Joni Halabi</a>
     </h1>
 
     <p class="tagline">
-      web developer, author, speaker, single mom, baker, music lover, chaotic neutral
+      web developer, author, speaker, single mom, runner, music lover, chatty introvert
     </p>
 
     <nav class="nav-primary" aria-label="Main">
       <ul>
-        <li><a href="https://jhalabi.com">About Me</a></li>
-        <li><a href="https://jhalabi.com/speaking">Speaking Details</a></li>
-        <li><a href="mailto:joni@jhalabi.com">Contact</a></li>
+        <li><a href="https://jhalabi.com/">about me</a></li>
+        <li><a href="https://jhalabi.com/speaking/">speaking details</a></li>
+        <li><a href="https://jhalabi.com/contact/">contact</a></li>
       </ul>
     </nav>
   </header>
 
-
-  <main>
-
-    <section aria-labelledby="inventory">
+  <main id="main">
+    <section class="home-inventory" aria-labelledby="inventory">
       <h2 id="inventory">Inventory of Presentation Slides</h2>
 
       <ul>
@@ -66,32 +77,39 @@
       </ul>
     </section>
 
-    <section class="has-background copper" aria-labelledby="who-am-i">
-      <h2 id="who-am-i">Who Am I?</h2>
+    <section class="home-bio" aria-labelledby="who-am-i">
+      <h2 id="who-am-i">About Joni</h2>
 
       <p>
-        Hi there! My name is Joni and I am a senior web developer at Georgetown 
-        University in Washington DC. I specialize in developing CMS themes and 
-        Javascript applications, and have spent the last 20 years building 
-        solutions for higher education, e-commerce corporations, non-profit 
-        organizations, and technology companies. 
+        I am a “middle-end” web developer at Georgetown University who likes to 
+        write code, commit often, and make up her own titles. I have spent the 
+        last 20 years developing solutions for a wide variety of industries and 
+        organizations. I currently specialize in developing CMS themes and 
+        WordPress editor customizations.
       </p>
 
       <p>
-        I am also a single mother by choice and the author of 
-        <a href="https://jhalabi.com/book">Sweet Little You</a>, a welcome baby 
-        book for single parents and their donor-conceived children. In my rapidly 
-        dwindling spare time, I enjoy live music, knitting, and baking.
+        When I am not writing code, I write technical articles and creative 
+        works focusing on life as a single mother by choice. I am the author of 
+        <a href="https://jhalabi.com/book/">Sweet Little You</a>, a welcome baby 
+        book for single parents and their donor-conceived children.
+      </p>
+      
+      <p>
+        In my rapidly dwindling spare time, I enjoy running, practicing yoga, 
+        reading, and seeing live music near my home in the Washington, D.C. area.
       </p>
 
-      <p><a href="mailto:joni@jhalabi.com" class="button">Let's talk about talks!</a></p>
+      <p>
+        <a href="mailto:joni@jhalabi.com" class="button">Let's connect!</a>
+      </p>
     </section>
   </main>
 
   <footer>
-    <div class="footer-copyright has-background grey">
+    <div class="footer-copyright">
       <div>
-        <p>Copyright &copy; 2023 Joni Halabi.</p>
+        <p>Copyright &copy; 2024 Joni Halabi. All rights reserved.</p>
       </div>
     </div>
   </footer>

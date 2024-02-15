@@ -1,0 +1,39 @@
+/**
+ * Tags: Link
+ */
+
+ a {
+  --font-family: inherit;
+  --font-size: inherit;
+  --text-color: var( --coral-red-dark-20 );
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  
+  // Variation: Button
+  &.button {
+    --text-color: var(--white);
+
+    background-color: var(--coral-red-dark-5);
+    display: inline-block;
+    margin-block-start: 1rem;
+    padding-block: 1rem;
+    padding-inline: 1.5rem;
+    text-decoration: none;
+    transition: all 0.5s ease;
+
+    &::before {
+      padding-inline-end: 0.75rem;
+    }
+
+    // Default focus/hover state.
+    &:focus,
+    &:hover {
+      --text-color: var(--white);
+      background-color: var(--coral-red-dark-20);
+    }
+  }
+}

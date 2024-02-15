@@ -1,0 +1,60 @@
+/**
+ * Global: Nameplate
+ *
+ * This component lives inside the site header.
+ */
+
+.nameplate {
+  --font-size: var(--type-nameplate);
+  --line-height: 1;
+  
+
+  margin-block-start: 4rem;
+  text-align: center;
+
+  @media screen and ( min-width: $screen-md ) {
+    --line-height: 2;
+
+    margin-block-end: -1.5rem;
+    margin-block-start: 1rem;
+    text-align: left;
+  }
+
+
+  // Linked logo.
+  a {
+    $logo-size: 6rem;
+
+    --text-color: var(--black);
+    --font-size:  inherit;
+
+    letter-spacing: -4px;
+    text-decoration: none;
+
+    // The logo gets added within the link, but before the link text, so it
+    // does not appear in the DOM (it's decorative), but it is still linked.
+    &::before {
+      background-color: var(--dark-purple);
+      background-image: url('../images/logo-white.gif');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      border-left: 1rem solid var(--dark-purple);
+      border-right: 1rem solid var(--dark-purple);
+      content: '';
+      display: inline-block;
+      height: $logo-size;
+      left: 0;
+      margin: 0 auto;
+      opacity: 90%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: $logo-size;
+
+      @media screen and ( min-width: $screen-md ) {
+        margin: 0;
+      }
+    }
+  }
+}

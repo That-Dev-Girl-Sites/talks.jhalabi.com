@@ -1,0 +1,33 @@
+/**
+ * Layout: Body
+ */
+
+body {
+  background-color: var(--white);
+
+  // Striped top border to the site. This needs to be before the `body` tag
+  // to ensure that the border spans the entire screen, because of the padding 
+  // included across the rest of the site. 
+  &::before {
+    background-color: var(--dark-purple);
+    background-image: repeating-linear-gradient(
+      180deg,
+      var(--dark-purple),
+      var(--dark-purple)     0.4rem,
+      var(--silver)          0.4rem,
+      var(--silver)          0.4rem * 2,
+      var(--battleship-gray) 0.4rem * 2,
+      var(--battleship-gray) 0.4rem * 3,
+      var(--coral-red)       0.4rem * 3,
+      var(--coral-red)       0.4rem * 4,
+      var(--dark-purple)     0.4rem * 4,
+      var(--dark-purple)     0.4rem * 5
+    );
+    content: '';
+    display: block;
+    height: 2rem;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+}

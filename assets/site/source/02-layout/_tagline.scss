@@ -1,0 +1,28 @@
+/**
+ * Global: Tagline
+ *
+ * This component lives inside the site header.
+ */
+
+.tagline {
+  --font-size: var(--type-p-smaller);
+  --line-height: 1;
+  --text-color: var(--black-light-20);
+
+  margin-block-end: 1rem;
+  text-align: center;
+
+  @media screen and ( min-width: $screen-md ) {
+    text-align: left;
+
+    // Add square brackets around the tagline.
+    &::before,
+    &::after {
+      --font-size:  var(--type-p);
+      --line-height: 1;
+    }
+
+    &::before { content: '['; }
+    &::after  { content: ']'; }
+  }
+}

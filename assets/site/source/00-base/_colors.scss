@@ -1,0 +1,51 @@
+/**
+ * Base: Colors
+ *
+ */
+
+// Neutral colors.
+$black:           #1f271b;
+$white:           #fff;
+
+
+// Primary colors.
+// https://coolors.co/3a182e-c5c5c5-829191-e85f5c-1f271b
+$dark-purple:     #3a182e;
+$silver:          #c5c5c5;
+$battleship-gray: #829191;
+$coral-red:       #c95d63;
+
+
+// Color property definitions.
+:root,
+::after,
+::before {
+
+  /* ***
+   * Neutral colors.
+   */
+
+  --black:                     #{$black};
+  --white:                     #{$white};
+
+  // Neutral colors: shades.
+  --black-light-20:            #{lighten( $black, 20% )};
+
+
+
+  /* ***
+   * Primary colors.
+   */
+
+  --dark-purple:               #{$dark-purple};
+  --silver:                    #{$silver};
+  --battleship-gray:           #{$battleship-gray};
+  --coral-red:                 #{$coral-red};
+
+  // Primary colors: shades.
+  --battleship-gray-light-25:  #{lighten( $battleship-gray, 25% )};
+
+  --coral-red-dark-5:          #{darken( $coral-red, 5% )};
+  --coral-red-dark-20:         #{darken( $coral-red, 20% )};
+
+}

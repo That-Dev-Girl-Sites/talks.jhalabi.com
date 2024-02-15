@@ -1,0 +1,23 @@
+/**
+ * Global: Site footer
+ */
+
+.footer {
+  clear: both;
+
+  // Copyright block.
+  &-copyright {
+    --text-color: var(--white);
+
+    background-color: var(--black);
+    border-block-start: 1px solid var(--white);
+    padding-block: 1rem;
+    padding-inline: 4rem;
+
+    p {
+      --font-size: var(--type-p-smaller);
+
+      margin: 0;
+    }
+  }
+}

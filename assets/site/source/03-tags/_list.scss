@@ -1,0 +1,13 @@
+/**
+ * Tags: List
+ */
+
+ ul, ol {
+  margin-inline-start: 2rem;
+
+  li {
+    --font-size: var(--type-p-bigger);
+
+    margin-block-end: 1.5rem;
+  }
+}

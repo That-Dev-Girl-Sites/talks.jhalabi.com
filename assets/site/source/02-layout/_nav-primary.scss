@@ -1,0 +1,38 @@
+/**
+ * Global: Navigation, primary
+ *
+ * This component lives inside the site header.
+ */
+
+.nav-primary {
+  margin-block-start: 0.5rem;
+  text-align: center;
+
+  @media screen and ( min-width: $screen-md ) {
+    text-align: left;
+  }
+
+  ul {
+    // Override the default list margin to align the nav with the rest
+    // of the header.
+    margin-inline-start: 0;
+  }
+
+  li {
+    --font-size: var(--type-p-smaller);
+
+    display: inline-block;
+    list-style: none;
+    margin: 0 1.5rem 0.5rem 0;
+    text-transform: lowercase;
+
+    &::before {
+      content: '/';
+    }
+  }
+
+  a {
+    --text-color: var(--coral-red-dark-20);
+  }
+
+}
