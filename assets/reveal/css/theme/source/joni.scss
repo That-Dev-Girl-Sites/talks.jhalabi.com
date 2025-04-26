@@ -252,4 +252,24 @@ a {
     }
   }
 
+  /* 
+   * Slide type: Image
+   */
+  &.image {
+    background: var(--preset-color-black);
+    max-width: none;
+    padding: 0;
+
+    p {
+      
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      margin-inline: auto;
+      width: 100%;
+    }
+  }
+
 }

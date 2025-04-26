@@ -75,3 +75,8 @@ class HelloWorld {
 $hello = new HelloWorld;
 $hello.speak();
 ```
+
+---
+<!-- .slide: class="image" -->
+
+![Five cupcakes on a wooden board, outside](images/cupcakes.jpg)

@@ -100,6 +100,9 @@ a {
   /* 
    * Slide type: Code
    */
+  /* 
+   * Slide type: Image
+   */
 }
 .slides section.present.title {
   align-content: space-around;
@@ -201,4 +204,17 @@ a {
   padding-block: 4rem;
   padding-inline: 6rem;
   text-align: left;
+}
+.slides section.present.image {
+  background: var(--preset-color-black);
+  max-width: none;
+  padding: 0;
+}
+.slides section.present.image p {
+  margin: 0;
+}
+.slides section.present.image img {
+  display: block;
+  margin-inline: auto;
+  width: 100%;
 }
