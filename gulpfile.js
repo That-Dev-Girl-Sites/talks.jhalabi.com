@@ -1,18 +1,244 @@
-const gulp   = require( 'gulp' ),
-      clean  = require( 'gulp-clean-css' ),
-      rename = require( 'gulp-rename' ),
-      sass   = require( 'gulp-dart-sass');
+const pkg          = require('./package.json')
+const glob         = require('glob')
+const yargs        = require('yargs')
+const through      = require('through2');
 
-// CSS build task.
-gulp.task( 'css', () => {
-  return gulp.src( 'assets/site/source/styles.scss' )
-    .pipe( sass( { outputStyle: 'compressed' } ) )
-    .pipe( rename( {
-      basename: 'styles',
-      suffix: '.min'
-    } ) )
-    .pipe( gulp.dest( 'assets/site/build' ) );
-} );
+const {rollup}     = require('rollup')
+const terser       = require('@rollup/plugin-terser')
+const babel        = require('@rollup/plugin-babel').default
+const commonjs     = require('@rollup/plugin-commonjs')
+const resolve      = require('@rollup/plugin-node-resolve').default
+const sass         = require('sass')
 
-// Default task.
-gulp.task( 'default', gulp.series( 'css' ) );
+const gulp         = require('gulp')
+const tap          = require('gulp-tap')
+const zip          = require('gulp-zip')
+const header       = require('gulp-header')
+const eslint       = require('gulp-eslint')
+const minify       = require('gulp-clean-css')
+const connect      = require('gulp-connect')
+const autoprefixer = require('gulp-autoprefixer')
+
+
+const root = yargs.argv.root || '.'
+const port = yargs.argv.port || 8000
+const host = yargs.argv.host || 'localhost'
+
+
+const banner = `/*!
+* reveal.js ${pkg.version}
+* ${pkg.homepage}
+* MIT licensed
+*
+* Copyright (C) 2011-2024 Hakim El Hattab, https://hakim.se
+*/\n`
+
+
+// Prevents warnings from opening too many test pages
+process.setMaxListeners(20);
+
+const babelConfig = {
+    babelHelpers: 'bundled',
+    ignore: ['node_modules'],
+    compact: false,
+    extensions: ['.js', '.html'],
+    plugins: [
+        'transform-html-import-to-string'
+    ],
+    presets: [[
+        '@babel/preset-env',
+        {
+            corejs: 3,
+            useBuiltIns: 'usage',
+            modules: false
+        }
+    ]]
+};
+
+
+// Our ES module bundle only targets newer browsers with
+// module support. Browsers are targeted explicitly instead
+// of using the "esmodule: true" target since that leads to
+// polyfilling older browsers and a larger bundle.
+const babelConfigESM = JSON.parse( JSON.stringify( babelConfig ) );
+babelConfigESM.presets[0][1].targets = { browsers: [
+    'last 2 Chrome versions',
+    'last 2 Safari versions',
+    'last 2 iOS versions',
+    'last 2 Firefox versions',
+    'last 2 Edge versions',
+] };
+
+let cache = {};
+
+
+// Creates a bundle with broad browser support, exposed
+// as UMD
+gulp.task('js-es5', () => {
+    return rollup({
+        cache: cache.umd,
+        input: 'assets/reveal/js/index.js',
+        plugins: [
+            resolve(),
+            commonjs(),
+            babel( babelConfig ),
+            terser()
+        ]
+    }).then( bundle => {
+        cache.umd = bundle.cache;
+        return bundle.write({
+            name: 'Reveal',
+            file: './assets/reveal/dist/reveal.js',
+            format: 'umd',
+            banner: banner,
+            sourcemap: true
+        });
+    });
+})
+
+// Creates an ES module bundle
+gulp.task('js-es6', () => {
+    return rollup({
+        cache: cache.esm,
+        input: 'assets/reveal/js/index.js',
+        plugins: [
+            resolve(),
+            commonjs(),
+            babel( babelConfigESM ),
+            terser()
+        ]
+    }).then( bundle => {
+        cache.esm = bundle.cache;
+        return bundle.write({
+            file: './assets/reveal/dist/reveal.esm.js',
+            format: 'es',
+            banner: banner,
+            sourcemap: true
+        });
+    });
+})
+gulp.task('js', gulp.parallel('js-es5', 'js-es6'));
+
+
+// Creates a UMD and ES module bundle for each of our
+// built-in plugins
+gulp.task('plugins', () => {
+    return Promise.all([
+        { name: 'RevealHighlight', input: './assets/reveal/plugin/highlight/plugin.js', output: './assets/reveal/plugin/highlight/highlight' },
+        { name: 'RevealMarkdown',  input: './assets/reveal/plugin/markdown/plugin.js',  output: './assets/reveal/plugin/markdown/markdown' },
+        { name: 'RevealNotes',     input: './assets/reveal/plugin/notes/plugin.js',     output: './assets/reveal/plugin/notes/notes' },
+        { name: 'RevealMath',      input: './assets/reveal/plugin/math/plugin.js',      output: './assets/reveal/plugin/math/math' },
+    ].map( plugin => {
+        return rollup({
+                cache: cache[plugin.input],
+                input: plugin.input,
+                plugins: [
+                    resolve(),
+                    commonjs(),
+                    babel({
+                        ...babelConfig,
+                        ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
+                    }),
+                    terser()
+                ]
+            }).then( bundle => {
+                cache[plugin.input] = bundle.cache;
+                bundle.write({
+                    file: plugin.output + '.esm.js',
+                    name: plugin.name,
+                    format: 'es'
+                })
+
+                bundle.write({
+                    file: plugin.output + '.js',
+                    name: plugin.name,
+                    format: 'umd'
+                })
+            });
+    } ));
+})
+
+// a custom pipeable step to transform Sass to CSS
+function compileSass() {
+  return through.obj( ( vinylFile, encoding, callback ) => {
+    const transformedFile = vinylFile.clone();
+
+    sass.render({
+        data: transformedFile.contents.toString(),
+        file: transformedFile.path,
+    }, ( err, result ) => {
+        if( err ) {
+            callback(err);
+        }
+        else {
+            transformedFile.extname = '.css';
+            transformedFile.contents = result.css;
+            callback( null, transformedFile );
+        }
+    });
+  });
+}
+
+gulp.task('css-themes', () => gulp.src(['./assets/reveal/css/theme/source/*.{sass,scss}'])
+        .pipe(compileSass())
+        .pipe(gulp.dest('./assets/reveal/dist/theme')))
+
+gulp.task('css-core', () => gulp.src(['assets/reveal/css/reveal.scss'])
+    .pipe(compileSass())
+    .pipe(autoprefixer())
+    .pipe(minify({compatibility: 'ie9'}))
+    .pipe(header(banner))
+    .pipe(gulp.dest('./assets/reveal/dist')))
+
+gulp.task('css-site', () => gulp.src(['./assets/site/source/styles.scss'])
+    .pipe(compileSass())
+    .pipe(autoprefixer())
+    .pipe(minify({compatibility: 'ie9'}))
+    .pipe(gulp.dest('./assets/site/dist')))
+
+gulp.task('css', gulp.parallel('css-themes', 'css-core', 'css-site'))
+
+gulp.task('eslint', () => gulp.src(['./assets/reveal/js/**', 'gulpfile.js'])
+        .pipe(eslint())
+        .pipe(eslint.format()))
+
+gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins')))
+
+gulp.task('build', gulp.parallel('js', 'css', 'plugins'))
+
+gulp.task('reload', () => gulp.src(['index.html'])
+    .pipe(connect.reload()));
+
+gulp.task('serve', () => {
+
+    connect.server({
+        root: root,
+        port: port,
+        host: host,
+        livereload: true
+    })
+
+    const slidesRoot = root.endsWith('/') ? root : root + '/'
+    gulp.watch([
+        slidesRoot + '**/*.html',
+        slidesRoot + '**/*.md',
+        `!${slidesRoot}**/node_modules/**`, // ignore node_modules
+    ], gulp.series('reload'))
+
+    gulp.watch(['assets/reviea./js/**'], gulp.series('js', 'reload', 'eslint'))
+
+    gulp.watch([
+        'assets/reveal/css/theme/source/**/*.{sass,scss}',
+        'assets/reveal/css/theme/template/*.{sass,scss}',
+    ], gulp.series('css-themes', 'reload'))
+
+    gulp.watch([
+        'assets/reveal/css/*.scss',
+        'assets/reveal/css/print/*.{sass,scss,css}'
+    ], gulp.series('css-core', 'reload'))
+
+    gulp.watch([
+        'assets/site/source/**/*.scss'
+    ], gulp.series('css-site'))
+
+})

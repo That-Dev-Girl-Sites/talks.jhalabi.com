@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Default Slides | Joni Halabi</title>
+
+  <link rel="stylesheet" href="../../assets/reveal/dist/reveal.css">
+  <link rel="stylesheet" href="../../assets/reveal/dist/theme/joni.css" id="theme">
+  <link rel="stylesheet" href="../../assets/reveal/plugin/highlight/zenburn.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#b26e63">
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#222222">
+  <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
+  <meta name="theme-color" content="#222222">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Use external markdown resource -->
+      <section data-markdown="slides.md"></section>
+
+    </div>
+  </div>
+
+  <script src="../../assets/reveal/dist/reveal.js"></script>
+  <script src="../../assets/reveal/plugin/markdown/markdown.js"></script>
+  <script src="../../assets/reveal/plugin/highlight/highlight.js"></script>
+  <script src="../../assets/reveal/plugin/notes/notes.js"></script>
+  <script src="../../assets/reveal/plugin/math/math.js"></script>
+  <script>
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+
+      history: true,
+
+      disableLayout: true,
+      
+      backgroundTransition: 'none',
+      transition: 'none',
+      
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+    });
+  </script>
+</body>
+</html>
